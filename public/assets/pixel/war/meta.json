@@ -1,0 +1,103 @@
+{
+  "width": 1920.0,
+  "height": 14400.0,
+  "zoom": 1.35,
+  "slices": [
+    {
+      "src": "/assets/pixel/war/slice-00.jpg",
+      "top": 0,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 664302
+    },
+    {
+      "src": "/assets/pixel/war/slice-01.jpg",
+      "top": 1200,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 453651
+    },
+    {
+      "src": "/assets/pixel/war/slice-02.jpg",
+      "top": 2400,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 186364
+    },
+    {
+      "src": "/assets/pixel/war/slice-03.jpg",
+      "top": 3600,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 152288
+    },
+    {
+      "src": "/assets/pixel/war/slice-04.jpg",
+      "top": 4800,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 137281
+    },
+    {
+      "src": "/assets/pixel/war/slice-05.jpg",
+      "top": 6000,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 145510
+    },
+    {
+      "src": "/assets/pixel/war/slice-06.jpg",
+      "top": 7200,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 270543
+    },
+    {
+      "src": "/assets/pixel/war/slice-07.jpg",
+      "top": 8400,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 157986
+    },
+    {
+      "src": "/assets/pixel/war/slice-08.jpg",
+      "top": 9600,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 139649
+    },
+    {
+      "src": "/assets/pixel/war/slice-09.jpg",
+      "top": 10800,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 139252
+    },
+    {
+      "src": "/assets/pixel/war/slice-10.jpg",
+      "top": 12000,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 157564
+    },
+    {
+      "src": "/assets/pixel/war/slice-11.jpg",
+      "top": 13200,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 334368
+    }
+  ]
+}

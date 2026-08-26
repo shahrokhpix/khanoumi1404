@@ -1,0 +1,71 @@
+# Instructions
+
+During your interaction with the user, if you find anything reusable in this project (e.g. version of a library, model name), especially about a fix to a mistake you made or a correction you received, you should take note in the `Lessons` section in the `.cursorrules` file so you will not make the same mistake again.
+
+You should also use the `.cursorrules` file as a Scratchpad to organize your thoughts. Especially when you receive a new task, you should first review the content of the Scratchpad, clear old different task if necessary, first explain the task, and plan the steps you need to take to complete the task. You can use todo markers to indicate the progress, e.g.
+[X] Task 1
+[ ] Task 2
+
+Also update the progress of the task in the Scratchpad when you finish a subtask.
+
+# Tools
+
+Note all the tools are in python3. Consult `tools/` for screenshot, search, scrape, and LLM helpers.
+
+# Lessons
+
+## Scratchpad
+
+Task: Hero CTA icon + CSR report tab overlap.
+
+[X] Hero «شروع مطالعه»: replace ↓ with `faBookOpen` (same as header)
+[X] CSR report covers: pull up (`-mt-[5.25rem]` / `sm:-mt-[6rem]` / `lg:-mt-[6.75rem]`) so tab bottom sits behind image
+[ ] User accept
+
+
+## User Specified Lessons
+
+
+## User Specified Lessons
+
+- Convert the report **section by section** into real React/HTML (live text, CSS boxes, coded charts). Never dump the whole 1920×14400 page as one screenshot, one SVG, or one generated HTML file. The site can still be one SPA — each chapter is its own component, assembled in App.
+- Wireframe the page first (empty labeled section frames). Fill one slot at a time. Layout is document flow with `max-width: 1920px`, not `transform: scale` of a 1920×14400 canvas — otherwise it cannot go responsive.
+- Do not batch the conversion into 2 phases (desktop then mobile). Work is ~20 separate phases: one visual section per phase, overlay-accepted before the next starts. Fat chapters (Users, Products, War channel) still get sub-crops inside their phase — never code 3000–4500px in one sitting.
+- Keep every fact, number, caption, SVG, and chart from the Figma/PDF sources. Reconstruct broken PDF-import Persian (گیلن → گیلان, در۴۰۴۱ → در ۱۴۰۴) without dropping content.
+- Brand color is Figma `#EC078D` (not the green MASTER palette from ui-ux-pro-max).
+- Figma MCP Starter plan is rate-limited this month; use local PDF + cached dump + `public/assets/figma-war`.
+
+## Cursor learned
+
+- Vite create-vite cancels in a non-empty folder (PDFs/.fig present); scaffold files manually.
+- War report PDF is a single 1920×14400 InDesign page.
+- InDesign Package (IDML + Links + Document fonts) is the best local source for live Persian copy, named swatches, and original photos — not the full-page SVG (outlined glyphs, no `<text>`). Unpack `*.idml` (zip of XML). Annual landing: `گزارش_سال_خانومی/لندینگ گزارش سال Folder`. War: `گزارش_جنگ/گزارش جنگ Folder`. Do not put raw PSDs (e.g. Newspaper Mockup ~197MB) on the web; export compressed JPG/WebP. PIL can flatten packaged PSDs to JPEG.
+- IDML Persian decimals often appear slash-reversed from RTL (`7/12%` → ۱۲٫۷٪, `5/1 میلیون` → ۱٫۵ میلیون). Reconstruct from adjacent year series, never copy the slash form.
+- Two-report pixel dump: `/` annual PDF, `/war` war PDF. Raster slices in `public/assets/pixel`. Overlay hotspots for download, شروع مطالعه, war CTA, and icon nav. Artboard wrap must be `dir=ltr` + `origin-top-left` or RTL shifts the canvas off-screen.
+- IDML button fills on the annual hero are Opacity 80 (`rgba(218, 25, 132, 0.8)`), not solid magenta.
+- Annual landing type is IRANSans + IRANSansXFaNum (packaged TTFs), not Inter. Brand swatches: `Khanoumi 1 1404` CMYK 0/99/0/0; RGB Magenta copy `218 25 132` (`#DA1984`); site token remains Figma `#EC078D`.
+- Preface (Story_u1643 / u1628): IRANSans 19/34 center; title Bold; body column 1342px; crop pad ~7px top / 43px bottom; 7 body lines at 1920. Title–body ink gap ~31px (`mt-5` after 34px leading), not a large `mb` on the heading. Keep IDML ZWNJ (`ادامه‌دادن`, `بلوغ‌ رسیدن`, `ظرفیت‌‌هایی`, `درجهت`). Year is ۱۴۰۴.
+- Preface on the site starts collapsed (first paragraph only) with «خواندن بیشتر»; full four paragraphs only after expand. Button fill matches hero Opacity 80.
+- Glance KPI icons are the six user SVGs (`hr-resources`, `females-managers`, `uniqe-employees`, `increased-sales`, `product-variations`, `brands`) recolored from `#FF03FF` to brand `#EC078D` in `public/assets/annual/glance/`.
+- Glance sales pill must stay **one line** at every width (`whitespace-nowrap` + `clamp` type). Do not wrap at `sm:` 36px; that breakpoint is still too narrow.
+- Glance KPI labels (esp. «نرخ رشد تعداد کالاهای فروخته‌شده:») also stay one line: `whitespace-nowrap` + `11px / sm:14px / lg:16px`. Do not use `leading-7` on those labels.
+- Path (`#path`) year nodes use the user’s `circle.svg` / `arrow.svg` (circle recolored `#FF03FF` → `#EC078D`). Hover/focus fills the inner white with brand and the year turns white.
+- Path section title sits in a brand `#EC078D` box (white type). Metric labels/notes under icons are black; percents stay pink and count up. Timeline is **LTR** (۱۴۰۲ left → ۱۴۰۴ right) with flipped arrows. Gender chart: text left, Chart.js bars right (`chart.js` + `react-chartjs-2`). Year ۱۴۰۴ sits centered **above** the bars; keep bars thin (`barThickness` 8) so they do not overflow the canvas.
+- Path timeline (`#path ol`) stays **horizontal** at every width (`flex-row`, never `flex-col` below `lg`). Metric icons: `basket` حجم فروش · `loyal` وفاداری · `money` سودآوری · `chart` فروش. Gender: `inway` beside «در مسیر ساختن», `female` beside ۴۰٪ زن. Timeline has scroll-in stagger + arrow flow motion.
+- Path metric percents: حجم فروش ۴۰٪ · وفاداری ۵۷٪ · سودآوری ۱۳۰٪ · فروش ۹۰+٪ (IDML frame positions + ۲×/۳٫۶× notes). Do not swap loyalty and sales.
+- CSR (`#csr`): title in brand box with white hands-heart icon (`hands.svg` from PDF vector). Subtitle «زنان پیشگام ایران». RTL two-column: first = خانومی‌لایف (54-women book + مراقبت اجتماعی bar + 3 IG posts), second = خانومی بیزینس (می‌خواهم زیبا بمانم + گزارش ۲۰۲۵ خاورمیانه `2024-report.png` + گزارش مکنزی `mckinsey.svg`). Report tabs are **fixed rem** (`w-[5.75rem]` / `lg:w-[7rem]`, `h-[8.5rem]` / `sm:h-[9.5rem]` / `lg:h-[10.5rem]`), not `%` of the image — otherwise they look هم‌عرض on mobile and stick out on desktop. Tab height must clear the long «گزارش ۲۰۲۵ خاورمیانه» label. Cover images overlap the tab bottom (`-mt-[5.25rem]` / `sm:-mt-[6rem]` / `lg:-mt-[6.75rem]`) so the ribbon end sits behind the report art. Hero CTA uses `faBookOpen`, not a text ↓. Care tab stays in document flow. IG posts share `aspect-[9/16]` + `object-cover`. Do not start Users until csr is accepted.
+- Users rings/fans are a local SVG engine in `src/charts/` (not Chart.js). Circles share a **bottom tangent** (`cy = anchorY - r`), plus a 4th inner disc for the people+crown mark **centered in that disc** (IDML Group_u1e60). Fan primitive is IDML `Polygon_u1ecf`: a **60° circular sector**; InDesign hides the vertex with a Paper clip. Fan labels sit on the SVG right edge (`text-anchor=start` + RTL), not on the wedges. No «دانلود SVG» in the report UI. Rings/fans stagger in on scroll (`users-in`). Insight copy stays **beside** the fan at all widths, with the three-tone people icon above it. Year labels must be LTR-isolated (`۱۴۰۴:` not bidi `۱۴:۰۴`). On narrow mobile columns, keep the fan's 220px internal geometry and scale the entire SVG with `max-width: 100%; height: auto`; recalculating it at the tiny column width crushes row spacing and overlaps labels. Use a smaller mobile `clipRatio`, a taller compact aspect, and `vertexGap: 34` so the smallest sector remains attached while label/percentage rows do not collide.
+- Users golden-day (`روز طلایی`): black rounded card; balloon photo is packaged `enhanced_export copy 2.jpg` (not `campaign-555.jpg` planner mockup, not raw `555.psd`). Crop `BlackBeauty_FA_V01` / `black-beauty.png` to ink bounds or the 3D «بیوتی» looks tiny. IDML `5/1 میلیون` → ۱٫۵.
+- Users time (`توسعه زمانی بازار`): live HTML, not a slice. Peak pill is `w-max` sitting on the pink-border card — `w-full` makes it look like a header bar. Headline pinks only **دوشنبه‌ها** and **جمعه‌ها**. Quiet dates ۱۴۰۳: ۱ فروردین | ۱۴۰۴: ۱۰ اسفند (Latin 1/10 in IDML → Persian). Newspaper is PDF-cropped WebP from `Newspaper Mockup copy.psd` (~197MB — never ship the PSD). Calendar+trend is a local SVG (up on peak, down inverted on the pink quiet box).
+- Users geo (`تمرکز تقاضا`): local SVG donuts in `src/charts/DonutChart.ts` (not Chart.js). The two years stay side by side at every width in an LTR two-column grid (۱۴۰۳ left → ۱۴۰۴ right). On mobile each year is a vertical card with its two HTML labels below the ring; at `lg` labels move beside the ring. Clockwise from 12 o’clock: gray تهران then brand pink سایر (`#EC078D`). Ring SVG holds year only so labels never crush the hole. Year in the hole is LTR-isolated. IDML Latin years and `60٪` → ۱۴۰۳ / ۶۰٪.
+- Products first band (`ترکیب انتخاب‌ها`): pink ExtraBold title + bottles SVG (not pink title box). Category chips: Figma SVG from file `uY7xhX77YskJ1Dnqat106E` card nodes (crop badge viewBox); brand recolor `#FF03FF`→`#EC078D`. Mini bars HTML/CSS (۱۴۰۲ light gray · ۱۴۰۳ dark gray · ۱۴۰۴ pink). Care hub pink circle + white line trend + `marks/care.svg` (`moraghebat`). Gold card single ۱٫۲۸٪ / ۱۴۰۴. Hub grid `dir=ltr`.
+- Products skin-share charts are solid pies (not bars/donuts) and stay in one three-column row at every width. Use compact 9–10px mobile captions, brand `#EC078D` slices, and per-pie in-view stagger motion; keep all chart motion visible when `prefers-reduced-motion` disables animation.
+- Products وزن‌بازار: follow the user pattern PNG (`weight-pattern.png` / Group_u2b54): dark→light pink fills by share, darker outer rim, icons **inside** the band (white on dark slices, pink on light), grey elbow leaders to spaced seats, **name then %** at tip, white year core. Year stays ۱۴۰۴ from report (not slash-decimals from IDML).
+- CategoryCard badges sit above bar % labels (`pt-[3.75rem]` + fixed card height) so MarkDisc never covers chart numbers; gold card uses same fixed height as bar cards.
+- Products category badges: export each Group card (`9:588` makeup … `9:688` gold) via `download_assets` SVG, save as `*-card.svg`, run `scripts/crop_product_badge_svgs.py`. Do not PDF-rasterize. Figma MCP Starter ~20 calls/month — batch small nodes; prefer new file `uY7xhX77YskJ1Dnqat106E` over exhausted `oe0nb1svy3Tn1BbpjnaYqC`.
+- CSR replacement book mockups use `life-book-2026.png` / `biz-book-2026.png` in identical `aspect-[4/3]` frames with `object-cover`; reserve the frame so both cards stay equal across breakpoints.
+- CategoryCard border must cross the badge center: article top padding equals half the badge diameter (`2.375rem` for 4.75rem; `sm:2.625rem` for 5.25rem). Activate the three-column category hub only at `xl`; at smaller widths use the two-column flow so 100% desktop zoom does not overflow.
+- Users newspaper prefers packaged mockup `newspaper-mockup.png` (root `Newspaper-Mockup-copy.png`); calendar mark is `users/calendar.svg` (not FA).
+- Annual SPA chrome: absolute (not sticky/fixed) top header overlays the hero only (logo + PDF + war) and scrolls away with the page; fixed bottom chapter dock (icons only). Thin progress bar stays fixed on top. Dock clearance lives in footer padding. Soft/dark «به‌زودی» slots only while a chapter is still locked. Section reveal with blur/scale; respect `prefers-reduced-motion`. Brand stays `#EC078D` / IRANSans — do not swap to Inter/Playfair/gold from ui-ux-pro-max. User rejected a flat “simple polish” pass — keep depth (glow, glass, gradient titles, orbit care hub) without inventing new report facts. Hero title stays moderate (`clamp` ~1.55–3.35rem), not oversized.
+- Products pay/basket close the products chapter: BNPL pink gradient card (`wallet.svg`) + basket depth three cards (`bag.svg`). Partners (`#partners`): brand growth SVG line (LTR years), Beauty Ads glass + ROI panel (`adv.svg` / `roi.svg`), two ranked Iranian brand lists. Ops (`#ops`): waiting KPI circles + returns spark + ganje locker band + OTD bars + war CTA. After all annual frames are filled, footer drops «به‌زودی».
+

@@ -1,0 +1,51 @@
+# Dependencies & build
+node_modules/
+dist/
+venv/
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.cursor/
+.vscode/
+*.swp
+
+# Local extract / temp / IDML unpack
+extract/
+.tmp-*/
+.tmp-idml-annual/
+.tmp-sections/
+.tmp-annual-texts.txt
+.tmp-hero-extract.json
+scripts/__pycache__/
+
+# InDesign packages & design dumps (too large; not needed to run SPA)
+گزارش_سال_خانومی/
+گزارش_جنگ/
+*.idml
+*.fig
+design-system/
+
+# Root scratch assets (canonical copies live under public/assets)
+/*.svg
+/*.png
+/*.jpg
+/*.jpeg
+/*.psd
+/*.pdf
+!public/
+
+# Dev verification crops
+public/assets/verify/
+
+# Optional local notes
+scratchpad.md

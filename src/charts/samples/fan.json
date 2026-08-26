@@ -1,0 +1,32 @@
+[
+  {
+    "value": 45.6,
+    "label": "۲۵–۳۴ سال",
+    "percentage": 45.6,
+    "color": "#EC078D"
+  },
+  {
+    "value": 32.1,
+    "label": "۳۵ تا ۴۴ سال",
+    "percentage": 32.1,
+    "color": "#EF5DA2"
+  },
+  {
+    "value": 12.6,
+    "label": "۱۸ تا ۲۴ سال",
+    "percentage": 12.6,
+    "color": "#F288B7"
+  },
+  {
+    "value": 7.1,
+    "label": "۴۵ تا ۵۴ سال",
+    "percentage": 7.1,
+    "color": "#F6AECD"
+  },
+  {
+    "value": 1.9,
+    "label": "۵۵ تا ۶۴ سال",
+    "percentage": 1.9,
+    "color": "#FAD5E6"
+  }
+]

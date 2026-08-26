@@ -1,0 +1,103 @@
+{
+  "width": 1920.0,
+  "height": 14400.0,
+  "zoom": 1.35,
+  "slices": [
+    {
+      "src": "/assets/pixel/annual/slice-00.jpg",
+      "top": 0,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 465755
+    },
+    {
+      "src": "/assets/pixel/annual/slice-01.jpg",
+      "top": 1200,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 197004
+    },
+    {
+      "src": "/assets/pixel/annual/slice-02.jpg",
+      "top": 2400,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 144685
+    },
+    {
+      "src": "/assets/pixel/annual/slice-03.jpg",
+      "top": 3600,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 125064
+    },
+    {
+      "src": "/assets/pixel/annual/slice-04.jpg",
+      "top": 4800,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 192040
+    },
+    {
+      "src": "/assets/pixel/annual/slice-05.jpg",
+      "top": 6000,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 113754
+    },
+    {
+      "src": "/assets/pixel/annual/slice-06.jpg",
+      "top": 7200,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 119773
+    },
+    {
+      "src": "/assets/pixel/annual/slice-07.jpg",
+      "top": 8400,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 140917
+    },
+    {
+      "src": "/assets/pixel/annual/slice-08.jpg",
+      "top": 9600,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 143925
+    },
+    {
+      "src": "/assets/pixel/annual/slice-09.jpg",
+      "top": 10800,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 111173
+    },
+    {
+      "src": "/assets/pixel/annual/slice-10.jpg",
+      "top": 12000,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 137979
+    },
+    {
+      "src": "/assets/pixel/annual/slice-11.jpg",
+      "top": 13200,
+      "height": 1200,
+      "pxW": 2592,
+      "pxH": 1620,
+      "bytes": 104806
+    }
+  ]
+}
