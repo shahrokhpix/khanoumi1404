@@ -107,24 +107,21 @@ function BrandsGrowthChart({
 
 function BrandRankList({ title, items }: { title: string; items: readonly string[] }) {
   return (
-    <article className="min-w-0 rounded-[1.25rem] border border-pink/12 bg-white/90 px-2 py-4 shadow-[0_12px_32px_rgba(26,6,18,0.07)] backdrop-blur-md sm:rounded-[1.35rem] sm:px-5 sm:py-6">
-      <h4 className="font-fanum m-0 text-center text-[11px] font-extrabold leading-snug text-pink sm:text-[16px]">{title}</h4>
-      <ol className="m-0 mx-auto mt-4 flex list-none flex-wrap items-center justify-center gap-2 p-0 sm:mt-6 sm:gap-3">
-        {items.map((name, i) => (
-          <li
-            key={name}
-            className="relative flex size-[3.65rem] flex-col items-center justify-center rounded-full border-[2.5px] border-pink bg-gradient-to-b from-[#fff7fb] to-white text-center shadow-[0_10px_24px_rgba(236,7,141,0.14)] sm:size-[5.5rem]"
-            title={`${toFaDigits(String(i + 1))}. ${name}`}
-          >
-            <span className="font-fanum absolute -top-0.5 end-0 inline-flex size-5 items-center justify-center rounded-full bg-pink text-[9px] font-extrabold text-white sm:size-6 sm:text-[11px]">
-              {toFaDigits(String(i + 1))}
-            </span>
-            <span className="font-fanum px-1 text-[9px] font-extrabold leading-tight text-pink sm:px-1.5 sm:text-[13px]">
-              {name}
-            </span>
+    <article className="min-w-0 rounded-[1.25rem] border border-pink/12 bg-white/90 px-2 py-4 shadow-[0_12px_32px_rgba(26,6,18,0.07)] backdrop-blur-md sm:rounded-[1.35rem] sm:px-5 sm:py-5">
+      <h4 className="font-fanum m-0 text-center text-[11px] font-extrabold leading-snug text-pink sm:text-[15px]">
+        {title}
+      </h4>
+      <ul className="m-0 mt-3 grid list-none grid-cols-5 gap-[clamp(4px,1.2vw,10px)] p-0 sm:mt-4">
+        {items.map((name) => (
+          <li key={name} className="min-w-0">
+            <div className="mx-auto flex aspect-square w-full max-w-[4.75rem] items-center justify-center rounded-full border-[2.5px] border-pink bg-gradient-to-b from-[#fff7fb] to-white p-[0.2rem] text-center shadow-[0_8px_20px_rgba(236,7,141,0.12)] sm:max-w-[5.5rem] sm:p-1">
+              <span className="font-fanum text-[clamp(7px,2.1vw,12px)] font-extrabold leading-[1.15] text-pink">
+                {name}
+              </span>
+            </div>
           </li>
         ))}
-      </ol>
+      </ul>
     </article>
   );
 }
@@ -153,7 +150,7 @@ export function PartnersSection() {
 
       <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
         <img
-          src="/assets/annual/glance/brands.svg"
+          src="/assets/annual/partners/fasl-tolid-konandegan.svg"
           alt=""
           width={42}
           height={42}
@@ -162,8 +159,20 @@ export function PartnersSection() {
         {p.title}
       </h2>
 
-      <p className="font-fanum m-0 mt-6 text-center text-[clamp(15px,2vw,19px)] font-bold text-black">
-        {p.brandsNote}
+      <p className="font-fanum m-0 mt-6 flex items-center justify-center gap-2 text-center text-[clamp(15px,2vw,19px)] font-bold text-black">
+        <img
+          src="/assets/annual/partners/brand.svg"
+          alt=""
+          width={28}
+          height={28}
+          className="size-6 shrink-0 object-contain sm:size-7"
+          decoding="async"
+        />
+        <span>
+          {p.brandsNote.before}
+          <span className="text-pink">{p.brandsNote.highlight}</span>
+          {p.brandsNote.after}
+        </span>
       </p>
 
       <div ref={ref} className="mx-auto mt-8 max-w-[40rem] sm:mt-10" dir="ltr">
@@ -188,6 +197,14 @@ export function PartnersSection() {
           </li>
         ))}
       </ul>
+
+      <h3 className="font-fanum mx-auto m-0 mt-14 max-w-[44rem] text-center text-[clamp(15px,2.2vw,22px)] font-extrabold leading-snug text-black sm:mt-16">
+        {p.local.title}
+      </h3>
+      <div className="mx-auto mt-6 grid max-w-[68rem] grid-cols-1 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-2">
+        <BrandRankList title={p.local.careTitle} items={p.local.care} />
+        <BrandRankList title={p.local.makeupTitle} items={p.local.makeup} />
+      </div>
 
       <article className="glass-panel relative mx-auto mt-14 max-w-[68rem] overflow-hidden rounded-[1.75rem] p-5 sm:mt-16 sm:rounded-[2rem] sm:p-8 lg:p-10">
         <div
@@ -227,7 +244,7 @@ export function PartnersSection() {
                 className="size-10 brightness-0 invert sm:size-12"
                 decoding="async"
               />
-              <p className="font-fanum m-0 text-[clamp(22px,3.2vw,34px)] font-black leading-none">
+              <p className="font-fanum m-0 text-[clamp(14px,1.9vw,18px)] font-extrabold leading-snug sm:leading-7">
                 {p.ads.roi}
               </p>
             </div>
@@ -236,38 +253,38 @@ export function PartnersSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid gap-3">
             {p.ads.stats.map((s) => (
               <div
                 key={s.label}
-                className="flex flex-col items-center justify-center rounded-[1.25rem] border border-pink/12 bg-white/90 px-3 py-5 text-center shadow-[0_10px_28px_rgba(166,0,98,0.08)]"
+                className="flex flex-col rounded-[1.25rem] border border-pink/12 bg-white/90 px-4 py-4 text-center shadow-[0_10px_28px_rgba(166,0,98,0.08)] sm:px-5 sm:py-5 sm:text-right"
               >
-                <p className="font-fanum m-0 text-[clamp(20px,3vw,28px)] font-extrabold text-pink">{s.value}</p>
-                <p className="font-fanum m-0 mt-2 text-[11px] font-bold text-black/70 sm:text-[13px]">{s.label}</p>
+                <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start">
+                  <img
+                    src={s.icon}
+                    alt=""
+                    width={44}
+                    height={44}
+                    className="size-10 shrink-0 object-contain sm:size-11"
+                    decoding="async"
+                  />
+                  <div className="min-w-0">
+                    <p className="font-fanum m-0 text-[clamp(20px,2.8vw,26px)] font-extrabold leading-none text-pink">
+                      {s.value}
+                    </p>
+                    <p className="font-fanum m-0 mt-1.5 text-[11px] font-bold text-black/75 sm:text-[13px]">
+                      {s.label}
+                    </p>
+                  </div>
+                </div>
+                <p className="font-fanum m-0 mt-3 text-[clamp(11px,1.45vw,13px)] font-medium leading-6 text-black/80 sm:mt-4 sm:leading-7">
+                  {s.detail}
+                </p>
               </div>
             ))}
           </div>
         </div>
-
-        <ul className="relative m-0 mt-6 list-none space-y-3 p-0 sm:mt-8">
-          {p.ads.extra.map((line) => (
-            <li
-              key={line}
-              className="font-fanum rounded-2xl border border-pink/10 bg-white/70 px-4 py-3 text-[clamp(12px,1.5vw,14px)] font-medium leading-7 text-black/80 sm:px-5"
-            >
-              {line}
-            </li>
-          ))}
-        </ul>
       </article>
-
-      <h3 className="font-fanum mx-auto m-0 mt-14 max-w-[44rem] text-center text-[clamp(15px,2.2vw,22px)] font-extrabold leading-snug text-black sm:mt-16">
-        {p.local.title}
-      </h3>
-      <div className="mx-auto mt-8 grid max-w-[58rem] grid-cols-2 gap-2.5 sm:mt-10 sm:gap-6">
-        <BrandRankList title={p.local.careTitle} items={p.local.care} />
-        <BrandRankList title={p.local.makeupTitle} items={p.local.makeup} />
-      </div>
     </section>
   );
 }

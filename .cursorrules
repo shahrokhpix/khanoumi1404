@@ -14,13 +14,17 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 
 # Lessons
 
+- War section charts must stay centered with `mx-auto w-full max-w-*`; do not use `w-screen left-1/2 -translate-x-1/2` inside the RTL report frame because it can shift beyond the artboard.
+
 ## Scratchpad
 
-Task: Hero CTA icon + CSR report tab overlap.
+Task: Annual products desktop proportions.
 
-[X] Hero «شروع مطالعه»: replace ↓ with `faBookOpen` (same as header)
-[X] CSR report covers: pull up (`-mt-[5.25rem]` / `sm:-mt-[6rem]` / `lg:-mt-[6.75rem]`) so tab bottom sits behind image
-[ ] User accept
+[X] Separate category cards from the care hub
+[X] Reduce care hub and orbit footprint on desktop
+[X] Reduce weight-market chart from 1088px to 768px desktop
+[X] Verify desktop screenshot, lint, and production build
+[ ] User accept desktop proportions
 
 
 ## User Specified Lessons
@@ -38,6 +42,9 @@ Task: Hero CTA icon + CSR report tab overlap.
 ## Cursor learned
 
 - Vite create-vite cancels in a non-empty folder (PDFs/.fig present); scaffold files manually.
+- Basket depth: decode `chart omgh kharid.svg` into live HTML rows (gray ۱۴۰۳ + pink ۱۴۰۴ bars, growth pill) — user rejected dropping in the whole SVG as `<img>`.
+- Illustrator SVGs with `<style>` classes (`.st0` etc.) render **blank** via `<img src>` — flatten to inline `fill`/`stroke` before putting in `public/`.
+- War report chart numbers: `src/data/war-report-charts.json` → `war-chart-data.ts` → `charts.ts`; `null` in JSON = unpublished (skip bar, not zero).
 - War report PDF is a single 1920×14400 InDesign page.
 - InDesign Package (IDML + Links + Document fonts) is the best local source for live Persian copy, named swatches, and original photos — not the full-page SVG (outlined glyphs, no `<text>`). Unpack `*.idml` (zip of XML). Annual landing: `گزارش_سال_خانومی/لندینگ گزارش سال Folder`. War: `گزارش_جنگ/گزارش جنگ Folder`. Do not put raw PSDs (e.g. Newspaper Mockup ~197MB) on the web; export compressed JPG/WebP. PIL can flatten packaged PSDs to JPEG.
 - IDML Persian decimals often appear slash-reversed from RTL (`7/12%` → ۱۲٫۷٪, `5/1 میلیون` → ۱٫۵ میلیون). Reconstruct from adjacent year series, never copy the slash form.
@@ -67,5 +74,7 @@ Task: Hero CTA icon + CSR report tab overlap.
 - CategoryCard border must cross the badge center: article top padding equals half the badge diameter (`2.375rem` for 4.75rem; `sm:2.625rem` for 5.25rem). Activate the three-column category hub only at `xl`; at smaller widths use the two-column flow so 100% desktop zoom does not overflow.
 - Users newspaper prefers packaged mockup `newspaper-mockup.png` (root `Newspaper-Mockup-copy.png`); calendar mark is `users/calendar.svg` (not FA).
 - Annual SPA chrome: absolute (not sticky/fixed) top header overlays the hero only (logo + PDF + war) and scrolls away with the page; fixed bottom chapter dock (icons only). Thin progress bar stays fixed on top. Dock clearance lives in footer padding. Soft/dark «به‌زودی» slots only while a chapter is still locked. Section reveal with blur/scale; respect `prefers-reduced-motion`. Brand stays `#EC078D` / IRANSans — do not swap to Inter/Playfair/gold from ui-ux-pro-max. User rejected a flat “simple polish” pass — keep depth (glow, glass, gradient titles, orbit care hub) without inventing new report facts. Hero title stays moderate (`clamp` ~1.55–3.35rem), not oversized.
+- War crisis callouts (`#crisis`): three equal HTML cards in one `grid-cols-3` row below SVG (never stacked, never `foreignObject`). SVG = curve + elbow bars to column centers; cards use real px type (14/12 mobile · 16/14 sm+).
+- War resilience timeline (`#resilience`): geometry stays LTR so row icons/titles remain physically left, but every Persian date/title gets its own `dir=rtl`. Center the marker itself on the track and absolutely position its date above it; never vertically center the combined date+marker group. Marker positions and dashed lengths derive from exact Persian-date intervals with an inset track.
 - Products pay/basket close the products chapter: BNPL pink gradient card (`wallet.svg`) + basket depth three cards (`bag.svg`). Partners (`#partners`): brand growth SVG line (LTR years), Beauty Ads glass + ROI panel (`adv.svg` / `roi.svg`), two ranked Iranian brand lists. Ops (`#ops`): waiting KPI circles + returns spark + ganje locker band + OTD bars + war CTA. After all annual frames are filled, footer drops «به‌زودی».
 

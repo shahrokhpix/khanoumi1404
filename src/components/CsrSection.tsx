@@ -14,6 +14,9 @@ function BookVisual({ src, alt }: { src: string; alt: string }) {
   );
 }
 
+const panelClass =
+  "glass-panel flex min-w-0 flex-col rounded-[1.5rem] p-4 text-center sm:rounded-[1.75rem] sm:p-6 xl:p-8";
+
 export function CsrSection() {
   return (
     <section
@@ -33,19 +36,29 @@ export function CsrSection() {
           alt=""
           width={42}
           height={42}
-          className="size-7 shrink-0 brightness-0 invert sm:size-8 lg:size-[42px]"
+          className="size-7 shrink-0 sm:size-8 lg:size-[42px]"
         />
         {CSR.title}
       </h2>
-      <p className="font-fanum m-0 mt-5 text-center text-[19px] font-bold leading-[34px] text-black">
-        {CSR.subtitle}
-      </p>
 
       <div className="mx-auto mt-10 grid w-full max-w-[1440px] grid-cols-1 items-stretch gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6 xl:gap-8">
-        <article className="glass-panel flex min-w-0 flex-col rounded-[1.5rem] p-4 text-center sm:rounded-[1.75rem] sm:p-6 xl:p-8">
-          <BookVisual src={CSR.life.book} alt={CSR.life.bookAlt} />
-          <h3 className="font-fanum m-0 mt-4 text-[15px] font-bold leading-7 text-black sm:mt-5 sm:text-[16px] lg:text-[17px]">
+        <article className={panelClass}>
+          <h3 className="font-fanum m-0 mb-4 text-[15px] font-bold leading-7 text-black sm:mb-5 sm:text-[16px] lg:text-[17px]">
             {CSR.life.title}
+          </h3>
+          <BookVisual src={CSR.life.book} alt={CSR.life.bookAlt} />
+        </article>
+
+        <article className={panelClass}>
+          <h3 className="font-fanum m-0 mb-4 text-[15px] font-bold leading-7 text-black sm:mb-5 sm:text-[16px] lg:text-[17px]">
+            {CSR.business.bookTitle}
+          </h3>
+          <BookVisual src={CSR.business.book} alt={CSR.business.bookAlt} />
+        </article>
+
+        <article className={panelClass}>
+          <h3 className="font-fanum m-0 text-[15px] font-bold leading-7 text-black sm:text-[16px] lg:text-[17px]">
+            {CSR.life.careTitle}
           </h3>
           <div className="mx-auto mt-4 w-fit max-w-full">
             <p className="font-fanum relative z-0 mx-3 m-0 flex items-baseline justify-center gap-x-2 whitespace-nowrap rounded-t-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-3 pb-8 pt-2.5 text-white shadow-[0_8px_24px_rgba(236,7,141,0.25)] sm:mx-5">
@@ -57,7 +70,10 @@ export function CsrSection() {
             </p>
             <ul dir="ltr" className="relative z-10 -mt-6 flex items-stretch justify-center gap-2 sm:gap-3">
               {CSR.life.posts.map((post) => (
-                <li key={post.src} className="min-w-0 w-[28vw] max-w-[168px] transition-transform duration-500 hover:-translate-y-1 lg:w-[168px]">
+                <li
+                  key={post.src}
+                  className="min-w-0 w-[28vw] max-w-[168px] transition-transform duration-500 hover:-translate-y-1 lg:w-[168px]"
+                >
                   <img
                     src={post.src}
                     alt={post.alt}
@@ -69,9 +85,8 @@ export function CsrSection() {
           </div>
         </article>
 
-        <article className="glass-panel flex min-w-0 flex-col rounded-[1.5rem] p-4 text-center sm:rounded-[1.75rem] sm:p-6 xl:p-8">
-          <BookVisual src={CSR.business.book} alt={CSR.business.bookAlt} />
-          <h3 className="font-fanum m-0 mt-4 text-[15px] font-bold leading-7 text-black sm:mt-5 sm:text-[16px] lg:text-[17px]">
+        <article className={panelClass}>
+          <h3 className="font-fanum m-0 text-[15px] font-bold leading-7 text-black sm:text-[16px] lg:text-[17px]">
             {CSR.business.title}
           </h3>
           <ul dir="ltr" className="mt-6 flex items-start justify-center gap-4 sm:gap-6">

@@ -17,7 +17,7 @@ export function GlanceSection() {
           فصل ۰۲
         </span>
       </div>
-      <h2 className="font-fanum m-0 text-center text-[clamp(22px,2.8vw,32px)] font-black leading-tight text-ink">
+      <h2 className="font-fanum m-0 text-center text-[clamp(22px,2.8vw,32px)] font-black leading-tight text-pink">
         {GLANCE.title}
       </h2>
       <p className="font-fanum mx-auto mt-8 flex w-fit max-w-full items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-l from-[#ec078d] via-[#da1984] to-[#a60062] px-[clamp(14px,3vw,36px)] py-[clamp(12px,1.7vw,20px)] font-bold leading-none text-white shadow-[0_16px_40px_rgba(236,7,141,0.35)] lg:min-h-[99px]">

@@ -126,12 +126,13 @@ export const PATH = {
 
 export const CSR = {
   title: "مسئولیت اجتماعی / در مسیر همراهی",
-  icon: "/assets/annual/csr/hands.svg",
+  icon: "/assets/annual/csr/masouliat.svg",
   subtitle: "زنان پیشگام ایران",
   life: {
-    title: "خانومی‌لایف / جایی برای گفت‌وگو",
+    title: "زنان پیشگام",
     book: "/assets/annual/csr/life-book-2026.png",
     bookAlt: "کتاب روایت ۵۴ زن پیشگام ایرانی",
+    careTitle: "خانومی‌لایف / جایی برای گفت‌وگو",
     careLabel: "مراقبت اجتماعی:",
     careNote: "موضوع پست‌ها: جامعه امن",
     posts: [
@@ -151,6 +152,7 @@ export const CSR = {
   },
   business: {
     title: "خانومی بیزینس؛ مرجع صنعت زیبایی",
+    bookTitle: "انتشار کتاب «می‌خواهم زیبا بمانم» با همراهی هیدرودرم",
     book: "/assets/annual/csr/biz-book-2026.png",
     bookAlt: "کتاب می‌خواهم زیبا بمانم، راهنمای زیبایی برای زنانی که سرطان دارند",
     reports: [
@@ -170,7 +172,7 @@ export const CSR = {
 
 export const USERS = {
   title: "کاربران / در مسیر انتخاب",
-  icon: "/assets/annual/glance/uniqe-employees.svg",
+  icon: "/assets/annual/users/karbaran.svg",
   growthLead: "نیم‌میلیون نفر",
   growthNote: "به جمع کاربران خانومی اضافه شد.",
   circles: [
@@ -184,7 +186,7 @@ export const USERS = {
     { year: "۱۴۰۴", value: "۳٬۲۰۰٬۹۹۵ نفر" },
   ],
   ageTitle: "ترکیب سنی مشتریان",
-  ageLead: "از هر ۱۰ کاربر نزدیک به ۸ کاربر خانومی ۲۵ تا ۴۴ ساله هستند.",
+  ageLead: "از هر ۱۰ کاربر خانومی\nنزدیک به ۸ کاربر\n۲۵ تا ۴۴ ساله هستند.",
   ageFans: [
     { value: 45.6, label: "۲۵–۳۴ سال", percentage: 45.6, color: "#EC078D" },
     { value: 32.1, label: "۳۵ تا ۴۴ سال", percentage: 32.1, color: "#EF5DA2" },
@@ -209,6 +211,7 @@ export const USERS = {
     photoAlt: "سه زن در سبد بالن خانومی با جعبه‌های سفارش",
     logo: "/assets/annual/users/black-beauty.png",
     logoAlt: "بلک بیوتی",
+    calendarIcon: "/assets/annual/users/calendar-black.svg",
     sales: {
       date: "۷ آذر",
       lead: "فروش",
@@ -256,6 +259,7 @@ export const USERS = {
     newspaper: "/assets/annual/users/newspaper-mockup.png",
     newspaperAlt: "روزنامه شرق با عنوان سه روزی که خاورمیانه لرزید",
     calendarIcon: "/assets/annual/users/calendar.svg",
+    peakCalendarIcon: "/assets/annual/users/calendar-frosh.svg",
     womanIcon: "/assets/annual/users/woman.svg",
     quietLabel: "کم‌فروش‌ترین روز سال:",
     quietDays: [
@@ -284,7 +288,7 @@ export const USERS = {
 
 export const PRODUCTS = {
   title: "محصولات / در مسیر انتخاب",
-  icon: "/assets/annual/products/title-icon.svg",
+  icon: "/assets/annual/products/mahsoulat-fasl.svg",
   mixTitle: "سهم از فروش ریالی هر گروه کالایی",
   mixLead: "ترکیب انتخاب‌ها",
   careNote: "مراقبتی = بهداشتی + سلامت",
@@ -294,7 +298,7 @@ export const PRODUCTS = {
     lead: "ترکیب انتخاب‌ها",
     caption: "سهم از فروش ریالی هر گروه کالایی",
     careNote: "مراقبتی = بهداشتی + سلامت",
-    careIcon: "/assets/annual/products/marks/care.svg",
+    careIcon: "/assets/annual/products/marks/behdasht-va-salamt.svg",
     careTrend: [
       { year: "۱۴۰۲", value: 72.5 },
       { year: "۱۴۰۳", value: 75.7 },
@@ -388,7 +392,7 @@ export const PRODUCTS = {
     },
   },
   skin: {
-    title: "سهم مراقبت پوست از ارزش فروش بازار زیبایی",
+    title: "سهم مراقبت پوست از بازار زیبایی: ایران، کره و خاورمیانه",
     insight: "زنان بیش از تغییرات ظاهری، روی زیبایی ماندگار سرمایه‌گذاری کردند.",
     rows: [
       { market: "کره جنوبی", share: 46.8, rank: "سهم اول بازار" },
@@ -398,6 +402,7 @@ export const PRODUCTS = {
   },
   spend: {
     title: "اولویت هزینه‌کردها در خانومی",
+    lead: "زنان بیش از تغییرات ظاهری، روی زیبایی ماندگار سرمایه‌گذاری کردند.",
     items: [
       {
         rank: "۱",
@@ -432,8 +437,12 @@ export const PRODUCTS = {
     ],
     footnote: "*سایر رتبه‌ها در میان ۱۲ دسته کالایی پرفروش مربوط به دیگر محصولات گروه سلامت است.",
     sunIcon: "/assets/annual/products/spend/sunscreen.svg",
-    sun:
-      "بزرگ‌ترین سهم از فروش ریالی: دسته ضدآفتاب‌ها. سهم از کل فروش ریالی: ۱۱ درصد. سهم از کل دسته مراقبت صورت: ۴۲ درصد.",
+    sunTitle: "نفوذ مصرفی",
+    sunStats: [
+      { label: "بزرگ‌ترین سهم از فروش ریالی", value: "دسته ضدآفتاب‌ها" },
+      { label: "سهم از کل فروش ریالی", value: "۱۱ درصد" },
+      { label: "سهم از کل دسته مراقبت صورت", value: "۴۲ درصد" },
+    ],
     sunNote:
       "ضدآفتاب دیگر فقط یک محصول فصلی نیست، تبدیل به عادت مصرفی شده: از هر ۱۰ تومان هزینه‌کرد برای مراقبت از پوست، بیش از ۴ تومان به ضدآفتاب اختصاص داشت.",
   },
@@ -449,7 +458,7 @@ export const PRODUCTS = {
     ],
     koreaTitle: "پرفروش‌ترین آرایشی‌های کره جنوبی (K-Beauty) ۲۰۲۵",
     korea: ["رژ لب tint (سبک MLBB)", "کرم‌پودر cushion", "رژ گونه", "ریمل و خط چشم", "محصولات ابرو"],
-    menaTitle: "پرفروش‌ترین آرایشی‌های خاورمیانه",
+    menaTitle: "پرفروش‌ترین آرایشی‌های خاورمیانه ۲۰۲۵",
     mena: ["محصولات چشم (خط چشم، سایه، ریمل)", "رژ لب", "کرم‌پودر", "رژ گونه و هایلایتر", "محصولات ابرو"],
     compare:
       "هر سه بازار محصولات چشم و لب را در صدر اولویت قرار داده‌اند، اما ایران و کره به سمت ظاهر طبیعی‌تر حرکت کرده‌اند و خاورمیانه تأکید بیشتری روی آرایش چشم و رنگ دارد.",
@@ -457,21 +466,45 @@ export const PRODUCTS = {
   pay: {
     title: "محبوب‌ترین روش پرداخت: الان بخر، بعداً پرداخت کن.",
     note: "مجموع سفارش‌ها با سرویس پرداخت قسطی نسبت به سال قبل ۲۵ درصد بیشتر شد.",
+    icon: "/assets/annual/products/pay/badan.svg",
+    noteIcon: "/assets/annual/products/pay/roshd-frosh.svg",
   },
   basket: {
     title: "عمق سبد خرید",
     lead: "هزینه‌ها بیشتر شد؛ سبد مراقبت کوچک‌تر نشد.",
     rows: [
-      { label: "میانگین ارزش هر سفارش", growth: "رشد: ۵۴+٪" },
-      { label: "میانگین ارزش هر قلم کالا", growth: "رشد: ۳۹+٪" },
-      { label: "میانگین تعداد کالا در هر سفارش", growth: "رشد: تقریباً یک قلم کالا بیشتر" },
-    ],
+      {
+        label: "میانگین ارزش هر سفارش",
+        icon: "order",
+        bars: { y1403: 69, y1404: 100 },
+        growthValue: "۵۴+٪",
+        growthKind: "percent",
+      },
+      {
+        label: "میانگین ارزش هر قلم کالا",
+        icon: "item",
+        bars: { y1403: 65, y1404: 100 },
+        growthValue: "۳۹+٪",
+        growthKind: "percent",
+      },
+      {
+        label: "میانگین تعداد کالا در هر سفارش",
+        icon: "count",
+        bars: { y1403: 84, y1404: 100 },
+        growthValue: "تقریباً یک قلم کالا بیشتر",
+        growthKind: "text",
+      },
+    ] as const,
   },
 };
 
 export const PARTNERS = {
   title: "تولیدکنندگان / در مسیر رشد مشترک",
-  brandsNote: "اضافه شدن ۲۶۵ برند جدید",
+  brandsNote: {
+    before: "اضافه شدن ",
+    highlight: "۲۶۵",
+    after: " برند جدید",
+  },
   brands: [
     { year: "۱۴۰۲", count: 995 },
     { year: "۱۴۰۳", count: 1150 },
@@ -485,12 +518,20 @@ export const PARTNERS = {
     spend:
       "هر ۱۰۰ میلیون تومان سرمایه‌گذاری تبلیغاتی، به‌طور متوسط ۲۳۰ میلیون تومان فروش بیشتر ایجاد کرد.",
     stats: [
-      { value: "۵۰+٪", label: "رشد مشتری" },
-      { value: "۱۲۱+٪", label: "رشد فروش محصول" },
-    ],
-    extra: [
-      "برندهای مشارکت‌کننده در کمپین‌ها، به‌طور متوسط ۵۷ درصد رشد در جذب مشتری را تجربه کردند.",
-      "فروش تعدادی محصولات برندهای مشارکت‌کننده، در طول کمپین‌ها به‌طور متوسط ۱۲۱ درصد افزایش یافت.",
+      {
+        value: "۵۰+٪",
+        label: "رشد مشتری",
+        detail:
+          "برندهای مشارکت‌کننده در کمپین‌ها، به‌طور متوسط ۵۷ درصد رشد در جذب مشتری را تجربه کردند.",
+        icon: "/assets/annual/partners/costumer.svg",
+      },
+      {
+        value: "۱۲۱+٪",
+        label: "رشد فروش محصول",
+        detail:
+          "فروش تعدادی محصولات برندهای مشارکت‌کننده، در طول کمپین‌ها به‌طور متوسط ۱۲۱ درصد افزایش یافت.",
+        icon: "/assets/annual/partners/mahsol.svg",
+      },
     ],
   },
   local: {
@@ -521,7 +562,10 @@ export const OPS = {
     returnsTitle: "نرخ مرجوعی کالا",
     returnsNote: "از هر ۱۰ هزار کالا، فقط ۷ کالا برگشت خورد",
     locker: "گنجه‌های خانومی به شبکه تحویل سفارش‌ها اضافه شدند",
-    lockerStats: "۴۲ گنجه و گنجه‌دار فعال در تهران — ۲۰٬۳۱۰ سفارش تحویل‌شده",
+    lockerStats: [
+      "۴۲ گنجه و گنجه‌دار فعال در تهران",
+      "۲۰,۳۱۰ سفارش تحویل‌شده",
+    ],
     otdTitle: "شاخص ارسال به‌موقع (OTD)",
     otdNote: "از هر ۱۰۰ سفارش ۹۵ سفارش به‌موقع رسید",
     otd1403: "۹۲٪",

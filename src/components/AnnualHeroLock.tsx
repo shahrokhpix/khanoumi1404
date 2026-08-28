@@ -111,17 +111,17 @@ export function AnnualHeroLock() {
           <a
             href="#preface"
             dir="rtl"
-            className="font-fanum group relative inline-flex min-h-14 w-fit max-w-full items-center justify-center gap-3 overflow-hidden rounded-[2rem] px-10 text-xl font-black text-white no-underline sm:min-h-[5.5rem] sm:rounded-[2.75rem] sm:px-14 sm:text-3xl lg:min-h-[6.5rem] lg:text-[42px]"
+            className="font-fanum group relative inline-flex min-h-11 w-fit max-w-full items-center justify-center gap-2 overflow-hidden rounded-[1.35rem] px-7 text-base font-black text-white no-underline sm:min-h-[3.25rem] sm:rounded-[1.65rem] sm:px-9 sm:text-xl lg:min-h-14 lg:px-11 lg:text-2xl"
           >
             <span className="absolute inset-0 bg-gradient-to-br from-[#ff4fb8] via-[#ec078d] to-[#7a0048]" />
             <span className="absolute inset-[1.5px] rounded-[inherit] bg-gradient-to-br from-white/25 via-transparent to-black/20" />
-            <span className="absolute -inset-8 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.45),transparent_45%)] opacity-70" />
+            <span className="absolute -inset-4 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.45),transparent_45%)] opacity-70 sm:-inset-5" />
             <span className="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]">{CTA}</span>
             <span
               aria-hidden="true"
-              className="relative z-10 inline-flex size-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-0.5 sm:size-11"
+              className="relative z-10 inline-flex size-7 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-0.5 sm:size-8"
             >
-              <FontAwesomeIcon icon={faBookOpen} className="text-sm sm:text-lg" />
+              <FontAwesomeIcon icon={faBookOpen} className="text-xs sm:text-sm" />
             </span>
           </a>
 

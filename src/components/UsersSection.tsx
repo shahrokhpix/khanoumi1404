@@ -3,10 +3,10 @@ import { toFaDigits } from "../charts/typography/rtl";
 import { AgePeopleIcon } from "./charts/AgePeopleIcon";
 import { ConcentricCircleChartView, DonutChartView, FanChartView } from "./charts/ChartViews";
 
-function YearMark({ year }: { year: string }) {
+function DateLabel({ date }: { date: string }) {
   return (
-    <span dir="ltr" className="[unicode-bidi:isolate]">
-      {year}:
+    <span dir="ltr" className="font-fanum [unicode-bidi:isolate]">
+      {date}:
     </span>
   );
 }
@@ -34,7 +34,7 @@ export function UsersSection() {
           alt=""
           width={42}
           height={42}
-          className="size-7 shrink-0 brightness-0 invert sm:size-8 lg:size-[42px]"
+          className="size-7 shrink-0 sm:size-8 lg:size-[42px]"
         />
         {USERS.title}
       </h2>
@@ -50,7 +50,7 @@ export function UsersSection() {
         <ConcentricCircleChartView data={USERS.circles} />
       </div>
 
-      <h3 className="font-fanum m-0 mt-10 text-center text-[19px] font-bold leading-[34px] text-black">
+      <h3 className="font-fanum m-0 mt-10 text-center text-[19px] font-bold leading-[34px] text-pink">
         {USERS.ageTitle}:
       </h3>
       <p className="font-fanum m-0 mt-3 text-center text-[clamp(15px,1.8vw,19px)] font-bold text-black">
@@ -67,9 +67,9 @@ export function UsersSection() {
         <div className="flex w-[9.5rem] shrink-0 flex-col items-center gap-2 text-center sm:w-[12rem] lg:w-[16rem] lg:gap-3">
           <AgePeopleIcon className="h-8 w-auto sm:h-10 lg:h-12" />
           <p className="font-fanum m-0 text-[15px] font-medium leading-7 text-black sm:text-[17px] sm:leading-8 lg:text-[21px] lg:leading-9">
-            از هر <span className="text-pink">۱۰ کاربر</span>
+            از هر <span className="text-pink">۱۰ کاربر خانومی</span>
             <br />
-            نزدیک به <span className="text-pink">۸ کاربر خانومی</span>
+            نزدیک به <span className="text-pink">۸ کاربر</span>
             <br />
             <span className="text-pink">۲۵ تا ۴۴</span> ساله هستند.
           </p>
@@ -80,24 +80,6 @@ export function UsersSection() {
       <TimeBand />
       <GeoBand />
     </section>
-  );
-}
-
-function CalendarTrendIcon({ trend, inverted }: { trend: "up" | "down"; inverted?: boolean }) {
-  const bg = inverted ? "#fff" : "#EC078D";
-  const fg = inverted ? "#EC078D" : "#fff";
-  const line = trend === "up" ? "M13 31 L20 24 L26 27 L35 17" : "M13 18 L20 25 L26 22 L35 32";
-  const tip = trend === "up" ? "M30 17 L35 17 L35 22" : "M30 32 L35 32 L35 27";
-
-  return (
-    <svg viewBox="0 0 48 48" className="size-9 shrink-0 sm:size-11 lg:size-12" aria-hidden="true">
-      <rect width="48" height="48" rx="11" fill={bg} />
-      <rect x="12" y="9" width="3.4" height="7" rx="1.2" fill={fg} />
-      <rect x="32.6" y="9" width="3.4" height="7" rx="1.2" fill={fg} />
-      <rect x="10" y="14" width="28" height="24" rx="3.5" fill="none" stroke={fg} strokeWidth="2.2" />
-      <path d={line} fill="none" stroke={fg} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={tip} fill="none" stroke={fg} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   );
 }
 
@@ -119,28 +101,33 @@ function GoldenDayBand() {
           <div className="mt-5 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-fanum m-0 shrink-0 text-center leading-snug sm:min-w-[12rem]">
               <span className="block whitespace-nowrap text-[clamp(12px,1.4vw,16px)] font-bold">{g.best.label}</span>
-              <span className="mt-1 flex flex-wrap items-baseline justify-center gap-x-1 text-[clamp(12px,1.5vw,13px)]">
+              <span
+                dir="ltr"
+                className="mt-1 flex w-full flex-wrap items-baseline justify-center gap-x-1 text-[clamp(12px,1.5vw,13px)] [unicode-bidi:isolate]"
+              >
                 {g.best.years.map((row, i) => (
-                  <span key={row.year} className="inline-flex items-baseline gap-x-1">
+                  <span key={row.year} className="inline-flex items-baseline gap-x-1 whitespace-nowrap">
                     {i > 0 ? <span className="text-white/80">|</span> : null}
-                    <YearMark year={row.year} />
+                    <span>{row.year}:</span>
                     <span className="text-[clamp(16px,2vw,24px)] font-bold text-pink">{row.day}</span>
                   </span>
                 ))}
               </span>
             </p>
 
-            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-1 rounded-[18px] border border-white px-3 py-2.5 sm:flex-nowrap sm:gap-3 sm:px-4 sm:py-3">
+            <div
+              dir="ltr"
+              className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-1 rounded-[18px] border border-white px-3 py-2.5 [unicode-bidi:isolate] sm:flex-nowrap sm:gap-3 sm:px-4 sm:py-3"
+            >
               <img
-                src={USERS.time.calendarIcon}
+                src={g.calendarIcon}
                 alt=""
                 width={28}
                 height={28}
                 className="size-[1.35rem] shrink-0 object-contain sm:size-[1.65rem]"
-                style={{ filter: "invert(14%) sepia(94%) saturate(7480%) hue-rotate(314deg) brightness(95%) contrast(96%)" }}
               />
               <p className="font-fanum m-0 shrink-0 text-[clamp(16px,2.4vw,30px)] font-bold leading-none">
-                {g.sales.date}:
+                <DateLabel date={g.sales.date} />
               </p>
               <p className="font-fanum m-0 min-w-0 flex-1 text-[clamp(12px,1.6vw,18px)] font-medium leading-snug">
                 {g.sales.lead}{" "}
@@ -206,7 +193,7 @@ function TimeBand() {
 
   return (
     <div id="users-time" className="mx-auto mt-14 max-w-[920px] lg:mt-16">
-      <h3 className="font-fanum m-0 text-center text-[19px] font-bold leading-[34px] text-black">
+      <h3 className="font-fanum m-0 text-center text-[19px] font-bold leading-[34px] text-pink">
         {t.title}
       </h3>
       <p className="font-fanum mx-auto mt-3 max-w-[720px] text-center text-[clamp(13px,1.7vw,18px)] font-bold leading-8 text-black">
@@ -222,7 +209,13 @@ function TimeBand() {
             {t.peakLabel}
           </p>
           <p className="font-fanum mt-2 mb-0 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-center text-[clamp(16px,2.4vw,25px)] font-bold leading-snug text-black">
-            <CalendarTrendIcon trend="up" />
+            <img
+              src={t.peakCalendarIcon}
+              alt=""
+              width={48}
+              height={48}
+              className="size-9 shrink-0 object-contain sm:size-11 lg:size-12"
+            />
             <span>
               {t.peakBefore}
               <span className="text-pink">{t.peakFrom}</span>
@@ -246,15 +239,24 @@ function TimeBand() {
         />
       </div>
 
-      <div className="mx-auto mt-8 flex w-full max-w-[42rem] items-center justify-center gap-3 rounded-[23px] bg-pink px-4 py-4 text-white sm:gap-4 sm:px-8 sm:py-5">
-        <CalendarTrendIcon trend="down" inverted />
-        <div className="min-w-0 text-center">
-          <p className="font-fanum m-0 text-[clamp(11px,1.4vw,13px)] font-bold">{t.quietLabel}</p>
-          <p className="font-fanum m-0 mt-1 flex flex-wrap items-baseline justify-center gap-x-2 text-[clamp(13px,1.7vw,16px)] font-bold">
+      <div className="mx-auto mt-8 flex w-full max-w-[42rem] items-center gap-3 rounded-[23px] bg-pink px-4 py-4 text-white sm:gap-4 sm:px-8 sm:py-5">
+        <img
+          src={t.peakCalendarIcon}
+          alt=""
+          width={48}
+          height={48}
+          className="size-9 shrink-0 object-contain sm:size-11 lg:size-12"
+        />
+        <div className="min-w-0 flex-1 self-stretch text-start">
+          <p className="font-fanum m-0 text-start text-[clamp(11px,1.4vw,13px)] font-bold">{t.quietLabel}</p>
+          <p
+            dir="ltr"
+            className="font-fanum m-0 mt-1 flex w-full flex-wrap items-baseline justify-end gap-x-2 text-[clamp(13px,1.7vw,16px)] font-bold [unicode-bidi:isolate]"
+          >
             {t.quietDays.map((row, i) => (
-              <span key={row.year} className="inline-flex items-baseline gap-x-1">
-                {i > 0 ? <span className="font-bold">|</span> : null}
-                <YearMark year={row.year} />
+              <span key={row.year} className="inline-flex items-baseline gap-x-1 whitespace-nowrap">
+                {i > 0 ? <span>|</span> : null}
+                <span>{row.year}:</span>
                 <span className="text-[clamp(17px,2.3vw,23px)]">{row.day}</span>
               </span>
             ))}
@@ -274,7 +276,7 @@ function GeoBand() {
 
   return (
     <div id="users-geo" className="mx-auto mt-14 max-w-[1100px] lg:mt-16">
-      <h3 className="font-fanum m-0 text-center text-[19px] font-bold leading-[34px] text-black">
+      <h3 className="font-fanum m-0 text-center text-[19px] font-bold leading-[34px] text-pink">
         {g.title}
       </h3>
       <p className="font-fanum mx-auto mt-3 max-w-[720px] text-center text-[clamp(13px,1.7vw,18px)] font-medium leading-8 text-black">

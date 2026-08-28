@@ -42,6 +42,7 @@ function ReturnsSpark({ active }: { active: boolean }) {
   const xs = rows.map((_, i) => pad.l + (i * (W - pad.l - pad.r)) / Math.max(1, rows.length - 1));
   const ys = rows.map((r) => pad.t + (1 - r.rate / max) * (H - pad.t - pad.b));
   const line = xs.map((x, i) => `${i === 0 ? "M" : "L"}${x} ${ys[i]}`).join(" ");
+  const axisY = H - pad.b;
 
   return (
     <svg
@@ -50,6 +51,15 @@ function ReturnsSpark({ active }: { active: boolean }) {
       role="img"
       aria-label="نرخ مرجوعی کالا"
     >
+      <line
+        x1={pad.l}
+        y1={axisY}
+        x2={W - pad.r}
+        y2={axisY}
+        stroke="#d1d3d4"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
       <path
         className="ops-line"
         d={line}
@@ -152,7 +162,7 @@ export function OpsSection() {
 
       <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
         <img
-          src="/assets/annual/misc/processing-center.svg"
+          src="/assets/annual/ops/amaliat-poshtibani.svg"
           alt=""
           width={42}
           height={42}
@@ -192,8 +202,16 @@ export function OpsSection() {
         <p className="font-fanum mx-auto mt-8 max-w-[40rem] rounded-2xl border border-pink/20 bg-white/80 px-4 py-4 text-center text-[clamp(13px,1.7vw,16px)] font-bold leading-7 text-black sm:mt-10">
           {o.waiting.minute}
         </p>
-        <p className="font-fanum mx-auto mt-4 max-w-[44rem] rounded-2xl border border-pink bg-gradient-to-l from-[#fff7fb] to-white px-4 py-4 text-center text-[clamp(12px,1.6vw,15px)] font-bold leading-7 text-pink sm:px-6">
-          {o.waiting.far}
+        <p className="font-fanum mx-auto mt-4 flex max-w-[44rem] items-center justify-center gap-2 rounded-2xl border border-pink bg-gradient-to-l from-[#fff7fb] to-white px-4 py-4 text-center text-[clamp(12px,1.6vw,15px)] font-bold leading-7 text-pink sm:gap-3 sm:px-6">
+          <img
+            src="/assets/annual/ops/location.svg"
+            alt=""
+            width={28}
+            height={28}
+            className="size-6 shrink-0 object-contain sm:size-7"
+            decoding="async"
+          />
+          <span>{o.waiting.far}</span>
         </p>
       </div>
 
@@ -217,7 +235,7 @@ export function OpsSection() {
 
         <div className="mt-6 flex flex-col items-center gap-3 rounded-[1.5rem] bg-gradient-to-br from-[#ff4fb8] via-[#ec078d] to-[#7a0048] px-5 py-7 text-center text-white shadow-[0_20px_48px_rgba(236,7,141,0.35)] sm:mt-8 sm:px-8">
           <img
-            src="/assets/annual/products/misc/ganje.svg"
+            src="/assets/annual/ops/ganje.svg"
             alt=""
             width={96}
             height={96}
@@ -227,9 +245,13 @@ export function OpsSection() {
           <p className="font-fanum m-0 text-[clamp(14px,2vw,18px)] font-extrabold leading-snug">
             {o.shipping.locker}
           </p>
-          <p className="font-fanum m-0 text-[clamp(12px,1.6vw,15px)] font-medium text-white/90">
-            {o.shipping.lockerStats}
-          </p>
+          <div className="font-fanum flex flex-col gap-1 text-[clamp(12px,1.6vw,15px)] font-medium leading-snug text-white/90">
+            {o.shipping.lockerStats.map((line) => (
+              <p key={line} className="m-0">
+                {line}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div

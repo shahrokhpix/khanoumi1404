@@ -79,6 +79,18 @@ export function peopleMark(x: number, y: number, size: number, color: string): s
   );
 }
 
+/** Embed a square SVG/PNG asset centered at (x, y). */
+export function svgImageMark(x: number, y: number, size: number, href: string): string {
+  return node("image", {
+    href,
+    x: x - size / 2,
+    y: y - size / 2,
+    width: size,
+    height: size,
+    "aria-hidden": true,
+  });
+}
+
 /** IDML Group_u1e60 — outline people + crown, drawn around (x, y) as the visual center. */
 export function crownPeopleMark(x: number, y: number, size: number, color: string): string {
   const s = size / 64;

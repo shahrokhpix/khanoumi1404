@@ -1,0 +1,759 @@
+{
+  "schema_version": "1.0.0",
+  "document": {
+    "title": "گزارش ۲ جنگ و یک اینترنت خاموش",
+    "source_file": "گزارش جنگ(1).pdf",
+    "source_page_count": 1,
+    "source_page_format": "single_tall_page",
+    "language": "fa-IR",
+    "calendar": "هجری شمسی",
+    "extraction_date": "2026-08-28",
+    "chart_count": 22
+  },
+  "quality_legend": {
+    "exact": "عدد یا تاریخ به‌صراحت در خود گزارش چاپ شده است.",
+    "derived_exact": "مقدار با محاسبه مستقیم از اعداد چاپ‌شده به‌دست آمده است.",
+    "digitized_approx": "مقدار از روی ارتفاع میله یا مسیر منحنی و محور نمودار خوانده شده و تقریبی است.",
+    "visual_only": "گزارش برای منحنی یا میله‌ها عدد قابل استخراج منتشر نکرده است؛ فقط ساختار و توضیح نمودار ثبت شده است.",
+    "reported_statement": "مقدار در متن توضیحی گزارش آمده، نه به‌صورت برچسب عددی روی نمودار."
+  },
+  "charts": [
+    {
+      "id": "ch01_daily_orders_1404",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "روند ثبت سفارش از خانومی در سال ۱۴۰۴",
+      "type": "line",
+      "x_axis": {
+        "unit": "ماه",
+        "categories": [
+          "فروردین",
+          "اردیبهشت",
+          "خرداد",
+          "تیر",
+          "مرداد",
+          "شهریور",
+          "مهر",
+          "آبان",
+          "آذر",
+          "دی",
+          "بهمن",
+          "اسفند"
+        ]
+      },
+      "y_axis": {
+        "label": "سفارش روزانه",
+        "unit": "نامشخص در گزارش",
+        "scale_labels_published": false
+      },
+      "series": [
+        {
+          "name": "روند سفارش روزانه",
+          "values": null,
+          "quality": "visual_only"
+        }
+      ],
+      "annotations": [
+        {
+          "date": "۱۴۰۴/۰۳/۲۷",
+          "event": "آغاز قطعی اینترنت و حملات سایبری به بانک‌ها در روز پنجم جنگ ۱۲روزه",
+          "internet_access_percent": {
+            "operator": "<",
+            "value": 3,
+            "quality": "exact"
+          },
+          "marker": "یکی از کم‌فروش‌ترین روزهای سال"
+        },
+        {
+          "date": "۱۴۰۴/۱۰/۱۹",
+          "event": "اعتراضات دی‌ماه و خاموشی اینترنت",
+          "internet_access_percent": {
+            "operator": "<",
+            "value": 1,
+            "quality": "exact"
+          },
+          "marker": "یکی از کم‌فروش‌ترین روزهای سال"
+        },
+        {
+          "date": "۱۴۰۴/۱۲/۱۰",
+          "event": "روز دوم جنگ دوم و آغاز تاریکی مطلق اینترنت",
+          "internet_access_percent": {
+            "operator": "=",
+            "value": 0,
+            "quality": "exact"
+          },
+          "marker": "یکی از کم‌فروش‌ترین روزهای سال"
+        }
+      ],
+      "data_quality": "mixed"
+    },
+    {
+      "id": "ch02_hourly_order_share",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "روند ثبت سفارش در ۲۴ ساعت یک روز عادی ۱۴۰۴",
+      "type": "line_with_event_markers",
+      "x_axis": {
+        "label": "ساعت شبانه‌روز",
+        "unit": "hour",
+        "categories": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+      },
+      "y_axis": {
+        "label": "سهم هر ساعت از سفارش‌های یک روز عادی",
+        "unit": "percent",
+        "min": 0,
+        "max": 8,
+        "tick_interval": 1
+      },
+      "series": [
+        {
+          "name": "سهم هر ساعت از سفارش‌های یک روز عادی",
+          "values": [5.21, 3.19, 1.64, 0.68, 0.39, 0.48, 0.39, 0.87, 1.83, 2.61, 3.47, 5.6, 6.37, 6.76, 6.56, 6.27, 5.69, 5.12, 4.83, 5.31, 6.08, 6.47, 7.05, 7.13],
+          "unit": "percent",
+          "quality": "digitized_approx",
+          "note": "اعداد از مسیر منحنی و خطوط شبکه خوانده و برای جمع ۱۰۰٪ نرمال شده‌اند؛ فایل PDF برچسب نقطه‌ای منتشر نکرده است."
+        }
+      ],
+      "event_points": [
+        {
+          "date": "۱۴۰۴/۰۳/۲۷",
+          "hour": 18,
+          "value": "near_zero",
+          "reason": "اختلال گسترده زیرساخت‌های بانکی و مسدودشدن مسیر پرداخت",
+          "quality": "reported_statement"
+        },
+        {
+          "date": "۱۴۰۴/۱۲/۰۹",
+          "hour": 12,
+          "value": "near_zero",
+          "reason": "انتشار خبر حمله نظامی و انفجار ساعت ۱۰ صبح و تغییر اولویت کاربران از خرید آنلاین به تأمین امنیت",
+          "quality": "reported_statement"
+        }
+      ],
+      "data_quality": "digitized_approx"
+    },
+    {
+      "id": "ch03_tehran_order_index",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "ریتم ثبت سفارش استان تهران از خانومی در سال ۱۴۰۴",
+      "type": "line",
+      "x_axis": {
+        "unit": "ماه",
+        "categories": ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"]
+      },
+      "y_axis": {
+        "unit": "percent_index",
+        "min": 0,
+        "max": 250,
+        "tick_interval": 50
+      },
+      "series": [
+        {
+          "name": "ریتم ثبت سفارش تهران",
+          "values": null,
+          "quality": "visual_only"
+        }
+      ],
+      "annotations": [
+        {
+          "date": "۱۴۰۴/۰۳/۲۸",
+          "reported_loss_of_normal_daily_volume_percent": 95,
+          "quality": "reported_statement"
+        },
+        {
+          "date": "۱۴۰۴/۱۲/۱۰",
+          "reported_loss_of_normal_daily_volume_percent": 95,
+          "quality": "reported_statement"
+        }
+      ],
+      "summary": "تهران تنها استانی بود که در دو روز سال ۱۴۰۴ نزدیک به ۹۵٪ از حجم روزانه معمول خریدش را از دست داد.",
+      "data_quality": "mixed"
+    },
+    {
+      "id": "ch04_return_to_normal_orders",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "هر بار با ریتم متفاوتی به مدار عادی برگشتیم",
+      "subtitle": "روند ثبت سفارش در سال ۱۴۰۴ با حداقل میانگین روزانه، کم‌فروش‌ترین روزها و نقاط بازگشت",
+      "type": "annotated_line",
+      "series": [
+        {
+          "name": "روند سفارش روزانه",
+          "values": null,
+          "quality": "visual_only"
+        },
+        {
+          "name": "حداقل میانگین روزانه سال",
+          "values": null,
+          "quality": "visual_only"
+        }
+      ],
+      "reported_recovery": [
+        {
+          "crisis": "جنگ اول ۱۲روزه",
+          "recovery_lag_after_ceasefire_and_reconnection_days": {
+            "min": 4,
+            "max": 5,
+            "quality": "reported_statement"
+          }
+        },
+        {
+          "crisis": "موج دی‌ماه",
+          "low_sales_window": {
+            "start": "۱۴۰۴/۱۰/۱۹",
+            "end": "۱۴۰۴/۱۰/۲۹"
+          },
+          "sales_return_date": "۱۴۰۴/۱۰/۲۹",
+          "note": "فروش پیش از بازیابی کامل اینترنت به مدار برگشت."
+        },
+        {
+          "crisis": "جنگ دوم",
+          "note": "روز عادی سال ۱۴۰۴ هرگز بازنگشت."
+        }
+      ],
+      "data_quality": "mixed"
+    },
+    {
+      "id": "ch05_crisis_connectivity_sales_timeline",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "اتصال دوباره دیگر سیگنال قابل‌اتکایی برای بازگشت نیست",
+      "type": "multi_row_timeline",
+      "legend": ["واقعه", "قطع اینترنت", "وصل اینترنت", "افت فروش", "بازگشت فروش"],
+      "data": [
+        {
+          "crisis": "جنگ اول ۱۲روزه",
+          "period": "خرداد-تیر ۱۴۰۴",
+          "event_date": "۱۴۰۴/۰۳/۲۳",
+          "internet_off_date": "۱۴۰۴/۰۳/۲۷",
+          "internet_on_date": "۱۴۰۴/۰۴/۰۴",
+          "sales_drop_date": "۱۴۰۴/۰۳/۲۷",
+          "sales_return_date": "۱۴۰۴/۰۴/۰۹",
+          "quality": "exact"
+        },
+        {
+          "crisis": "موج دی - اعتراضات",
+          "period": "دی-بهمن ۱۴۰۴",
+          "event_date": "۱۴۰۴/۱۰/۱۸ تا ۱۴۰۴/۱۰/۱۹",
+          "internet_off_date": "۱۴۰۴/۱۰/۱۸",
+          "internet_on_date": "۱۴۰۴/۱۱/۰۷",
+          "sales_drop_date": "۱۴۰۴/۱۰/۱۹",
+          "sales_return_date": "۱۴۰۴/۱۰/۲۹",
+          "quality": "exact"
+        },
+        {
+          "crisis": "جنگ دوم",
+          "period": "اسفند ۱۴۰۴-خرداد ۱۴۰۵",
+          "event_date": "۱۴۰۴/۱۲/۰۹",
+          "internet_off_date": "۱۴۰۴/۱۲/۰۹",
+          "internet_on_date": "۱۴۰۵/۰۳/۰۵",
+          "sales_drop_date": "۱۴۰۴/۱۲/۱۰",
+          "sales_return_date": "۱۴۰۵/۰۱/۰۸",
+          "quality": "exact"
+        }
+      ],
+      "validation_notes": [
+        "در استخراج متنی PDF، سال تاریخ وصل اینترنت جنگ دوم یک‌بار ۱۴۰۴ دیده می‌شود، اما توالی زمانی و عنوان بازه نشان می‌دهد سال صحیح ۱۴۰۵ است."
+      ],
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch06_instagram_visits",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "بازدید اکانت اینستاگرام «خانومی شاپ» در بازه ۸۸روزه اختلال نسبت به ۸۸ روز پیش از آن",
+      "type": "bar",
+      "x_axis": {
+        "categories": ["۸۸ روز پیش از اختلال", "۸۸ روز اختلال"]
+      },
+      "y_axis": {
+        "unit": "percent",
+        "min": 0,
+        "max": 100,
+        "tick_labels": [0, 10, 20, 40, 60, 80, 100]
+      },
+      "series": [
+        {
+          "name": "بازدید",
+          "values": [100, 10],
+          "unit": "percent",
+          "quality": "digitized_approx",
+          "note": "مقادیر روی میله‌ها چاپ نشده‌اند و از ارتفاع میله‌ها نسبت به محور خوانده شده‌اند."
+        }
+      ],
+      "data_quality": "digitized_approx"
+    },
+    {
+      "id": "ch07_alternative_channel_growth",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "رشد مسیرهای ارتباطی جایگزین",
+      "type": "kpi_group",
+      "data": [
+        {
+          "metric": "بازدید ویدئوهای جعبه جادویی سایت خانومی‌شاپ",
+          "comparison": "دو ماه پس از جنگ دوم نسبت به دو ماه قبل از آن",
+          "multiplier": 14,
+          "unit": "times",
+          "quality": "exact"
+        },
+        {
+          "metric": "تعداد دنبال‌کننده آپارات",
+          "before": 1700,
+          "after": 2500,
+          "absolute_change": 800,
+          "growth_percent": 47.06,
+          "growth_quality": "derived_exact",
+          "quality": "exact"
+        }
+      ],
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch08_customer_service_call_topics",
+      "chapter": "توقف و بازگشت زندگی روزمره",
+      "title": "سهم هر موضوع از کل تماس‌های امور مشتریان در جنگ اول و جنگ دوم",
+      "type": "grouped_bar",
+      "unit": "percent_of_all_calls",
+      "series": [
+        {
+          "name": "جنگ اول",
+          "values": {
+            "ویرایش سفارش": 18.4,
+            "تاخیر پست": 13.1,
+            "زمان دریافت سوال": 12.2,
+            "درخواست مرجوعی": 9.7,
+            "لغو سفارش": null
+          },
+          "quality": "exact"
+        },
+        {
+          "name": "جنگ دوم",
+          "values": {
+            "ویرایش سفارش": 7.4,
+            "تاخیر پست": 15.0,
+            "زمان دریافت سوال": 7.4,
+            "درخواست مرجوعی": 8.8,
+            "لغو سفارش": 10.7
+          },
+          "quality": "exact"
+        }
+      ],
+      "null_value_meaning": "برای لغو سفارش در جنگ اول میله یا عددی در گزارش نمایش داده نشده است؛ null به معنی صفر فرض نشده است.",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch09_google_trends_anti_stress_query",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص اضطراب",
+      "title": "روند جست‌وجوی عبارت «قرص بی‌خیالی و ضد استرس» طی ۵ سال اخیر در گوگل ایران",
+      "type": "line",
+      "source": "Google Trends",
+      "x_axis": {
+        "unit": "year",
+        "categories": [2022, 2023, 2024, 2025, 2026]
+      },
+      "y_axis": {
+        "unit": "google_trends_index",
+        "min": 0,
+        "max": 100,
+        "tick_interval": 20
+      },
+      "series": [
+        {
+          "name": "قرص بی‌خیالی و ضد استرس",
+          "values": null,
+          "quality": "visual_only"
+        }
+      ],
+      "reported_growth_percent": {
+        "operator": ">",
+        "value": 5000,
+        "quality": "reported_statement"
+      },
+      "google_label": "Breakout",
+      "data_quality": "mixed"
+    },
+    {
+      "id": "ch10_google_trends_war_news_vs_acne",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص اضطراب",
+      "title": "روند مقایسه‌ای جست‌وجوی «اخبار جنگ» و «جوش» در گوگل",
+      "subtitle": "از ابتدای جنگ اول تا روزهای آتش‌بس شکننده در جنگ دوم",
+      "type": "multi_line",
+      "source": "Google Trends",
+      "x_axis": {
+        "range": "تیر ۱۴۰۴ تا فروردین ۱۴۰۵",
+        "published_ticks": ["تیر", "مهر", "۱۴۰۴", "فروردین ۱۴۰۵"]
+      },
+      "y_axis": {
+        "unit": "google_trends_index",
+        "min": 0,
+        "max": 100,
+        "tick_interval": 20
+      },
+      "series": [
+        {
+          "name": "اخبار جنگ",
+          "values": null,
+          "quality": "visual_only"
+        },
+        {
+          "name": "جوش",
+          "values": null,
+          "quality": "visual_only"
+        }
+      ],
+      "summary": "جست‌وجوی اخبار جنگ فروکش کرد؛ جست‌وجوی جوش نه.",
+      "data_quality": "visual_only"
+    },
+    {
+      "id": "ch11_khanoumi_concern_keyword_growth",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص اضطراب",
+      "title": "رشد جست‌وجوی کلیدواژه‌های نگرانی از جنگ اول به جنگ دوم در پلتفرم خانومی",
+      "type": "horizontal_bar",
+      "unit": "percent_growth",
+      "data": [
+        {"keyword": "آرام‌بخش", "growth_percent": 956},
+        {"keyword": "استرس", "growth_percent": 555},
+        {"keyword": "جوش", "growth_percent": 243},
+        {"keyword": "ریزش مو", "growth_percent": 132},
+        {"keyword": "خواب", "growth_percent": 117},
+        {"keyword": "اقتصادی", "growth_percent": 114},
+        {"keyword": "پوست حساس", "growth_percent": 113}
+      ],
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch12_credit_purchase_share",
+      "chapter": "رفتار مصرف‌کننده",
+      "title": "سهم خرید اعتباری (قسطی) از کل سفارش‌ها",
+      "type": "kpi",
+      "comparison": "جنگ دوم نسبت به همان بازه سال قبل",
+      "value": 11,
+      "unit": "percentage_points_growth",
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch13_sales_category_share",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص مراقبت",
+      "title": "سهم هر دسته از کل فروش تعدادی طی جنگ اول و جنگ دوم در خانومی",
+      "type": "two_pie_charts",
+      "unit": "percent_of_units_sold",
+      "data": [
+        {
+          "period": "جنگ اول",
+          "date_range": "۱۴۰۴/۰۳/۰۵ تا ۱۴۰۴/۰۴/۱۵",
+          "categories": {
+            "مراقبتی": 52.0,
+            "آرایشی": 14.6,
+            "سایر": 33.4
+          }
+        },
+        {
+          "period": "جنگ دوم",
+          "date_range": "۱۴۰۴/۱۲/۰۱ تا ۱۴۰۵/۰۱/۳۱",
+          "categories": {
+            "مراقبتی": 67.0,
+            "آرایشی": 16.5,
+            "سایر": 16.5
+          }
+        }
+      ],
+      "derived_change_percentage_points": {
+        "مراقبتی": 15.0,
+        "آرایشی": 1.9,
+        "سایر": -16.9
+      },
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch14_top_category_sales_growth",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص مراقبت",
+      "title": "دسته‌هایی که بیشترین جهش فروش نسبت به مدت مشابه سال قبل را در خانومی داشتند",
+      "type": "grouped_bar",
+      "y_axis": {
+        "unit": "percent_growth",
+        "min": 0,
+        "max": 300,
+        "tick_interval": 50
+      },
+      "data": [
+        {
+          "period": "بازه جنگ اول",
+          "category": "محصولات سلامت‌محور",
+          "growth_percent": 270,
+          "quality": "digitized_approx"
+        },
+        {
+          "period": "بازه جنگ اول",
+          "category": "لوازم برقی",
+          "growth_percent": 220,
+          "quality": "digitized_approx"
+        },
+        {
+          "period": "بازه جنگ دوم",
+          "category": "محصولات سلامت‌محور",
+          "growth_percent": 125,
+          "quality": "digitized_approx"
+        },
+        {
+          "period": "بازه جنگ دوم",
+          "category": "بهداشت شخصی",
+          "growth_percent": 70,
+          "quality": "digitized_approx"
+        }
+      ],
+      "note": "اعداد روی میله‌ها چاپ نشده‌اند و به نزدیک‌ترین ده‌درصد از روی محور گرد شده‌اند.",
+      "data_quality": "digitized_approx"
+    },
+    {
+      "id": "ch15_per_customer_care_vs_cosmetics",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص مراقبت",
+      "title": "در روزهای جنگ هر مشتری خانومی به‌طور میانگین چقدر هزینه کرد و چند کالا خرید؟",
+      "type": "kpi_comparison",
+      "comparison": "جنگ دوم نسبت به بازه مشابه سال قبل",
+      "data": [
+        {
+          "category": "محصولات مراقبتی (بهداشتی + سلامت)",
+          "average_items_per_customer_during_war": 3,
+          "average_items_growth_percent": 21.5,
+          "spend_thousand_toman_same_period_last_year": 715,
+          "spend_thousand_toman_during_second_war": 1324,
+          "spend_growth_percent": 85
+        },
+        {
+          "category": "محصولات آرایشی",
+          "average_items_per_customer_during_war": 1,
+          "average_items_growth_percent": 4.9,
+          "spend_thousand_toman_same_period_last_year": 147,
+          "spend_thousand_toman_during_second_war": 252,
+          "spend_growth_percent": 72
+        }
+      ],
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch16_lipstick_vs_anti_acne",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص لذت کوچک",
+      "title": "ضروری‌تر از رژ لب: ضدجوش",
+      "type": "grouped_bar",
+      "unit": "percent_sales_growth_vs_previous_year",
+      "data": [
+        {
+          "period": "بازه جنگ اول (۱۵ خرداد تا ۱۵ تیر ۱۴۰۴ / نسبت به سال ۱۴۰۳)",
+          "date_range": "۱۴۰۴/۰۳/۱۵ تا ۱۴۰۴/۰۴/۱۵",
+          "comparison_year": 1403,
+          "رژ لب": 2.4,
+          "ضدجوش": 7.4,
+          "quality": "approximate_from_chart"
+        },
+        {
+          "period": "بازه جنگ دوم (۱ اسفند ۱۴۰۴ تا ۳۱ فروردین ۱۴۰۵ / نسبت به سال قبل)",
+          "date_range": "۱۴۰۴/۱۲/۰۱ تا ۱۴۰۵/۰۱/۳۱",
+          "comparison": "نسبت به سال قبل",
+          "رژ لب": 5.4,
+          "ضدجوش": 14.3,
+          "quality": "approximate_from_chart"
+        }
+      ],
+      "note": "میله‌ها فاقد برچسب عددی‌اند؛ اعداد از محور ۰ تا ۱۶ خوانده شده‌اند.",
+      "data_quality": "digitized_approx"
+    },
+    {
+      "id": "ch17_cosmetic_basket_change",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص لذت کوچک",
+      "title": "بیشترین میزان تغییر در سبد آرایشی طی دو ماه جنگ دوم نسبت به دو ماه پیش از آن",
+      "type": "diverging_bar",
+      "unit": "percent_change_in_units_sold",
+      "data": {
+        "growth": [
+          {"category": "مداد و خط لب", "change_percent": 50.5},
+          {"category": "تیغ ابرو", "change_percent": 22.1},
+          {"category": "موچین و قیچی ابرو", "change_percent": 19.4}
+        ],
+        "decline": [
+          {"category": "کرم‌پودر", "change_percent": -32.1},
+          {"category": "ریمل", "change_percent": -30.6},
+          {"category": "پنکک", "change_percent": -25.2}
+        ]
+      },
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch18_ukraine_google_trends",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص لذت کوچک",
+      "title": "در اوکراین اثر رژ لب در لحظه ضربه دیده شد؛ در ادامه جایش را به عطر داد",
+      "type": "multi_line",
+      "source": "Google Trends",
+      "x_axis": {
+        "range": "فوریه ۲۰۲۲ تا ۲۰۲۶",
+        "ticks": ["فوریه ۲۰۲۲", "۲۰۲۳", "۲۰۲۴", "۲۰۲۵", "۲۰۲۶"]
+      },
+      "y_axis": {
+        "label": "شاخص جست‌وجوی Google Trends",
+        "unit": "google_trends_index",
+        "min": 0,
+        "max": 100,
+        "tick_interval": 25
+      },
+      "event": {
+        "title": "آغاز جنگ",
+        "date": "فوریه ۲۰۲۲",
+        "line_style": "dashed",
+        "color": "#A50163"
+      },
+      "series": [
+        {
+          "name": "اخبار جنگ / تهاجم",
+          "color": "#A50163",
+          "values": [6, 89, 21, 12, 9, 6, 8, 12, 13, 8, 7, 9, 14, 11, 7, 6, 11, 17, 7, 7, 11, 14, 6, 7, 8, 8],
+          "quality": "approximate_from_chart"
+        },
+        {
+          "name": "عطر",
+          "color": "#ED088D",
+          "values": [18, 18, 19, 21, 22, 25, 27, 30, 33, 36, 38, 40, 43, 45, 45, 49, 51, 52, 55, 57, 60, 63, 65, 71, 76, 82],
+          "quality": "approximate_from_chart"
+        },
+        {
+          "name": "رژ لب",
+          "color": "#F49AC2",
+          "values": [20, 88, 41, 48, 57, 65, 61, 71, 63, 77, 65, 55, 69, 61, 72, 60, 59, 74, 76, 60, 63, 67, 71, 72, 59, 87],
+          "quality": "approximate_from_chart"
+        }
+      ],
+      "reported_findings": [
+        {
+          "series": "رژ لب",
+          "finding": "همزمان با شروع جنگ جهش کوتاه و تیز داشت و سپس به نوسان فصلی برگشت.",
+          "quality": "reported_statement"
+        },
+        {
+          "series": "عطر",
+          "finding": "بدون جهش همزمان با شروع جنگ، آرام و پیوسته افزایش یافت.",
+          "growth_vs_five_years_before_war": "نزدیک به سه برابر",
+          "quality": "reported_statement"
+        }
+      ],
+      "data_quality": "approximate_from_chart",
+      "data_note": "آرایه‌ها از چپ به راست و با فاصله‌های تقریباً یکسان از روی منحنی استخراج شده‌اند."
+    },
+    {
+      "id": "ch19_cancellation_reasons",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص گسست",
+      "title": "سهم دو نوع دلیل اصلی کنسلی نسبت به یکدیگر از کل کنسلی‌ها",
+      "type": "stacked_bar",
+      "period": "جنگ دوم؛ ۱۴۰۴/۱۲/۰۱ تا ۱۴۰۵/۰۱/۳۱",
+      "unit": "percent_of_cancellations",
+      "data": [
+        {
+          "reason": "مشکل در تحویل گرفتن کالا؛ مانند آدرس ناقص، گیرنده در دسترس نبود، برگشتی پست",
+          "value": 68
+        },
+        {
+          "reason": "انصراف از خرید",
+          "value": 32
+        }
+      ],
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch20_new_vs_returning_users",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص نگهداری",
+      "title": "ترکیب کاربران جدید و بازگشتی در دو جنگ",
+      "type": "100_percent_stacked_bar",
+      "series": ["جدید", "بازگشتی"],
+      "data": [
+        {"period": "جنگ اول", "بازگشتی": 74, "جدید": 26},
+        {"period": "جنگ دوم", "بازگشتی": 63, "جدید": 37}
+      ],
+      "reported_change": {
+        "metric": "سهم کاربران بازگشتی از جنگ اول به جنگ دوم",
+        "change_percent": 17,
+        "qualifier": "نزدیک به",
+        "quality": "reported_statement"
+      },
+      "validation_notes": [
+        "روی بخش‌های میله‌ها عدد چاپ نشده است.",
+        "نسبت‌های بصری میله‌ها با جمله «رشد نزدیک به ۱۷٪ سهم کاربران بازگشتی» کاملاً هم‌خوان به نظر نمی‌رسد؛ به همین دلیل برای سهم دقیق هر گروه عددسازی نشده است."
+      ],
+      "data_quality": "approximate_from_chart"
+    },
+    {
+      "id": "ch21_tehran_isfahan_sales_decline",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص جابه‌جایی",
+      "title": "درصد افت دو استان پرفروش خانومی (تهران و اصفهان) نسبت به سال قبل",
+      "type": "grouped_bar",
+      "unit": "percent_decline",
+      "data": [
+        {
+          "province": "اصفهان",
+          "جنگ اول": 8.0,
+          "جنگ دوم": 7.3
+        },
+        {
+          "province": "تهران",
+          "جنگ اول": 28.8,
+          "جنگ دوم": 20.2
+        }
+      ],
+      "quality": "exact",
+      "data_quality": "exact"
+    },
+    {
+      "id": "ch22_province_share_movers_second_war",
+      "chapter": "رفتار مصرف‌کننده",
+      "section": "شاخص جابه‌جایی",
+      "title": "۳ استان با بیشترین افت و ۳ استان با بیشترین رشد سهم ارزش در فروش طی جنگ دوم",
+      "type": "diverging_horizontal_bar",
+      "data": {
+        "declines": [
+          {"province": "تهران", "relative_length_index": -100, "bar_length_px": 361},
+          {"province": "اصفهان", "relative_length_index": -18, "bar_length_px": 65},
+          {"province": "قم", "relative_length_index": -7.5, "bar_length_px": 27}
+        ],
+        "growth": [
+          {"province": "مازندران", "relative_length_index": 45.4, "bar_length_px": 164},
+          {"province": "لرستان", "relative_length_index": 28, "bar_length_px": 101},
+          {"province": "گیلان", "relative_length_index": 21.1, "bar_length_px": 76}
+        ]
+      },
+      "reported_ranges": [
+        {
+          "period": "جنگ اول",
+          "provinces": ["فارس", "خراسان رضوی"],
+          "share_growth_percent_range": {"min": 11, "max": 16},
+          "quality": "reported_statement"
+        },
+        {
+          "period": "جنگ دوم",
+          "provinces": ["گیلان", "مازندران", "لرستان"],
+          "share_growth_percent_range": {"min": 21, "max": 29},
+          "quality": "reported_statement"
+        }
+      ],
+      "validation_notes": [
+        "میله‌های نمودار پایانی برچسب عددی و محور عددی ندارند؛ فقط رتبه استان‌ها و بازه‌ای که در متن گزارش آمده ثبت شده است."
+      ],
+      "data_quality": "proportional_values_extracted_from_bar_lengths",
+      "important_note": "مقادیر شاخص نسبی‌اند و درصد واقعی نیستند؛ برای بازسازی تناسب میله‌های تصویر استفاده می‌شوند."
+    }
+  ],
+  "validation_summary": {
+    "charts_with_all_published_numbers_captured": ["ch05", "ch07", "ch08", "ch11", "ch12", "ch13", "ch15", "ch17", "ch19", "ch21"],
+    "charts_with_digitized_approximation": ["ch02", "ch06", "ch14", "ch16"],
+    "charts_with_unpublished_curve_values": ["ch01", "ch03", "ch04", "ch09", "ch10", "ch18", "ch20", "ch22"],
+    "important_rule": "برای حفظ دقت، null به معنی صفر نیست؛ null یعنی مقدار عددی در PDF چاپ نشده و از متن یا تصویر نیز با اطمینان قابل بازیابی نبوده است."
+  }
+}

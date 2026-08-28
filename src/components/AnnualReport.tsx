@@ -373,7 +373,13 @@ export function ProductsSection() {
       </ol>
       <p className="mt-4 text-sm text-muted">{PRODUCTS.spend.footnote}</p>
       <div className="mt-8 rounded-3xl bg-cream p-6">
-        <p className="font-bold">{PRODUCTS.spend.sun}</p>
+        <ul className="m-0 list-none space-y-1 p-0">
+          {PRODUCTS.spend.sunStats.map((row) => (
+            <li key={row.label} className="font-bold">
+              {row.label}: {row.value}
+            </li>
+          ))}
+        </ul>
         <p className="mt-3 leading-8">{PRODUCTS.spend.sunNote}</p>
       </div>
 
@@ -423,7 +429,7 @@ export function ProductsSection() {
         {PRODUCTS.basket.rows.map((row) => (
           <li key={row.label} className="rounded-3xl border border-line p-5">
             <p className="text-sm text-muted">{row.label}</p>
-            <p className="mt-3 text-lg font-extrabold text-pink">{row.growth}</p>
+            <p className="mt-3 text-lg font-extrabold text-pink">رشد: {row.growthValue}</p>
           </li>
         ))}
       </ul>
@@ -435,7 +441,11 @@ export function PartnersSection() {
   return (
     <Section id="partners">
       <h2 className="mb-4 text-center text-2xl font-extrabold text-pink md:text-4xl">{PARTNERS.title}</h2>
-      <p className="mb-8 text-center font-semibold">{PARTNERS.brandsNote}</p>
+      <p className="mb-8 text-center font-semibold">
+        {PARTNERS.brandsNote.before}
+        <span className="text-pink">{PARTNERS.brandsNote.highlight}</span>
+        {PARTNERS.brandsNote.after}
+      </p>
       <BrandsChart />
       <ul className="mt-6 grid gap-4 md:grid-cols-3">
         {PARTNERS.brands.map((b) => (
@@ -455,15 +465,11 @@ export function PartnersSection() {
           {PARTNERS.ads.stats.map((s) => (
             <div key={s.label} className="rounded-2xl bg-cream p-4">
               <p className="text-3xl font-extrabold text-pink">{s.value}</p>
-              <p>{s.label}</p>
+              <p className="font-bold">{s.label}</p>
+              <p className="mt-3 leading-8">{s.detail}</p>
             </div>
           ))}
         </div>
-        {PARTNERS.ads.extra.map((p) => (
-          <p key={p} className="mt-4 leading-8">
-            {p}
-          </p>
-        ))}
       </article>
       <h3 className="mt-14 mb-6 text-xl font-extrabold md:text-2xl">{PARTNERS.local.title}</h3>
       <div className="grid gap-6 md:grid-cols-2">
@@ -518,7 +524,13 @@ export function OpsSection() {
       <p className="mb-6 text-center text-muted">{OPS.shipping.returnsNote}</p>
       <ReturnsChart />
       <p className="mt-10 rounded-full bg-pink px-4 py-3 text-center font-bold text-white">{OPS.shipping.locker}</p>
-      <p className="mt-4 mb-8 text-center">{OPS.shipping.lockerStats}</p>
+      <div className="mt-4 mb-8 text-center">
+        {OPS.shipping.lockerStats.map((line) => (
+          <p key={line} className="m-0">
+            {line}
+          </p>
+        ))}
+      </div>
       <p className="mb-2 text-center font-bold">{OPS.shipping.otdTitle}</p>
       <p className="mb-6 text-center">{OPS.shipping.otdNote}</p>
       <OtdChart />

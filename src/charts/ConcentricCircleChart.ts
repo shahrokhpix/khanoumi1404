@@ -2,7 +2,7 @@ import type { ChartConfig, CircleDatum, ConcentricOptions, SvgChart } from "./ty
 import { bottomStackedCircles, scaleRadii } from "./geometry/circle";
 import { escapeXml, formatNumber, formatTimeLabel } from "./typography/rtl";
 import { circleElementPath } from "./geometry/circle";
-import { crownPeopleMark, downloadSvg, mountSvg, node, parseSvg, svgDoc } from "./svg";
+import { crownPeopleMark, downloadSvg, mountSvg, node, parseSvg, svgDoc, svgImageMark } from "./svg";
 
 const DEFAULTS: ConcentricOptions = {
   rtl: true,
@@ -80,24 +80,36 @@ export class ConcentricCircleChart implements SvgChart<CircleDatum, ConcentricOp
     const layers = circles
       .map((c, i) => {
         const next = circles[i + 1];
-        const bandTop = c.top + c.r * 0.06;
-        const bandBottom = next ? next.top - 8 : o.innerDisc ? discTop - 2 : c.cy - c.r * 0.12;
-        const bandH = Math.max(18, bandBottom - bandTop);
+        const bandTop = c.top + c.r * 0.04;
+        const bandBottom = next ? next.top - 5 : o.innerDisc ? discTop - 3 : c.cy - c.r * 0.1;
+        const bandH = Math.max(16, bandBottom - bandTop);
         const showTime = o.showTime && Boolean(rows[i].time);
         const showValue = o.showValue;
-        const showUnit = o.showUnit && Boolean(rows[i].label) && bandH > 42;
+        const showUnit = o.showUnit && Boolean(rows[i].label) && bandH > 32;
         const lineCount = Number(showTime) + Number(showValue) + Number(showUnit);
-        const lineGap = Math.max(5, Math.min(9, bandH * 0.09));
-        const cap = (bandH - lineGap * Math.max(0, lineCount - 1)) / Math.max(1, lineCount * 1.15);
-        const timeSize = Math.min(12, type.timeSize ?? Math.max(9, c.r * 0.08), cap * 0.62);
-        const valueSize = Math.min(15, type.valueSize ?? Math.max(11, c.r * 0.11), cap * 0.78);
-        const unitSize = Math.min(11, type.unitSize ?? Math.max(8, c.r * 0.07), cap * 0.55);
-        const block =
+        const lineGap = Math.max(4, Math.min(8, bandH * 0.07));
+
+        let timeSize = Math.min(14, type.timeSize ?? Math.max(10, c.r * 0.095));
+        let valueSize = Math.min(18, type.valueSize ?? Math.max(13, c.r * 0.135));
+        let unitSize = Math.min(13, type.unitSize ?? Math.max(9, c.r * 0.085));
+
+        const blockHeight = () =>
           (showTime ? timeSize : 0) +
           (showValue ? valueSize : 0) +
           (showUnit ? unitSize : 0) +
           lineGap * Math.max(0, lineCount - 1);
-        let y = (bandTop + bandBottom) / 2 - block / 2 + timeSize * 0.85;
+
+        let block = blockHeight();
+        const maxBlock = bandH * 0.9;
+        if (block > maxBlock && block > 0) {
+          const scale = maxBlock / block;
+          timeSize *= scale;
+          valueSize *= scale;
+          unitSize *= scale;
+          block = blockHeight();
+        }
+
+        let y = (bandTop + bandBottom) / 2 - block / 2 + (showTime ? timeSize * 0.9 : showValue ? valueSize * 0.9 : unitSize * 0.9);
         const shape =
           o.shape === "full"
             ? node("circle", {
@@ -169,13 +181,19 @@ export class ConcentricCircleChart implements SvgChart<CircleDatum, ConcentricOp
       })
       .join("");
 
+    const iconSize = o.bottomIconSrc
+      ? Math.max(o.bottomIconSize * 0.92, discR * 1.72)
+      : Math.max(o.bottomIconSize, discR * 1.15);
+
     const core = node(
       "g",
       { class: "users-ring-core", style: `--d:${circles.length * 0.22}s` },
       [
         o.innerDisc && smallest ? node("circle", { cx, cy: discCy, r: discR, fill: o.innerDiscColor }) : "",
         o.bottomIcon
-          ? crownPeopleMark(cx, discCy, Math.max(o.bottomIconSize, discR * 1.15), o.bottomIconColor)
+          ? o.bottomIconSrc
+            ? svgImageMark(cx, discCy, iconSize, o.bottomIconSrc)
+            : crownPeopleMark(cx, discCy, iconSize, o.bottomIconColor)
           : "",
       ].join(""),
     );

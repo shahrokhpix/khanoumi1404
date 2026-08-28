@@ -18,7 +18,14 @@ export function ConcentricCircleChartView({ data }: { data: readonly CircleDatum
         width,
         height,
         data,
-        options: { fontFamily: FONT, numerals: "fa", scale: "linear", fillOpacity: 1 },
+        options: {
+          fontFamily: FONT,
+          numerals: "fa",
+          scale: "linear",
+          fillOpacity: 1,
+          bottomIconSrc: "/assets/annual/users/karbaran-khanoumi.svg",
+          padding: { top: 12, right: 12, bottom: 22, left: 12 },
+        },
       }),
     [data],
   );

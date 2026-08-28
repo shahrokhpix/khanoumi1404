@@ -60,6 +60,7 @@ export type ConcentricOptions = {
   bottomIcon: boolean;
   bottomIconColor: string;
   bottomIconSize: number;
+  bottomIconSrc?: string;
   innerDisc: boolean;
   innerDiscColor: string;
   innerDiscRatio: number;

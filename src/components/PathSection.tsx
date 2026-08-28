@@ -174,19 +174,19 @@ export function PathSection() {
               className="path-metric-icon mx-auto h-[36px] w-auto transition-transform duration-500 group-hover:scale-110 sm:h-[48px] lg:h-[54px]"
               style={{ animationDelay: `${index * 0.12}s` }}
             />
-            <p className="font-fanum m-0 mt-2 text-[11px] font-bold leading-snug text-black sm:mt-3 sm:text-[14px] sm:leading-[22px]">
+            <p className="font-fanum m-0 mt-2 text-[11px] font-extrabold leading-snug text-black sm:mt-3 sm:text-[14px] sm:leading-[22px]">
               {metric.label}
             </p>
-            <p className="font-fanum m-0 text-[10px] font-bold leading-snug text-black sm:text-[14px] sm:leading-[22px]">
+            <p className="font-fanum m-0 text-[10px] font-extrabold leading-snug text-black sm:text-[14px] sm:leading-[22px]">
               {metric.cagrLabel}
             </p>
             <p
-              className="font-fanum m-0 mt-1 bg-gradient-to-l from-[#a60062] via-[#ec078d] to-[#ff6bcb] bg-clip-text text-[clamp(26px,7vw,40px)] font-black leading-none text-transparent lg:text-[52px]"
+              className="font-fanum m-0 mt-2.5 bg-gradient-to-l from-[#a60062] via-[#ec078d] to-[#ff6bcb] bg-clip-text text-[clamp(26px,7vw,40px)] font-black leading-none text-transparent sm:mt-3 lg:text-[52px]"
               dir="ltr"
             >
               <CountValue to={metric.value} active={metrics.on} plus={metric.plus} />
             </p>
-            <p className="font-fanum m-0 mt-2 text-[10px] font-bold leading-4 text-black sm:mt-3 sm:text-[13px] sm:leading-[22px] lg:text-[14px]">
+            <p className="font-fanum m-0 mt-2 text-[10px] font-bold leading-4 text-pink sm:mt-3 sm:text-[13px] sm:leading-[22px] lg:text-[14px]">
               {metric.note}
             </p>
           </li>
