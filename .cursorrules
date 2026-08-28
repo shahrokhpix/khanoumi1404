@@ -15,16 +15,18 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 # Lessons
 
 - War section charts must stay centered with `mx-auto w-full max-w-*`; do not use `w-screen left-1/2 -translate-x-1/2` inside the RTL report frame because it can shift beyond the artboard.
+- Vite build-html treats `href="/"` or `content="/"` in index.html as asset URLs (EISDIR). Keep root canonical/og:url out of source index.html; inject absolute URLs in postbuild (`scripts/generate-seo-static.mjs`).
 
 ## Scratchpad
 
-Task: Annual products desktop proportions.
+Task: SEO for annual + war reports.
 
-[X] Separate category cards from the care hub
-[X] Reduce care hub and orbit footprint on desktop
-[X] Reduce weight-market chart from 1088px to 768px desktop
-[X] Verify desktop screenshot, lint, and production build
-[ ] User accept desktop proportions
+[X] `src/seo/*` module (meta, JSON-LD, reports config, hook)
+[X] Wire `useReportSeo` in App.tsx for `/` and `/war`
+[X] index.html static meta + manifest + noscript fallback
+[X] postbuild: sitemap.xml, robots.txt, 404.html, war/index.html
+[X] `.env.example` VITE_SITE_URL
+[ ] User set production VITE_SITE_URL at deploy
 
 
 ## User Specified Lessons

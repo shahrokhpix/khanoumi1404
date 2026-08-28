@@ -76,10 +76,10 @@ export function AnnualHeroLock() {
               </span>
             </div>
             <h1
-              className="font-fanum hero-title-glow m-0 font-black leading-[1.12] text-white"
+              className="font-fanum hero-title-glow m-0 overflow-visible font-black leading-[1.35] text-white"
               style={{ fontSize: "clamp(1.55rem, 3.8vw, 3.35rem)" }}
             >
-              <span className="block bg-gradient-to-l from-white via-[#ffe4f2] to-[#ff9ad4] bg-clip-text text-transparent">
+              <span className="block overflow-visible bg-gradient-to-l from-white via-[#ffe4f2] to-[#ff9ad4] bg-clip-text py-1 text-transparent">
                 {TITLE}
               </span>
             </h1>

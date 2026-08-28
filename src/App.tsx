@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import { AnnualLockedPage } from "./components/AnnualLockedPage";
 import { WarLockedPage } from "./components/WarLockedPage";
+import { useReportSeo } from "./seo/useReportSeo";
+import type { ReportRoute } from "./seo/reports";
 
-function usePath() {
-  const [path, setPath] = useState(() => window.location.pathname);
+function usePath(): ReportRoute {
+  const [path, setPath] = useState<ReportRoute>(() => {
+    const normalized = window.location.pathname.replace(/\/$/, "") || "/";
+    return normalized === "/war" ? "/war" : "/";
+  });
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname);
+    const onPop = () => {
+      const normalized = window.location.pathname.replace(/\/$/, "") || "/";
+      setPath(normalized === "/war" ? "/war" : "/");
+    };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
-  return path.replace(/\/$/, "") || "/";
+  return path;
 }
 
 function useSpaLinks() {
@@ -35,26 +43,10 @@ function useSpaLinks() {
   }, []);
 }
 
-function AnnualPage() {
-  useEffect(() => {
-    document.title = "گزارش سال ۱۴۰۴ خانومی — سال حرکت در مسیر پایداری";
-    window.scrollTo(0, 0);
-  }, []);
-
-  return <AnnualLockedPage />;
-}
-
-function WarPage() {
-  useEffect(() => {
-    document.title = "گزارش جنگ خانومی — در ۱۴۰۴ چگونه از زندگی مراقبت کردیم؟";
-    window.scrollTo(0, 0);
-  }, []);
-
-  return <WarLockedPage />;
-}
-
 export default function App() {
   const path = usePath();
   useSpaLinks();
-  return path === "/war" ? <WarPage /> : <AnnualPage />;
+  useReportSeo(path);
+
+  return path === "/war" ? <WarLockedPage /> : <AnnualLockedPage />;
 }

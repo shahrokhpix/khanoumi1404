@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Production deploy: set VITE_SITE_URL before `npm run build` so sitemap URL is absolute.

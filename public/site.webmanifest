@@ -1,0 +1,20 @@
+{
+  "name": "گزارش‌های خانومی",
+  "short_name": "خانومی",
+  "description": "گزارش سال ۱۴۰۴ و گزارش جنگ خانومی — گزارش‌های تعاملی به روایت داده‌ها",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#EC078D",
+  "icons": [
+    {
+      "src": "/assets/khanoumi-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
