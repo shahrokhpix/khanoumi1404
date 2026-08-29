@@ -27,10 +27,10 @@ export const MONTHS = [
   "اسفند",
 ];
 
-/** ch01 — visual curve digitized from report PDF (visual_only; troughs at خرداد، دی، اسفند) */
+/** ch01 — actual monthly order share (%) from report data */
 export const dailyOrders = MONTHS.map((month, i) => ({
   month,
-  orders: [70, 74, 0, 68, 72, 74, 73, 75, 96, 0, 54, 0][i]!,
+  orders: [9.5, 14.5, 2.8, 8.3, 9.4, 11.8, 11.2, 10.7, 22.5, 0.1, 10.2, 0.0][i]!,
 }));
 
 /** ch01 crisis markers — dates/events from JSON annotations */

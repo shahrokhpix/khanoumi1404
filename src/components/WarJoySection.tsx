@@ -140,7 +140,7 @@ function MakeupShiftBars() {
   const { ref, on } = useInView<HTMLDivElement>();
   const up = makeupShift.filter((r) => r.change > 0);
   const down = makeupShift.filter((r) => r.change < 0);
-  const scaleMax = 60;
+  const scaleMax = 100;
   const rows = up.map((growth, index) => ({
     growth,
     decline: down[index],

@@ -107,7 +107,7 @@ function WarReturnRhythmChart() {
           حداقل میانگین روزانه سال
         </span>
         <span className="font-fanum inline-flex items-center gap-2 text-[11px] font-bold text-white/90 sm:text-[12px]">
-          <span className="size-2.5 shrink-0 rounded-full" style={{ backgroundColor: PINK_DEEP }} aria-hidden="true" />
+          <span className="size-2.5 shrink-0 rounded-full border-2 bg-white" style={{ borderColor: PINK_DEEP }} aria-hidden="true" />
           کم‌فروش‌ترین روزهای سال
         </span>
         <span className="font-fanum inline-flex items-center gap-2 text-[11px] font-bold text-white/90 sm:text-[12px]">
@@ -185,14 +185,14 @@ function WarReturnRhythmChart() {
           if (p.isDip) {
             return (
               <g key={`dip-${p.month}`}>
-                <circle cx={p.x} cy={plotBottom} r={9} fill={PINK_DEEP} fillOpacity={0.25} />
+                <circle cx={p.x} cy={plotBottom} r={10} fill="#fff" fillOpacity={0.12} />
                 <circle
                   cx={p.x}
                   cy={plotBottom}
                   r={6.5}
-                  fill={PINK_DEEP}
-                  stroke="#fff"
-                  strokeWidth={1.25}
+                  fill="#fff"
+                  stroke={PINK_DEEP}
+                  strokeWidth={2}
                   className={inView ? "war-chart-dot" : "opacity-0"}
                 />
               </g>

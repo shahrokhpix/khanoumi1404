@@ -20,10 +20,10 @@ export function formatPercent(value: number, numerals: NumeralSystem, suffix: st
   return `${n} ${suffix}`.trim();
 }
 
-/** Year or clock label. Forces LTR so `۱۴۰۴:` does not bidi-flip to `۱۴:۰۴`. */
+/** Year label rendered in RTL SVG text — colon falls on left side naturally. */
 export function formatTimeLabel(time: string): string {
   if (/[:٫]/.test(time)) return time;
-  return `${time.replace(/:$/, "")}\u200e:`;
+  return `${time.replace(/:$/, "")}:`;
 }
 
 export function escapeXml(value: string): string {

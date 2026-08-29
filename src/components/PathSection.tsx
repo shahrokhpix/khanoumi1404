@@ -227,7 +227,13 @@ export function PathSection() {
               </p>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="inline-block w-[20px] sm:w-[26px]" aria-hidden="true" />
+              <img
+                src={PATH.gender.maleIcon}
+                alt=""
+                width={39}
+                height={72}
+                className="h-[36px] w-auto sm:h-[48px]"
+              />
               <p className="font-fanum m-0 flex items-baseline gap-1 font-light leading-none">
                 <span className="text-[clamp(18px,3.2vw,36px)]">
                   <CountValue to={PATH.gender.menPct} active={gender.on} />

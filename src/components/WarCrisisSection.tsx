@@ -3,42 +3,45 @@ import { CHAPTER1 } from "../content/war-report";
 import { dailyOrderDips, dailyOrders, MONTHS } from "../data/charts";
 
 const BRAND = "#EC078D";
-const Y_MAX = 100;
+const Y_MAX = 25;
 const CRISIS_MONTHS = new Set([2, 9, 11]);
+const DIP_COLORS = ["#EC078D", "#A50163", "#5B2A86"] as const;
 
 type Pt = { x: number; y: number; month: string; orders: number; monthIndex: number };
 
 type DipCallout = {
   pt: Pt;
-  boxCenterX: number;
-  elbowY: number;
   date: string;
   text: string;
   monthIndex: number;
+  color: string;
 };
 
-function smoothLine(points: Pt[]): string {
+/**
+ * One continuous path through all months.
+ * Transitions touching a crisis month use a straight line (no overshoot);
+ * pure non-crisis-to-non-crisis segments use Catmull-Rom smooth curves.
+ */
+function crisisAwareLine(points: Pt[]): string {
   if (points.length < 2) return "";
+  const isCrisis = (p: Pt) => CRISIS_MONTHS.has(p.monthIndex);
   let d = `M${points[0]!.x.toFixed(1)},${points[0]!.y.toFixed(1)}`;
   for (let i = 0; i < points.length - 1; i++) {
     const p0 = points[i - 1] ?? points[i]!;
     const p1 = points[i]!;
     const p2 = points[i + 1]!;
     const p3 = points[i + 2] ?? p2;
-    const cp1x = p1.x + (p2.x - p0.x) / 6;
-    const cp1y = p1.y + (p2.y - p0.y) / 6;
-    const cp2x = p2.x - (p3.x - p1.x) / 6;
-    const cp2y = p2.y - (p3.y - p1.y) / 6;
-    d += ` C${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+    if (isCrisis(p0) || isCrisis(p1) || isCrisis(p2) || isCrisis(p3)) {
+      d += ` L${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+    } else {
+      const cp1x = p1.x + (p2.x - p0.x) / 6;
+      const cp1y = p1.y + (p2.y - p0.y) / 6;
+      const cp2x = p2.x - (p3.x - p1.x) / 6;
+      const cp2y = p2.y - (p3.y - p1.y) / 6;
+      d += ` C${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+    }
   }
   return d;
-}
-
-function connectorPath(fromX: number, fromY: number, toX: number, toY: number, elbowY: number): string {
-  if (Math.abs(fromX - toX) < 2) {
-    return `M${fromX.toFixed(1)},${fromY.toFixed(1)} L${toX.toFixed(1)},${toY.toFixed(1)}`;
-  }
-  return `M${fromX.toFixed(1)},${fromY.toFixed(1)} L${fromX.toFixed(1)},${elbowY.toFixed(1)} L${toX.toFixed(1)},${elbowY.toFixed(1)} L${toX.toFixed(1)},${toY.toFixed(1)}`;
 }
 
 function WarDailyOrdersChart() {
@@ -73,20 +76,16 @@ function WarDailyOrdersChart() {
   const plotBottom = 228;
   const plotH = plotBottom - padTop;
   const plotW = w - padX * 2;
-  const boxGap = 10;
-  const boxW = (plotW - boxGap * 2) / 3;
-  const connectorEnd = plotBottom + 34;
-  const elbowGap = 12;
-  const svgH = connectorEnd + 4;
+  const svgH = plotBottom + 28;
 
   const pts: Pt[] = dailyOrders.map((d, i) => {
     const x = padX + (i / Math.max(MONTHS.length - 1, 1)) * plotW;
-    const orders = CRISIS_MONTHS.has(i) ? 0 : d.orders;
-    const y = padTop + (1 - orders / Y_MAX) * plotH;
+    const orders = d.orders;
+    const y = Math.min(plotBottom, padTop + (1 - orders / Y_MAX) * plotH);
     return { ...d, orders, x, y, monthIndex: i };
   });
 
-  const line = smoothLine(pts);
+  const line = crisisAwareLine(pts);
   const area = `${line} L${pts[pts.length - 1]!.x},${plotBottom} L${pts[0]!.x},${plotBottom} Z`;
 
   const dipCopyByMonth: Record<string, { date: string; text: string }> = {
@@ -102,19 +101,18 @@ function WarDailyOrdersChart() {
       const copy = dipCopyByMonth[dip.month];
       return [
         {
-          pt: { ...pt, y: plotBottom },
-          boxCenterX: 0,
-          elbowY: plotBottom + elbowGap,
+          pt: { ...pt },
           date: copy?.date ?? dip.date,
           text: copy?.text ?? dip.text,
           monthIndex: dip.monthIndex,
+          color: DIP_COLORS[0],
         },
       ];
     })
     .sort((a, b) => a.monthIndex - b.monthIndex)
     .map((dip, i) => ({
       ...dip,
-      boxCenterX: padX + i * (boxW + boxGap) + boxW / 2,
+      color: DIP_COLORS[i] ?? BRAND,
     }));
 
   return (
@@ -125,7 +123,11 @@ function WarDailyOrdersChart() {
           روند سفارش روزانه
         </span>
         <span className="font-fanum inline-flex items-center gap-2 text-[12px] font-bold text-black sm:text-[13px]">
-          <span className="size-2.5 rounded-full bg-pink" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1" aria-hidden="true">
+            {DIP_COLORS.map((color) => (
+              <span key={color} className="size-2.5 rounded-full" style={{ backgroundColor: color }} />
+            ))}
+          </span>
           کم‌فروش‌ترین روزهای سال
         </span>
       </div>
@@ -150,6 +152,8 @@ function WarDailyOrdersChart() {
               <line key={i} x1={padX} x2={w - padX} y1={y} y2={y} stroke="#ece7e3" strokeWidth={1} />
             );
           })}
+
+          <line x1={0} x2={w} y1={plotBottom} y2={plotBottom} stroke={BRAND} strokeWidth={1.5} strokeOpacity={0.35} />
 
           <path d={area} fill={`url(#fill-${gid})`} className={inView ? "war-chart-draw" : "opacity-0"} />
           <path
@@ -177,22 +181,16 @@ function WarDailyOrdersChart() {
 
           {dips.map((dip) => (
             <g key={dip.monthIndex}>
-              <path
-                d={connectorPath(dip.pt.x, plotBottom, dip.boxCenterX, connectorEnd, dip.elbowY)}
-                fill="none"
-                stroke={BRAND}
-                strokeWidth={1.75}
-                strokeOpacity={0.6}
-                strokeLinejoin="round"
-              />
+              <circle cx={dip.pt.x} cy={dip.pt.y} r={12} fill={dip.color} fillOpacity={0.14} />
               <circle
                 cx={dip.pt.x}
-                cy={plotBottom}
+                cy={dip.pt.y}
                 r={7}
-                fill={BRAND}
+                fill={dip.color}
+                stroke="#ffffff"
+                strokeWidth={1.5}
                 className={inView ? "war-chart-dot" : "opacity-0"}
               />
-              <circle cx={dip.pt.x} cy={plotBottom} r={11} fill={BRAND} fillOpacity={0.12} />
             </g>
           ))}
         </svg>
@@ -204,15 +202,24 @@ function WarDailyOrdersChart() {
         >
           {dips.map((dip) => (
             <div key={dip.monthIndex} className="flex min-w-0 flex-col items-center">
-              <div className="h-3 w-px shrink-0 bg-pink/60 sm:h-4" aria-hidden="true" />
               <div
                 dir="rtl"
-                className="flex w-full min-h-[7.5rem] flex-col justify-center rounded-[0.875rem] border border-pink/45 bg-white px-2 py-3 text-center shadow-[0_6px_20px_rgba(236,7,141,0.08)] sm:min-h-[8rem] sm:rounded-2xl sm:px-3 sm:py-3.5"
+                className="flex w-full min-h-[7.5rem] flex-col justify-center rounded-[0.875rem] border bg-white px-2 py-3 text-center sm:min-h-[8rem] sm:rounded-2xl sm:px-3 sm:py-3.5"
+                style={{
+                  borderColor: `${dip.color}73`,
+                  boxShadow: `0 6px 20px ${dip.color}18`,
+                }}
               >
-                <p className="font-fanum m-0 text-[14px] font-extrabold leading-snug text-pink sm:text-[16px]">
+                <p
+                  className="font-fanum m-0 text-[14px] font-extrabold leading-snug sm:text-[16px]"
+                  style={{ color: dip.color }}
+                >
                   {dip.date}
                 </p>
-                <p className="font-fanum m-0 mt-1.5 text-[12px] font-bold leading-[1.5] text-black/85 sm:mt-2 sm:text-[14px] sm:leading-[1.65]">
+                <p
+                  className="font-fanum m-0 mt-1.5 text-[12px] font-bold leading-[1.5] sm:mt-2 sm:text-[14px] sm:leading-[1.65]"
+                  style={{ color: dip.color }}
+                >
                   {dip.text}
                 </p>
               </div>

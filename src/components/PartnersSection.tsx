@@ -214,7 +214,7 @@ export function PartnersSection() {
         />
         <div className="relative flex flex-col items-center gap-3 text-center sm:flex-row sm:items-start sm:gap-5 sm:text-right">
           <img
-            src="/assets/annual/partners/adv.svg"
+            src="/assets/annual/partners/beauty-ads-logo.svg"
             alt=""
             width={88}
             height={88}

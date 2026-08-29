@@ -18,15 +18,15 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 - Vite build-html treats `href="/"` or `content="/"` in index.html as asset URLs (EISDIR). Keep root canonical/og:url out of source index.html; inject absolute URLs in postbuild (`scripts/generate-seo-static.mjs`).
 - Persian year/day comparisons must use an explicit 3-column RTL grid (`date | date`) with each date rendered as one uninterrupted RTL string. Nested flex/bidi isolation produced no reliable visual change.
 - Both reports must render without international internet. Runtime fonts are the tracked files in `public/fonts`; do not restore Google Fonts or other external CSS/script/image requests. Schema.org/XML namespace URLs are identifiers, not network dependencies.
+- War crisis chart annotations must not use connector/elbow bars. Keep the x-axis continuous; use three distinct point colors and carry each color into its matching callout card.
 
 ## Scratchpad
 
-Task: Make both reports independent from international internet.
+Task: Refine WarDailyOrdersChart crisis annotations.
 
-[X] Audit all runtime external requests
-[X] Confirm IRANSans/IRANSansX files are local and tracked
-[X] Remove Google Fonts stylesheet/preconnects and Vazirmatn fallbacks
-[X] Verify `/` and `/war`: zero external and zero failed browser requests
+[X] Remove connector bars between crisis points and cards
+[X] Give the three crisis points distinct colors
+[X] Match each card border and copy to its point color
 [X] Run lint and production build
 
 
@@ -77,7 +77,7 @@ Task: Make both reports independent from international internet.
 - CategoryCard border must cross the badge center: article top padding equals half the badge diameter (`2.375rem` for 4.75rem; `sm:2.625rem` for 5.25rem). Activate the three-column category hub only at `xl`; at smaller widths use the two-column flow so 100% desktop zoom does not overflow.
 - Users newspaper prefers packaged mockup `newspaper-mockup.png` (root `Newspaper-Mockup-copy.png`); calendar mark is `users/calendar.svg` (not FA).
 - Annual SPA chrome: absolute (not sticky/fixed) top header overlays the hero only (logo + PDF + war) and scrolls away with the page; fixed bottom chapter dock (icons only). Thin progress bar stays fixed on top. Dock clearance lives in footer padding. Soft/dark «به‌زودی» slots only while a chapter is still locked. Section reveal with blur/scale; respect `prefers-reduced-motion`. Brand stays `#EC078D` / IRANSans — do not swap to Inter/Playfair/gold from ui-ux-pro-max. User rejected a flat “simple polish” pass — keep depth (glow, glass, gradient titles, orbit care hub) without inventing new report facts. Hero title stays moderate (`clamp` ~1.55–3.35rem), not oversized.
-- War crisis callouts (`#crisis`): three equal HTML cards in one `grid-cols-3` row below SVG (never stacked, never `foreignObject`). SVG = curve + elbow bars to column centers; cards use real px type (14/12 mobile · 16/14 sm+).
+- War crisis callouts (`#crisis`): three equal HTML cards in one `grid-cols-3` row below SVG (never stacked, never `foreignObject`). Do not draw connector/elbow bars; use three distinct point colors and repeat each color on its matching card. Cards use real px type (14/12 mobile · 16/14 sm+).
 - War resilience timeline (`#resilience`): geometry stays LTR so row icons/titles remain physically left, but every Persian date/title gets its own `dir=rtl`. Center the marker itself on the track and absolutely position its date above it; never vertically center the combined date+marker group. Marker positions and dashed lengths derive from exact Persian-date intervals with an inset track.
 - Products pay/basket close the products chapter: BNPL pink gradient card (`wallet.svg`) + basket depth three cards (`bag.svg`). Partners (`#partners`): brand growth SVG line (LTR years), Beauty Ads glass + ROI panel (`adv.svg` / `roi.svg`), two ranked Iranian brand lists. Ops (`#ops`): waiting KPI circles + returns spark + ganje locker band + OTD bars + war CTA. After all annual frames are filled, footer drops «به‌زودی».
 

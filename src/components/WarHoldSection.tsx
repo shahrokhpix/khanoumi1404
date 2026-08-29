@@ -35,8 +35,8 @@ function UserMixBars() {
   const { ref, on } = useInView<HTMLDivElement>();
   const w = 960;
   const h = 220;
-  const barX = 72;
-  const barW = 850;
+  const barX = 110;
+  const barW = 812;
   const barH = 50;
   const radius = barH / 2;
   const rowY = [12, 88];
@@ -61,10 +61,10 @@ function UserMixBars() {
           return (
             <g key={row.war}>
               <text
-                x={58}
+                x={96}
                 y={y + barH / 2 + 6}
                 textAnchor="end"
-                className="font-fanum fill-black text-[17px] font-bold"
+                className="font-fanum fill-black text-[13px] font-bold"
               >
                 {row.war}
               </text>

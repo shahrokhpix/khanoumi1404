@@ -135,7 +135,7 @@ export class ConcentricCircleChart implements SvgChart<CircleDatum, ConcentricOp
               "font-size": timeSize,
               "font-weight": type.fontWeight ?? 700,
               fill,
-              style: "direction:ltr;unicode-bidi:isolate",
+              style: "direction:rtl;unicode-bidi:isolate",
             }, escapeXml(formatTimeLabel(rows[i].time))),
           );
           y += timeSize + lineGap;

@@ -90,7 +90,7 @@ function GoldenDayBand() {
             {g.title}
           </h3>
 
-          <div className="mt-5 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-center sm:gap-8">
             <p dir="rtl" className="font-fanum m-0 shrink-0 text-right leading-snug sm:min-w-[12rem]">
               <span className="block whitespace-nowrap text-right text-[clamp(12px,1.4vw,16px)] font-bold">{g.best.label}</span>
               <span
@@ -236,7 +236,7 @@ function TimeBand() {
         />
       </div>
 
-      <div className="mx-auto mt-8 flex w-full max-w-[42rem] items-center gap-3 rounded-[23px] bg-pink px-4 py-4 text-white sm:gap-4 sm:px-8 sm:py-5">
+      <div className="relative z-10 mx-auto -mt-[49px] flex w-full max-w-[42rem] items-center gap-3 rounded-[23px] bg-pink px-4 py-4 text-white sm:gap-4 sm:px-8 sm:py-5">
         <img
           src={t.peakCalendarIcon}
           alt=""

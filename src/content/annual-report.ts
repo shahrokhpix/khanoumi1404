@@ -114,6 +114,7 @@ export const PATH = {
     kicker: "در مسیر ساختن",
     kickerIcon: "/assets/annual/path/inway.svg",
     femaleIcon: "/assets/annual/path/female.svg",
+    maleIcon: "/assets/annual/path/man.svg",
     title: "سهم زنان در مدیریت، بیش از دو برابر میانگین کشور",
     source: "منبع: مرکز آمار ایران؛ سهم زنان از مشاغل مدیریتی کشور در سال‌های اخیر: ۱۵ تا ۱۷٫۸ درصد",
     year: "۱۴۰۴",
@@ -259,7 +260,7 @@ export const USERS = {
     newspaper: "/assets/annual/users/newspaper-mockup.png",
     newspaperAlt: "روزنامه شرق با عنوان سه روزی که خاورمیانه لرزید",
     calendarIcon: "/assets/annual/users/calendar.svg",
-    peakCalendarIcon: "/assets/annual/users/calendar-frosh.svg",
+    peakCalendarIcon: "/assets/annual/users/calander.svg",
     womanIcon: "/assets/annual/users/woman.svg",
     quietLabel: "کم‌فروش‌ترین روز سال:",
     quietDays: [
