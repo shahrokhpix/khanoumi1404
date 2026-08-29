@@ -35,11 +35,12 @@ function useChapterReveal() {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-in");
-            io.unobserve(entry.target);
+          } else {
+            entry.target.classList.remove("is-in");
           }
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" },
     );
     nodes.forEach((el) => io.observe(el));
     return () => io.disconnect();

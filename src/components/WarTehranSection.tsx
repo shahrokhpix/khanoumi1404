@@ -57,7 +57,8 @@ function WarTehranRhythmChart() {
       ([entry]) => {
         if (entry?.isIntersecting) {
           setInView(true);
-          io.disconnect();
+        } else {
+          setInView(false);
         }
       },
       { threshold: 0.25 },

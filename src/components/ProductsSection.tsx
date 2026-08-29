@@ -370,7 +370,8 @@ function WeightMarketBand({
       ([entry]) => {
         if (entry?.isIntersecting) {
           setActive(true);
-          io.disconnect();
+        } else {
+          setActive(false);
         }
       },
       { threshold: 0.2 },
@@ -525,7 +526,8 @@ function SkinBand({
       ([entry]) => {
         if (entry?.isIntersecting) {
           setActive(true);
-          io.disconnect();
+        } else {
+          setActive(false);
         }
       },
       { threshold: 0.2, rootMargin: "40px 0px" },
@@ -907,7 +909,8 @@ function BasketBand({
       ([entry]) => {
         if (entry?.isIntersecting) {
           setActive(true);
-          io.disconnect();
+        } else {
+          setActive(false);
         }
       },
       { threshold: 0.15, rootMargin: "40px 0px" },

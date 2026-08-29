@@ -29,7 +29,8 @@ function useInView<T extends HTMLElement>() {
       ([e]) => {
         if (e?.isIntersecting) {
           setOn(true);
-          io.disconnect();
+        } else {
+          setOn(false);
         }
       },
       { threshold: 0.2 },

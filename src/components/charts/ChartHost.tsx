@@ -60,10 +60,11 @@ export function ChartHost({
       ([entry]) => {
         if (entry.isIntersecting) {
           wrap.classList.add("users-in");
-          io.disconnect();
+        } else {
+          wrap.classList.remove("users-in");
         }
       },
-      { threshold: 0.2, rootMargin: "40px 0px" },
+      { threshold: 0.15, rootMargin: "40px 0px" },
     );
     io.observe(wrap);
     return () => io.disconnect();
