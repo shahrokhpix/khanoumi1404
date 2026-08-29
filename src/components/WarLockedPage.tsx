@@ -50,36 +50,38 @@ export function WarLockedPage() {
   useChapterReveal();
 
   return (
-    <div className="war-page annual-page relative min-h-dvh overflow-x-hidden">
+    <div className="war-page war-report-only annual-page relative min-h-dvh overflow-x-hidden">
       <WarShockIntro />
       <div className="page-aurora pointer-events-none fixed inset-0 -z-10" aria-hidden="true" />
       <div className="noise-overlay pointer-events-none fixed inset-0 -z-10 opacity-[0.07]" aria-hidden="true" />
 
-      <WarChrome />
-      <Artboard>
-        <div className="war-spa annual-spa">
-          {WAR_FRAMES.map((frame) => {
-            if (frame.id === "start" && frame.filled) return <WarHeroLock key={frame.id} />;
-            if (frame.id === "ch1" && frame.filled) return <WarCh1Opener key={frame.id} />;
-            if (frame.id === "crisis" && frame.filled) return <WarCrisisSection key={frame.id} />;
-            if (frame.id === "zero" && frame.filled) return <WarZeroSection key={frame.id} />;
-            if (frame.id === "tehran" && frame.filled) return <WarTehranSection key={frame.id} />;
-            if (frame.id === "return" && frame.filled) return <WarReturnSection key={frame.id} />;
-            if (frame.id === "resilience" && frame.filled) return <WarResilienceSection key={frame.id} />;
-            if (frame.id === "channel" && frame.filled) return <WarChannelSection key={frame.id} />;
-            if (frame.id === "ch2" && frame.filled) return <WarCh2Opener key={frame.id} />;
-            if (frame.id === "anxiety" && frame.filled) return <WarAnxietySection key={frame.id} />;
-            if (frame.id === "care" && frame.filled) return <WarCareSection key={frame.id} />;
-            if (frame.id === "joy" && frame.filled) return <WarJoySection key={frame.id} />;
-            if (frame.id === "ukraine" && frame.filled) return <WarUkraineSection key={frame.id} />;
-            if (frame.id === "rupture" && frame.filled) return <WarRuptureSection key={frame.id} />;
-            if (frame.id === "hold" && frame.filled) return <WarHoldSection key={frame.id} />;
-            if (frame.id === "provinces" && frame.filled) return <WarProvincesSection key={frame.id} />;
-            return <WireframeSlot key={frame.id} frame={frame} />;
-          })}
-        </div>
-      </Artboard>
-      <WarFooter />
+      <div className="war-report-scale">
+        <WarChrome />
+        <Artboard>
+          <div className="war-spa annual-spa">
+            {WAR_FRAMES.map((frame) => {
+              if (frame.id === "start" && frame.filled) return <WarHeroLock key={frame.id} />;
+              if (frame.id === "ch1" && frame.filled) return <WarCh1Opener key={frame.id} />;
+              if (frame.id === "crisis" && frame.filled) return <WarCrisisSection key={frame.id} />;
+              if (frame.id === "zero" && frame.filled) return <WarZeroSection key={frame.id} />;
+              if (frame.id === "tehran" && frame.filled) return <WarTehranSection key={frame.id} />;
+              if (frame.id === "return" && frame.filled) return <WarReturnSection key={frame.id} />;
+              if (frame.id === "resilience" && frame.filled) return <WarResilienceSection key={frame.id} />;
+              if (frame.id === "channel" && frame.filled) return <WarChannelSection key={frame.id} />;
+              if (frame.id === "ch2" && frame.filled) return <WarCh2Opener key={frame.id} />;
+              if (frame.id === "anxiety" && frame.filled) return <WarAnxietySection key={frame.id} />;
+              if (frame.id === "care" && frame.filled) return <WarCareSection key={frame.id} />;
+              if (frame.id === "joy" && frame.filled) return <WarJoySection key={frame.id} />;
+              if (frame.id === "ukraine" && frame.filled) return <WarUkraineSection key={frame.id} />;
+              if (frame.id === "rupture" && frame.filled) return <WarRuptureSection key={frame.id} />;
+              if (frame.id === "hold" && frame.filled) return <WarHoldSection key={frame.id} />;
+              if (frame.id === "provinces" && frame.filled) return <WarProvincesSection key={frame.id} />;
+              return <WireframeSlot key={frame.id} frame={frame} />;
+            })}
+          </div>
+        </Artboard>
+        <WarFooter />
+      </div>
     </div>
   );
 }

@@ -16,17 +16,18 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 
 - War section charts must stay centered with `mx-auto w-full max-w-*`; do not use `w-screen left-1/2 -translate-x-1/2` inside the RTL report frame because it can shift beyond the artboard.
 - Vite build-html treats `href="/"` or `content="/"` in index.html as asset URLs (EISDIR). Keep root canonical/og:url out of source index.html; inject absolute URLs in postbuild (`scripts/generate-seo-static.mjs`).
+- Persian year/day comparisons must use an explicit 3-column RTL grid (`date | date`) with each date rendered as one uninterrupted RTL string. Nested flex/bidi isolation produced no reliable visual change.
+- Both reports must render without international internet. Runtime fonts are the tracked files in `public/fonts`; do not restore Google Fonts or other external CSS/script/image requests. Schema.org/XML namespace URLs are identifiers, not network dependencies.
 
 ## Scratchpad
 
-Task: SEO for annual + war reports.
+Task: Make both reports independent from international internet.
 
-[X] `src/seo/*` module (meta, JSON-LD, reports config, hook)
-[X] Wire `useReportSeo` in App.tsx for `/` and `/war`
-[X] index.html static meta + manifest + noscript fallback
-[X] postbuild: sitemap.xml, robots.txt, 404.html, war/index.html
-[X] `.env.example` VITE_SITE_URL
-[ ] User set production VITE_SITE_URL at deploy
+[X] Audit all runtime external requests
+[X] Confirm IRANSans/IRANSansX files are local and tracked
+[X] Remove Google Fonts stylesheet/preconnects and Vazirmatn fallbacks
+[X] Verify `/` and `/war`: zero external and zero failed browser requests
+[X] Run lint and production build
 
 
 ## User Specified Lessons

@@ -3,14 +3,6 @@ import { toFaDigits } from "../charts/typography/rtl";
 import { AgePeopleIcon } from "./charts/AgePeopleIcon";
 import { ConcentricCircleChartView, DonutChartView, FanChartView } from "./charts/ChartViews";
 
-function DateLabel({ date }: { date: string }) {
-  return (
-    <span dir="ltr" className="font-fanum [unicode-bidi:isolate]">
-      {date}:
-    </span>
-  );
-}
-
 export function UsersSection() {
   return (
     <section
@@ -99,25 +91,27 @@ function GoldenDayBand() {
           </h3>
 
           <div className="mt-5 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-fanum m-0 shrink-0 text-center leading-snug sm:min-w-[12rem]">
-              <span className="block whitespace-nowrap text-[clamp(12px,1.4vw,16px)] font-bold">{g.best.label}</span>
+            <p dir="rtl" className="font-fanum m-0 shrink-0 text-right leading-snug sm:min-w-[12rem]">
+              <span className="block whitespace-nowrap text-right text-[clamp(12px,1.4vw,16px)] font-bold">{g.best.label}</span>
               <span
-                dir="ltr"
-                className="mt-1 flex w-full flex-wrap items-baseline justify-center gap-x-1 text-[clamp(12px,1.5vw,13px)] [unicode-bidi:isolate]"
+                dir="rtl"
+                className="mt-1 grid w-max max-w-full grid-cols-[max-content_max-content_max-content] items-baseline justify-items-end gap-x-1 text-right text-[clamp(12px,1.5vw,13px)]"
               >
-                {g.best.years.map((row, i) => (
-                  <span key={row.year} className="inline-flex items-baseline gap-x-1 whitespace-nowrap">
-                    {i > 0 ? <span className="text-white/80">|</span> : null}
-                    <span>{row.year}:</span>
-                    <span className="text-[clamp(16px,2vw,24px)] font-bold text-pink">{row.day}</span>
-                  </span>
-                ))}
+                <span className="whitespace-nowrap text-right">
+                  <span className="text-[clamp(12px,1.5vw,13px)]">{g.best.years[0]?.year}: </span>
+                  <strong className="text-[clamp(16px,2vw,24px)] font-bold text-pink">{g.best.years[0]?.day}</strong>
+                </span>
+                <span aria-hidden="true" className="text-white/80">|</span>
+                <span className="whitespace-nowrap text-right">
+                  <span className="text-[clamp(12px,1.5vw,13px)]">{g.best.years[1]?.year}: </span>
+                  <strong className="text-[clamp(16px,2vw,24px)] font-bold text-pink">{g.best.years[1]?.day}</strong>
+                </span>
               </span>
             </p>
 
             <div
-              dir="ltr"
-              className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-1 rounded-[18px] border border-white px-3 py-2.5 [unicode-bidi:isolate] sm:flex-nowrap sm:gap-3 sm:px-4 sm:py-3"
+              dir="rtl"
+              className="inline-flex w-fit max-w-full shrink-0 flex-wrap items-center gap-x-2 gap-y-1 rounded-[18px] border border-white px-3 py-2.5 text-right sm:flex-nowrap sm:gap-3 sm:px-4 sm:py-3"
             >
               <img
                 src={g.calendarIcon}
@@ -126,10 +120,13 @@ function GoldenDayBand() {
                 height={28}
                 className="size-[1.35rem] shrink-0 object-contain sm:size-[1.65rem]"
               />
-              <p className="font-fanum m-0 shrink-0 text-[clamp(16px,2.4vw,30px)] font-bold leading-none">
-                <DateLabel date={g.sales.date} />
+              <p
+                dir="rtl"
+                className="font-fanum m-0 shrink-0 whitespace-nowrap text-right text-[clamp(16px,2.4vw,30px)] font-bold leading-none"
+              >
+                {g.sales.date}:
               </p>
-              <p className="font-fanum m-0 min-w-0 flex-1 text-[clamp(12px,1.6vw,18px)] font-medium leading-snug">
+              <p className="font-fanum m-0 text-right text-[clamp(12px,1.6vw,18px)] font-medium leading-snug">
                 {g.sales.lead}{" "}
                 <span className="font-bold text-pink">
                   {g.sales.value} {g.sales.unit}
@@ -247,19 +244,21 @@ function TimeBand() {
           height={48}
           className="size-9 shrink-0 object-contain sm:size-11 lg:size-12"
         />
-        <div className="min-w-0 flex-1 self-stretch text-start">
-          <p className="font-fanum m-0 text-start text-[clamp(11px,1.4vw,13px)] font-bold">{t.quietLabel}</p>
+        <div dir="rtl" className="min-w-0 flex-1 self-stretch text-right">
+          <p className="font-fanum m-0 text-right text-[clamp(11px,1.4vw,13px)] font-bold">{t.quietLabel}</p>
           <p
-            dir="ltr"
-            className="font-fanum m-0 mt-1 flex w-full flex-wrap items-baseline justify-end gap-x-2 text-[clamp(13px,1.7vw,16px)] font-bold [unicode-bidi:isolate]"
+            dir="rtl"
+            className="font-fanum m-0 mt-1 grid w-max max-w-full grid-cols-[max-content_max-content_max-content] items-baseline justify-items-end gap-x-2 text-right text-[clamp(13px,1.7vw,16px)] font-bold"
           >
-            {t.quietDays.map((row, i) => (
-              <span key={row.year} className="inline-flex items-baseline gap-x-1 whitespace-nowrap">
-                {i > 0 ? <span>|</span> : null}
-                <span>{row.year}:</span>
-                <span className="text-[clamp(17px,2.3vw,23px)]">{row.day}</span>
-              </span>
-            ))}
+            <span className="whitespace-nowrap text-right">
+              <span>{t.quietDays[0]?.year}: </span>
+              <strong className="text-[clamp(17px,2.3vw,23px)] font-bold">{t.quietDays[0]?.day}</strong>
+            </span>
+            <span aria-hidden="true">|</span>
+            <span className="whitespace-nowrap text-right">
+              <span>{t.quietDays[1]?.year}: </span>
+              <strong className="text-[clamp(17px,2.3vw,23px)] font-bold">{t.quietDays[1]?.day}</strong>
+            </span>
           </p>
         </div>
       </div>

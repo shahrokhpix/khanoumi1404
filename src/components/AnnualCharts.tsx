@@ -35,7 +35,7 @@ const tooltipStyle = {
   background: "#fff",
   border: "1px solid #ece7e3",
   borderRadius: 12,
-  fontFamily: "Vazirmatn, Tahoma, sans-serif",
+  fontFamily: "IRANSans, Tahoma, sans-serif",
 };
 
 function formatFa(v: unknown) {
