@@ -2,6 +2,7 @@ import { useState } from "react";
 import { faBookOpen, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HERO } from "../content/war-report";
+import { appPath } from "../lib/paths";
 
 const PARAS = [HERO.p1, HERO.p2, HERO.p3, HERO.p4, HERO.p5, HERO.p6] as const;
 
@@ -59,7 +60,7 @@ export function WarHeroLock() {
               </span>
             </a>
             <a
-              href="/"
+              href={appPath("/")}
               className="font-fanum inline-flex min-h-12 items-center rounded-full border border-white/35 bg-white/10 px-5 text-sm font-bold text-white no-underline backdrop-blur-md transition-colors hover:bg-white/20 sm:min-h-14 sm:px-6"
             >
               گزارش سال ۱۴۰۴

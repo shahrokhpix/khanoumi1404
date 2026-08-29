@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
 import { AnnualLockedPage } from "./components/AnnualLockedPage";
 import { WarLockedPage } from "./components/WarLockedPage";
+import { appPath, stripAppBase } from "./lib/paths";
 import { useReportSeo } from "./seo/useReportSeo";
 import type { ReportRoute } from "./seo/reports";
 
 function usePath(): ReportRoute {
-  const [path, setPath] = useState<ReportRoute>(() => {
-    const normalized = window.location.pathname.replace(/\/$/, "") || "/";
-    return normalized === "/war" ? "/war" : "/";
-  });
+  const [path, setPath] = useState<ReportRoute>(() => stripAppBase(window.location.pathname));
   useEffect(() => {
-    const onPop = () => {
-      const normalized = window.location.pathname.replace(/\/$/, "") || "/";
-      setPath(normalized === "/war" ? "/war" : "/");
-    };
+    const onPop = () => setPath(stripAppBase(window.location.pathname));
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
@@ -28,13 +23,13 @@ function useSpaLinks() {
       if (anchor.hasAttribute("download") || anchor.target === "_blank") return;
       const href = anchor.getAttribute("href");
       if (!href || href.startsWith("#") || href.startsWith("http")) return;
-      const url = new URL(href, window.location.origin);
+      const url = new URL(href, window.location.href);
       if (url.origin !== window.location.origin) return;
-      const next = url.pathname.replace(/\/$/, "") || "/";
+      const next = stripAppBase(url.pathname);
       if (next !== "/" && next !== "/war") return;
       event.preventDefault();
-      if ((window.location.pathname.replace(/\/$/, "") || "/") === next) return;
-      window.history.pushState({}, "", next);
+      if (stripAppBase(window.location.pathname) === next) return;
+      window.history.pushState({}, "", appPath(next));
       window.dispatchEvent(new PopStateEvent("popstate"));
       window.scrollTo(0, 0);
     };

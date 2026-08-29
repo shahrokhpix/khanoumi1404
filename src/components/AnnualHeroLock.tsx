@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { appPath } from "../lib/paths";
 
 const TITLE = "گزارش سال ۱۴۰۴ خانومی";
 const SUBTITLE = "سال حرکت در مسیر پایداری";
@@ -95,7 +96,7 @@ export function AnnualHeroLock() {
           </div>
 
           <a
-            href="/war"
+            href={appPath("/war")}
             dir="rtl"
             className="glass-cta font-fanum group relative inline-flex max-w-full items-center justify-center overflow-hidden rounded-full px-6 py-4 text-center text-sm font-bold leading-snug text-white no-underline sm:px-8 sm:py-5 sm:text-xl lg:max-w-[42rem] lg:text-[24px]"
           >

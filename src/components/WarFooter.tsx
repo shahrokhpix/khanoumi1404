@@ -1,3 +1,5 @@
+import { appPath } from "../lib/paths";
+
 export function WarFooter() {
   return (
     <footer dir="rtl" className="relative overflow-hidden pb-[5.75rem] sm:pb-[6.5rem]">
@@ -27,14 +29,14 @@ export function WarFooter() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
-            href="/war-report.pdf"
+            href={appPath("/war-report.pdf")}
             download
             className="font-fanum inline-flex rounded-full bg-white px-6 py-3 text-sm font-black text-pink no-underline shadow-[0_12px_40px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:-translate-y-0.5"
           >
             دانلود PDF گزارش جنگ
           </a>
           <a
-            href="/"
+            href={appPath("/")}
             className="font-fanum inline-flex rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white no-underline backdrop-blur-md transition-colors duration-300 hover:bg-white/20"
           >
             گزارش سال ۱۴۰۴

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { appPath } from "../lib/paths";
 import {
   faBookOpen,
   faBoxOpen,
@@ -96,13 +97,13 @@ export function AnnualChrome() {
 
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <a
-              href="/war"
+              href={appPath("/war")}
               className="font-fanum hidden rounded-full border border-pink/25 bg-white/60 px-3 py-2 text-[11px] font-bold text-pink no-underline backdrop-blur-md transition-all duration-300 hover:bg-pink hover:text-white sm:inline-flex"
             >
               گزارش جنگ
             </a>
             <a
-              href="/annual-report.pdf"
+              href={appPath("/annual-report.pdf")}
               download
               className="font-fanum inline-flex items-center gap-1.5 rounded-full bg-gradient-to-l from-[#ec078d] to-[#a60062] px-3 py-2 text-[11px] font-bold text-white no-underline shadow-[0_8px_20px_rgba(236,7,141,0.35)] transition-transform duration-300 hover:-translate-y-0.5 sm:px-3.5 sm:text-[12px]"
             >

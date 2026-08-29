@@ -7,6 +7,23 @@
 
 همه فونت‌ها، تصاویر، SVGها و اسکریپت‌ها **محلی** هستند و برای رندر به اینترنت بین‌الملل وابسته نیستند.
 
+## دمو زنده (GitHub Pages)
+
+بعد از فعال‌سازی Pages، دمو اینجا منتشر می‌شود:
+
+**https://shahrokhpix.github.io/khanoumi1404/**
+
+| مسیر | گزارش |
+|------|--------|
+| `/khanoumi1404/` | گزارش سال |
+| `/khanoumi1404/war` | گزارش جنگ |
+
+### فعال‌سازی (یک‌بار)
+
+1. GitHub → repo **khanoumi1404** → **Settings** → **Pages**
+2. **Source:** `GitHub Actions`
+3. هر push به `main` با workflow **Deploy GitHub Pages demo** خودکار deploy می‌کند
+
 ---
 
 ## پیش‌نیاز سرور build
@@ -126,14 +143,17 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ---
 
-## ۶. GitHub Pages
+## ۶. GitHub Pages (دمو)
 
-1. `VITE_SITE_URL` را روی آدرس Pages تنظیم کنید، مثلاً:
-   `https://shahrokhpix.github.io/khanoumi1404`
-2. `npm run build`
-3. محتوای **`dist/`** را deploy کنید (branch `gh-pages` یا GitHub Actions)
+Workflow آماده است: `.github/workflows/deploy-pages.yml`
 
-فایل **`404.html`** در build ساخته می‌شود و برای SPA روی Pages لازم است.
+```bash
+VITE_BASE_PATH=/khanoumi1404/ \
+VITE_SITE_URL=https://shahrokhpix.github.io/khanoumi1404 \
+npm run build
+```
+
+روی GitHub Actions این متغیرها خودکار تنظیم می‌شوند. فقط **Pages → Source: GitHub Actions** را فعال کنید.
 
 ---
 
