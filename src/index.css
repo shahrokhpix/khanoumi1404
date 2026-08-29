@@ -238,26 +238,19 @@ html {
 }
 
 .chapter-hero-card {
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.26) 0%,
-      rgba(255, 255, 255, 0.1) 45%,
-      rgba(236, 7, 141, 0.14) 100%
-    );
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.035);
   box-shadow:
-    0 18px 44px rgba(26, 6, 18, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(22px) saturate(1.45);
-  -webkit-backdrop-filter: blur(22px) saturate(1.45);
+    0 8px 22px rgba(26, 6, 18, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(1.5px) saturate(1.04);
+  -webkit-backdrop-filter: blur(1.5px) saturate(1.04);
 }
 
 .chapter-hero-card .chapter-hero-text {
   text-shadow:
-    0 2px 12px rgba(26, 6, 18, 0.55),
-    0 1px 3px rgba(26, 6, 18, 0.35);
+    0 2px 16px rgba(26, 6, 18, 0.72),
+    0 1px 5px rgba(26, 6, 18, 0.52);
 }
 
 .care-orbit {

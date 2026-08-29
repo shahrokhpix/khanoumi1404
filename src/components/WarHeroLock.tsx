@@ -14,15 +14,15 @@ export function WarHeroLock() {
     <section id="start" data-reveal className="relative overflow-hidden">
       <div className="relative isolate flex min-h-[min(100dvh,920px)] flex-col justify-end overflow-hidden">
         <img
-          src="/assets/photos/img_01_3000x1305.jpeg"
-          alt="تخلیه پس از حمله در تهران؛ زنی قالیچه بر سر دارد و ساختمانی ویران در پس‌زمینه دیده می‌شود"
-          width={3000}
-          height={1305}
-          className="absolute inset-0 -z-30 size-full object-cover object-[center_35%]"
+          src="/assets/photos/A03I7482.jpg"
+          alt="زنی در اتاقی ویران‌شده از پنجره شکسته به روبار آوار ساختمان نگاه می‌کند"
+          width={2000}
+          height={1333}
+          className="absolute inset-0 -z-30 size-full object-cover object-[center_40%]"
         />
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-t from-[#050104] via-[#0a0208]/88 to-[#12030c]/40" />
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-l from-[#0a0208]/75 via-[#050104]/25 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 -z-[8] bg-black/35" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-t from-[#050104] via-[#0a0208]/44 to-[#12030c]/20" />
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-l from-[#0a0208]/38 via-[#050104]/12 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 -z-[8] bg-black/[0.175]" aria-hidden="true" />
         <div className="noise-overlay pointer-events-none absolute inset-0 -z-[5] opacity-[0.18]" aria-hidden="true" />
 
         <div

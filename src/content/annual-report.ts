@@ -139,9 +139,11 @@ export const CSR = {
     title: "انتشار پلنر زنان پیشگام ایران",
     book: "/assets/annual/csr/life-book-2026.png",
     bookAlt: "کتاب روایت ۵۴ زن پیشگام ایرانی",
+    bookHref: "https://www.khanoumi.com/iranian-women",
     careTitle: "خانومی‌لایف / جایی برای گفت‌وگو",
     careLabel: "مراقبت اجتماعی:",
     careNote: "موضوع پست‌ها: جامعه امن",
+    careHref: "https://www.instagram.com/khanoumi.life",
     posts: [
       {
         src: "/assets/annual/csr/post-1.jpg",
@@ -162,6 +164,8 @@ export const CSR = {
     bookTitle: "انتشار کتاب «می‌خواهم زیبا بمانم» با همراهی هیدرودرم",
     book: "/assets/annual/csr/biz-book-2026.png",
     bookAlt: "کتاب می‌خواهم زیبا بمانم، راهنمای زیبایی برای زنانی که سرطان دارند",
+    bookHref: "https://www.khanoumi.com/products/i-want-to-stay-beautiful-86326",
+    reportsHref: "https://www.khanoumi.com/business/",
     reports: [
       {
         lines: ["گزارش ۲۰۲۵", "خاورمیانه"],

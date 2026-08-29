@@ -43,7 +43,7 @@ export function ChapterHero({
           decoding="async"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-black/5"
           aria-hidden="true"
         />
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.1]" aria-hidden="true" />

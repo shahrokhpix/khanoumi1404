@@ -44,8 +44,8 @@ export function HeroSection() {
   return (
     <div id="start" className="scroll-mt-24">
       <PhotoFigure
-        src="/assets/photos/img_01_3000x1305.jpeg"
-        alt="تخلیه پس از حمله در تهران؛ زنی قالیچه بر سر دارد و ساختمانی ویران در پس‌زمینه دیده می‌شود"
+        src="/assets/photos/A03I7482.jpg"
+        alt="زنی در اتاقی ویران‌شده از پنجره شکسته به روبار آوار ساختمان نگاه می‌کند"
         className="max-h-[72vh]"
       />
       <Section>
