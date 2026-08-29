@@ -1,4 +1,5 @@
 import { CSR } from "../content/annual-report";
+import { ChapterHero } from "./ChapterHero";
 
 function BookVisual({ src, alt }: { src: string; alt: string }) {
   return (
@@ -25,21 +26,13 @@ export function CsrSection() {
       dir="rtl"
       className="section-band-mist relative scroll-mt-annual overflow-hidden px-4 py-16 sm:px-10 lg:px-[80px] lg:py-20"
     >
-      <div className="mb-5 flex justify-center">
-        <span className="font-fanum rounded-full border border-pink/20 bg-white/70 px-4 py-1 text-[12px] font-bold text-pink shadow-sm backdrop-blur">
-          فصل ۱
-        </span>
-      </div>
-      <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
-        <img
-          src={CSR.icon}
-          alt=""
-          width={42}
-          height={42}
-          className="size-7 shrink-0 sm:size-8 lg:size-[42px]"
-        />
-        {CSR.title}
-      </h2>
+      <ChapterHero
+        chapter={CSR.chapter}
+        title={CSR.title}
+        image={CSR.heroImage}
+        imageAlt={CSR.title}
+        icon={CSR.icon}
+      />
       <p className="font-fanum mx-auto mt-6 max-w-[58rem] text-center text-[clamp(14px,1.7vw,18px)] font-medium leading-[2] text-black/75">
         {CSR.lead}
       </p>

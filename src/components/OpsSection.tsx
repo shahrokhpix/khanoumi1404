@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { OPS } from "../content/annual-report";
 import { toFaDigits } from "../charts/typography/rtl";
+import { ChapterHero } from "./ChapterHero";
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -155,21 +156,14 @@ export function OpsSection() {
       dir="rtl"
       className="section-band-mist relative scroll-mt-annual overflow-hidden px-4 py-16 sm:px-10 lg:px-[80px] lg:py-20"
     >
-      <div className="mb-5 flex justify-center">
-        <span className="font-fanum rounded-full border border-pink/20 bg-white/70 px-4 py-1 text-[12px] font-bold text-pink shadow-sm backdrop-blur">
-          فصل ۵
-        </span>
-      </div>
-      <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
-        <img
-          src="/assets/annual/ops/amaliat-poshtibani.svg"
-          alt=""
-          width={42}
-          height={42}
-          className="size-7 shrink-0 brightness-0 invert sm:size-8 lg:size-[42px]"
-        />
-        {o.title}
-      </h2>
+      <ChapterHero
+        chapter={o.chapter}
+        title={o.title}
+        image={o.heroImage}
+        imageAlt={o.title}
+        icon="/assets/annual/ops/amaliat-poshtibani.svg"
+        iconClassName="size-[clamp(1.75rem,5vw,2.65rem)] shrink-0 object-contain brightness-0 invert drop-shadow-[0_4px_12px_rgba(255,255,255,0.35)]"
+      />
 
       {/* Waiting / processing */}
       <div className="mx-auto mt-10 max-w-[64rem] sm:mt-12">

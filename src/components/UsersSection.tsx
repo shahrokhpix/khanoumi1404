@@ -3,6 +3,7 @@ import { USERS } from "../content/annual-report";
 import { toFaDigits } from "../charts/typography/rtl";
 import { AgePeopleIcon } from "./charts/AgePeopleIcon";
 import { ConcentricCircleChartView, DonutChartView, FanChartView } from "./charts/ChartViews";
+import { ChapterHero } from "./ChapterHero";
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -38,21 +39,13 @@ export function UsersSection() {
         className="pointer-events-none absolute end-0 top-20 size-[24rem] rounded-full bg-pink/10 blur-[100px]"
         aria-hidden="true"
       />
-      <div className="mb-5 flex justify-center">
-        <span className="font-fanum rounded-full border border-pink/20 bg-pink-mist px-4 py-1 text-[12px] font-bold text-pink">
-          فصل ۲
-        </span>
-      </div>
-      <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
-        <img
-          src={USERS.icon}
-          alt=""
-          width={42}
-          height={42}
-          className="size-7 shrink-0 sm:size-8 lg:size-[42px]"
-        />
-        {USERS.title}
-      </h2>
+      <ChapterHero
+        chapter={USERS.chapter}
+        title={USERS.title}
+        image={USERS.heroImage}
+        imageAlt={USERS.title}
+        icon={USERS.icon}
+      />
 
       <p className="font-fanum m-0 mt-8 text-center text-[clamp(18px,2.4vw,26px)] font-medium leading-tight text-pink">
         {USERS.growthLead}

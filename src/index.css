@@ -106,15 +106,17 @@ html {
   background: #0d0308;
 }
 
-/* Annual report only: scale all content (type, spacing, charts) to 80%. War report unchanged. */
-.annual-report-only .annual-report-scale {
-  zoom: 0.8;
+/* Annual report: full size on mobile; 90% on desktop only. */
+@media (min-width: 1024px) {
+  .annual-report-only .annual-report-scale {
+    zoom: 0.9;
+  }
 }
 
-/* War report: 80% scale on desktop only; mobile stays full size. */
+/* War report: 90% scale on desktop only; mobile stays full size. */
 @media (min-width: 1024px) {
   .war-report-only .war-report-scale {
-    zoom: 0.8;
+    zoom: 0.9;
   }
 }
 
@@ -233,6 +235,29 @@ html {
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+}
+
+.chapter-hero-card {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0.1) 45%,
+      rgba(236, 7, 141, 0.14) 100%
+    );
+  box-shadow:
+    0 18px 44px rgba(26, 6, 18, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px) saturate(1.45);
+  -webkit-backdrop-filter: blur(22px) saturate(1.45);
+}
+
+.chapter-hero-card .chapter-hero-text {
+  text-shadow:
+    0 2px 12px rgba(26, 6, 18, 0.55),
+    0 1px 3px rgba(26, 6, 18, 0.35);
 }
 
 .care-orbit {
@@ -962,6 +987,62 @@ body.war-intro-lock {
 #products.is-in .product-mini-bar {
   animation: product-bar-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--d, 0s);
+}
+
+.makeup-market-row {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.makeup-market-bar {
+  width: 0;
+  transform-origin: 100% 50%;
+}
+
+.makeup-market-chart.is-in .makeup-market-row {
+  animation: makeup-market-row-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+.makeup-market-chart.is-in .makeup-market-bar {
+  animation: makeup-market-bar-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--d, 0s) + 0.06s);
+}
+
+@keyframes makeup-market-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes makeup-market-bar-in {
+  from {
+    width: 0;
+    opacity: 0.35;
+  }
+  to {
+    width: var(--w, 100%);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .makeup-market-row {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .makeup-market-bar {
+    width: var(--w, 100%) !important;
+    opacity: 1;
+    animation: none !important;
+  }
 }
 
 #products .care-trend-line {

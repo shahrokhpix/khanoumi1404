@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { PRODUCTS } from "../content/annual-report";
 import { donutSlice } from "../charts/geometry/wedge";
 import { toFaDigits } from "../charts/typography/rtl";
+import { ChapterHero } from "./ChapterHero";
 
 const BAR = {
   y1402: "#D8D4D0",
@@ -241,21 +242,13 @@ export function ProductsSection() {
       dir="rtl"
       className="section-band-mist relative scroll-mt-annual overflow-hidden px-4 py-16 sm:px-10 lg:px-[80px] lg:py-20"
     >
-      <div className="mb-5 flex justify-center">
-        <span className="font-fanum rounded-full border border-pink/20 bg-white/70 px-4 py-1 text-[12px] font-bold text-pink shadow-sm backdrop-blur">
-          فصل ۳
-        </span>
-      </div>
-      <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
-        <img
-          src={p.icon}
-          alt=""
-          width={42}
-          height={42}
-          className="size-7 shrink-0 sm:size-8 lg:size-[42px]"
-        />
-        {p.title}
-      </h2>
+      <ChapterHero
+        chapter={p.chapter}
+        title={p.title}
+        image={p.heroImage}
+        imageAlt={p.title}
+        icon={p.icon}
+      />
 
       <h3 className="font-fanum m-0 mt-5 text-center text-[19px] font-bold leading-[34px] text-black">
         {mix.lead}
@@ -674,31 +667,79 @@ function MakeupBand({
       </p>
 
       <div className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-2">
-        <MarketList title={makeup.koreaTitle} items={makeup.korea} />
-        <MarketList title={makeup.menaTitle} items={makeup.mena} />
+        <MarketRankChart title={makeup.koreaTitle} items={makeup.korea} />
+        <MarketRankChart title={makeup.menaTitle} items={makeup.mena} />
       </div>
     </div>
   );
 }
 
-function MarketList({ title, items }: { title: string; items: readonly string[] }) {
+function useInView<T extends HTMLElement>(threshold = 0.22) {
+  const ref = useRef<T>(null);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setOn(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setOn(Boolean(entry?.isIntersecting)),
+      { threshold, rootMargin: "40px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
+
+  return { ref, on };
+}
+
+function rankBarWidth(index: number, total: number): number {
+  if (total <= 1) return 100;
+  const floor = 38;
+  const span = 100 - floor;
+  return Math.round(floor + span * (1 - index / (total - 1)));
+}
+
+function MarketRankChart({ title, items }: { title: string; items: readonly string[] }) {
+  const { ref, on } = useInView<HTMLDivElement>();
+
   return (
-    <div className="rounded-2xl border border-pink/10 bg-white/70 px-4 py-4 shadow-[0_8px_22px_rgba(166,0,98,0.05)] backdrop-blur-sm sm:px-5 sm:py-5">
+    <div
+      ref={ref}
+      className={`makeup-market-chart rounded-2xl border border-pink/10 bg-white/70 px-4 py-4 shadow-[0_8px_22px_rgba(166,0,98,0.05)] backdrop-blur-sm sm:px-5 sm:py-5 ${on ? "is-in" : ""}`}
+      role="img"
+      aria-label={title}
+    >
       <h4 className="font-fanum m-0 text-[13px] font-extrabold leading-6 text-pink sm:text-[15px] sm:leading-7">
         {title}
       </h4>
-      <ol className="m-0 mt-3 list-none space-y-2 p-0 sm:mt-3.5 sm:space-y-2.5">
-        {items.map((item, i) => (
-          <li key={item} className="flex items-start gap-2">
-            <span className="font-fanum mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-pink/10 text-[10px] font-extrabold text-pink sm:size-6 sm:text-[11px]">
-              {toFaDigits(String(i + 1))}
-            </span>
-            <span className="font-fanum text-[12px] font-medium leading-5 text-black/85 sm:text-[13px] sm:leading-6">
-              {item}
-            </span>
-          </li>
-        ))}
-      </ol>
+      <ul className="m-0 mt-4 list-none space-y-3 p-0 sm:mt-5 sm:space-y-3.5" dir="rtl">
+        {items.map((item, i) => {
+          const width = rankBarWidth(i, items.length);
+          return (
+            <li
+              key={item}
+              className="makeup-market-row"
+              style={{ ["--d" as string]: `${i * 0.08}s`, ["--w" as string]: `${width}%` }}
+            >
+              <div className="mb-1.5 flex items-start gap-2 sm:mb-2">
+                <span className="font-fanum inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-pink/12 text-[10px] font-extrabold text-pink sm:size-6 sm:text-[11px]">
+                  {toFaDigits(String(i + 1))}
+                </span>
+                <span className="font-fanum min-w-0 flex-1 text-[12px] font-bold leading-5 text-black/88 sm:text-[13px] sm:leading-6">
+                  {item}
+                </span>
+              </div>
+              <div className="h-2 overflow-hidden rounded-full bg-pink/10 sm:h-2.5" aria-hidden="true">
+                <div className="makeup-market-bar h-full rounded-full bg-gradient-to-l from-[#ec078d] to-[#ff6bcb]" />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

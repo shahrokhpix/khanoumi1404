@@ -128,6 +128,8 @@ export const PATH = {
 };
 
 export const CSR = {
+  chapter: "فصل ۱",
+  heroImage: "/assets/annual/chapters/csr.jpg",
   title: "مسئولیت اجتماعی / در مسیر همراهی",
   lead:
     "فعالیت‌های مسئولیت اجتماعی خانومی در سال ۱۴۰۴، باز کردن باب گفت‌وگو درباره موضوعاتی بود که کمتر درباره آن‌ها حرف زده می‌شود و همراهی با دغدغه‌هایی که بخشی از تجربه زیسته زنان‌اند؛ تجربه‌هایی درباره جسم، روان، استقلال، کار، خانواده و کیفیت زندگی.",
@@ -176,6 +178,8 @@ export const CSR = {
 };
 
 export const USERS = {
+  chapter: "فصل ۲",
+  heroImage: "/assets/annual/chapters/users.jpg",
   title: "کاربران / در مسیر انتخاب",
   icon: "/assets/annual/users/karbaran.svg",
   growthLead: "نیم‌میلیون نفر",
@@ -293,6 +297,8 @@ export const USERS = {
 };
 
 export const PRODUCTS = {
+  chapter: "فصل ۳",
+  heroImage: "/assets/annual/chapters/products.jpg",
   title: "محصولات / در مسیر انتخاب",
   icon: "/assets/annual/products/mahsoulat-fasl.svg",
   mixTitle: "سهم از فروش ریالی هر گروه کالایی",
@@ -505,6 +511,8 @@ export const PRODUCTS = {
 };
 
 export const PARTNERS = {
+  chapter: "فصل ۴",
+  heroImage: "/assets/annual/chapters/partners.jpg",
   title: "تولیدکنندگان / در مسیر رشد مشترک",
   brandsNote: {
     before: "اضافه شدن ",
@@ -550,6 +558,8 @@ export const PARTNERS = {
 };
 
 export const OPS = {
+  chapter: "فصل ۵",
+  heroImage: "/assets/annual/chapters/ops.jpg",
   title: "عملیات و پشتیبانی / در مسیر رسیدن",
   waiting: {
     title: "بسته در انتظار حرکت",
