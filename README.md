@@ -23,6 +23,7 @@
 1. GitHub → repo **khanoumi1404** → **Settings** → **Pages**
 2. **Source:** `GitHub Actions`
 3. هر push به `main` با workflow **Deploy GitHub Pages demo** خودکار deploy می‌کند
+4. اگر Pages را تازه فعال کردید: **Actions** → آخرین workflow → **Re-run all jobs**
 
 ---
 
