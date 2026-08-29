@@ -54,7 +54,6 @@ export function HeroSection() {
         <p className="font-bold text-lg md:text-xl leading-9 mb-8 text-ink">{HERO.dedication}</p>
         <div className="prose-report">
           <p>{HERO.p1}</p>
-          <p>{HERO.p2}</p>
           <p>{HERO.p3}</p>
           <p>{HERO.p4}</p>
           <p>{HERO.p5}</p>
@@ -347,7 +346,7 @@ export function Chapter2Section() {
         </div>
         <PhotoFigure
           src="/assets/photos/img_08_4502x2309.jpeg"
-          alt="پایان گزارش؛ زندگی در جریان شهر"
+          alt={CHAPTER2.moveClosing}
           className="rounded-3xl overflow-hidden mt-8"
         />
       </Section>

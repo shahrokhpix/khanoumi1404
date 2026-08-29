@@ -3,7 +3,6 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { appPath } from "../lib/paths";
 import {
   faBookOpen,
-  faCity,
   faDownload,
   faFaceSmile,
   faHandHoldingHeart,
@@ -21,7 +20,6 @@ import { WAR_FRAMES } from "../data/war-section-frames";
 const NAV_ICONS: Record<string, IconDefinition> = {
   start: faHouse,
   crisis: faPhoneSlash,
-  tehran: faCity,
   resilience: faShieldHalved,
   channel: faLink,
   anxiety: faHeartPulse,
@@ -128,7 +126,7 @@ export function WarChrome() {
               : "border-white/40 bg-white/70 shadow-[0_-10px_36px_rgba(26,6,18,0.12),inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-xl"
           }`}
         >
-          <div className="grid w-full grid-cols-10 items-center gap-0.5 sm:gap-1">
+          <div className="grid w-full grid-cols-9 items-center gap-0.5 sm:gap-1">
             {WAR_NAV.map((item) => {
               const isActive = active === item.id;
               const isFilled = filledIds.has(item.id);

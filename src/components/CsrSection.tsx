@@ -27,7 +27,7 @@ export function CsrSection() {
     >
       <div className="mb-5 flex justify-center">
         <span className="font-fanum rounded-full border border-pink/20 bg-white/70 px-4 py-1 text-[12px] font-bold text-pink shadow-sm backdrop-blur">
-          فصل ۰۴
+          فصل ۱
         </span>
       </div>
       <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
@@ -40,6 +40,9 @@ export function CsrSection() {
         />
         {CSR.title}
       </h2>
+      <p className="font-fanum mx-auto mt-6 max-w-[58rem] text-center text-[clamp(14px,1.7vw,18px)] font-medium leading-[2] text-black/75">
+        {CSR.lead}
+      </p>
 
       <div className="mx-auto mt-10 grid w-full max-w-[1440px] grid-cols-1 items-stretch gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6 xl:gap-8">
         <article className={panelClass}>

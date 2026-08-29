@@ -1,7 +1,30 @@
+import { useEffect, useRef, useState } from "react";
 import { USERS } from "../content/annual-report";
 import { toFaDigits } from "../charts/typography/rtl";
 import { AgePeopleIcon } from "./charts/AgePeopleIcon";
 import { ConcentricCircleChartView, DonutChartView, FanChartView } from "./charts/ChartViews";
+
+function useInView<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setOn(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setOn(Boolean(entry?.isIntersecting)),
+      { threshold: 0.25 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, on };
+}
 
 export function UsersSection() {
   return (
@@ -17,7 +40,7 @@ export function UsersSection() {
       />
       <div className="mb-5 flex justify-center">
         <span className="font-fanum rounded-full border border-pink/20 bg-pink-mist px-4 py-1 text-[12px] font-bold text-pink">
-          فصل ۰۵
+          فصل ۲
         </span>
       </div>
       <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
@@ -187,6 +210,13 @@ function GoldenDayBand() {
 
 function TimeBand() {
   const t = USERS.time;
+  const peakTrend = useInView<HTMLImageElement>();
+  const quietTrend = useInView<HTMLImageElement>();
+  const trendStyle = (active: boolean) => ({
+    opacity: active ? 1 : 0,
+    transform: active ? "scale(1) rotate(0deg)" : "scale(0.55) rotate(-16deg)",
+    transition: "opacity 500ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+  });
 
   return (
     <div id="users-time" className="mx-auto mt-14 max-w-[920px] lg:mt-16">
@@ -207,11 +237,13 @@ function TimeBand() {
           </p>
           <p className="font-fanum mt-2 mb-0 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-center text-[clamp(16px,2.4vw,25px)] font-bold leading-snug text-black">
             <img
+              ref={peakTrend.ref}
               src={t.peakCalendarIcon}
               alt=""
               width={48}
               height={48}
               className="size-9 shrink-0 object-contain sm:size-11 lg:size-12"
+              style={trendStyle(peakTrend.on)}
             />
             <span>
               {t.peakBefore}
@@ -238,11 +270,13 @@ function TimeBand() {
 
       <div className="relative z-10 mx-auto -mt-[49px] flex w-full max-w-[42rem] items-center gap-3 rounded-[23px] bg-pink px-4 py-4 text-white sm:gap-4 sm:px-8 sm:py-5">
         <img
+          ref={quietTrend.ref}
           src={t.quietCalendarIcon}
           alt=""
           width={48}
           height={48}
           className="size-9 shrink-0 object-contain sm:size-11 lg:size-12"
+          style={trendStyle(quietTrend.on)}
         />
         <div dir="rtl" className="min-w-0 flex-1 self-stretch text-right">
           <p className="font-fanum m-0 text-right text-[clamp(11px,1.4vw,13px)] font-bold">{t.quietLabel}</p>

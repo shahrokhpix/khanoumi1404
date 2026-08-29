@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HERO } from "../content/war-report";
 import { appPath } from "../lib/paths";
 
-const PARAS = [HERO.p1, HERO.p2, HERO.p3, HERO.p4, HERO.p5, HERO.p6] as const;
+const PARAS = [HERO.p1, HERO.p3, HERO.p4, HERO.p5, HERO.p6] as const;
 
 export function WarHeroLock() {
   const [open, setOpen] = useState(false);

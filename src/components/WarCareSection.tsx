@@ -259,7 +259,7 @@ function GrowthArrow() {
   );
 }
 
-function GrowthDonut({ value }: { value: number }) {
+function GrowthDonut({ value, active }: { value: number; active: boolean }) {
   const radius = 38;
   const circumference = 2 * Math.PI * radius;
   const dash = (value / 100) * circumference;
@@ -276,7 +276,9 @@ function GrowthDonut({ value }: { value: number }) {
           stroke="#ED088D"
           strokeWidth="16"
           strokeLinecap="butt"
-          strokeDasharray={`${dash} ${circumference - dash}`}
+          strokeDasharray={`${dash} ${circumference}`}
+          strokeDashoffset={active ? 0 : dash}
+          style={{ transition: "stroke-dashoffset 1s cubic-bezier(0.22, 1, 0.36, 1)" }}
         />
       </svg>
       <span
@@ -290,13 +292,14 @@ function GrowthDonut({ value }: { value: number }) {
 }
 
 function SpendInfographicCard({ row, iconSrc, itemCount, itemLabel }: SpendInfographicCardProps) {
+  const { ref, on } = useInView<HTMLElement>();
   const warSpend = row.spend_thousand_toman_during_second_war.toLocaleString("fa-IR");
   const previousSpend = row.spend_thousand_toman_same_period_last_year.toLocaleString("fa-IR");
   const spendGrowth = row.spend_growth_percent.toLocaleString("fa-IR");
   const itemsGrowth = row.average_items_growth_percent;
 
   return (
-    <article className="relative mt-7 rounded-[clamp(1.75rem,5vw,2.75rem)] border border-[#ED088D] bg-white px-3 pt-12 pb-5 sm:px-7 sm:pt-16 sm:pb-7">
+    <article ref={ref} className="relative mt-7 rounded-[clamp(1.75rem,5vw,2.75rem)] border border-[#ED088D] bg-white px-3 pt-12 pb-5 sm:px-7 sm:pt-16 sm:pb-7">
       <div className="absolute top-0 right-1/2 flex h-12 w-[min(72%,34rem)] translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#ED088D] pr-10 pl-4 text-center sm:h-14 sm:pr-14">
         <h4 className="font-fanum m-0 text-[clamp(0.72rem,2vw,1.2rem)] font-black text-white">
           {row.category}
@@ -327,7 +330,7 @@ function SpendInfographicCard({ row, iconSrc, itemCount, itemLabel }: SpendInfog
             <span className="font-fanum text-[clamp(0.65rem,1.6vw,0.9rem)] text-[#111]">عدد</span>
           </div>
           <div className="mt-2 flex items-center justify-center gap-2">
-            <GrowthDonut value={itemsGrowth} />
+            <GrowthDonut value={itemsGrowth} active={on} />
             <span className="font-fanum text-[clamp(0.75rem,1.7vw,1rem)] font-bold text-[#111]">رشد</span>
           </div>
         </section>
@@ -378,20 +381,6 @@ function CareCreditPrelude() {
       <p className="font-fanum mx-auto mt-0 max-w-[48rem] text-center text-[clamp(14px,1.6vw,17px)] leading-8 text-black/80">
         {CHAPTER2.credit}
       </p>
-
-      <div className="mx-auto mt-6 flex max-w-[40rem] items-center justify-center gap-3 sm:gap-4">
-        <img
-          src="/assets/war/kif.svg"
-          alt=""
-          aria-hidden
-          width={48}
-          height={48}
-          className="h-10 w-10 shrink-0 sm:h-12 sm:w-12"
-        />
-        <p className="font-fanum m-0 text-center text-[clamp(14px,1.6vw,17px)] font-bold leading-8 text-black">
-          {CHAPTER2.creditDeferred}
-        </p>
-      </div>
 
       <div className="mx-auto mt-8 flex max-w-[40rem] flex-wrap items-center justify-center gap-4 rounded-[1.5rem] bg-pink-mist/80 px-5 py-5 sm:gap-6">
         <img src="/assets/figma-war/imgVector102.svg" alt="" width={40} height={27} className="h-7 w-auto" />

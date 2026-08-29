@@ -19,11 +19,6 @@ export function PrefaceSection() {
         aria-hidden="true"
       />
       <div className="relative mx-auto max-w-[1342px]">
-        <div className="mb-6 flex justify-center">
-          <span className="font-fanum rounded-full border border-pink/20 bg-pink-mist px-4 py-1 text-[12px] font-bold text-pink">
-            فصل ۰۱
-          </span>
-        </div>
         <h2 className="font-fanum m-0 text-center text-[clamp(22px,3vw,34px)] font-black leading-tight text-ink">
           {ANNUAL_HERO.prefaceLabel}
         </h2>

@@ -221,7 +221,7 @@ function TimelineLegend() {
 function SolidTrack({ to }: { to: number }) {
   return (
     <div
-      className="absolute top-1/2 h-px -translate-y-1/2 bg-black/15"
+      className="timeline-track absolute top-1/2 h-px -translate-y-1/2 bg-black/15"
       style={{ left: 0, right: `calc(100% - ${trackX(to)})` }}
       aria-hidden="true"
     />
@@ -234,7 +234,7 @@ function DashedTrack({ from, to }: { from: number; to: number }) {
   if (end <= start) return null;
   return (
     <div
-      className="absolute top-1/2 h-0 -translate-y-1/2 border-t border-dashed border-pink/55"
+      className="timeline-track absolute top-1/2 h-0 -translate-y-1/2 border-t border-dashed border-pink/55"
       style={{ left: trackX(start), right: `calc(100% - ${trackX(end)})` }}
       aria-hidden="true"
     />
@@ -243,8 +243,8 @@ function DashedTrack({ from, to }: { from: number; to: number }) {
 
 function TrackMarker({ pos, date, children }: { pos: number; date: string; children: ReactNode }) {
   return (
-    <div className="absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: trackX(pos) }}>
-      <span className="flex items-center justify-center">{children}</span>
+    <div className="timeline-marker absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: trackX(pos) }}>
+      <span className="timeline-marker-dot flex items-center justify-center">{children}</span>
       <span
         dir="rtl"
         className="font-fanum absolute bottom-[calc(100%+5px)] left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-[9px] font-bold leading-tight text-black sm:text-[10px]"
@@ -300,7 +300,7 @@ function TimelineRow({
 
 function CrisisTimelineBlock({ block }: { block: TimelineBlock }) {
   return (
-    <article className="border-b border-pink/30 pb-8 last:border-b-0 last:pb-0" dir="ltr">
+    <article className="timeline-block border-b border-pink/30 pb-8 last:border-b-0 last:pb-0" dir="ltr">
       <h4
         dir="rtl"
         className="font-fanum m-0 mb-5 w-full text-center text-[12px] font-bold leading-6 text-pink sm:text-[14px] sm:leading-7"

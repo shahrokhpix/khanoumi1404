@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import {
   BarElement,
   CategoryScale,
@@ -45,14 +45,12 @@ type Props = {
 };
 
 export function PathGenderChart({ active }: Props) {
-  const started = useRef(false);
-
   const data = useMemo<ChartData<"bar">>(
     () => ({
       labels: ["women", "men"],
       datasets: [
         {
-          data: active || started.current ? [PATH.gender.womenPct, PATH.gender.menPct] : [0, 0],
+          data: active ? [PATH.gender.womenPct, PATH.gender.menPct] : [0, 0],
           backgroundColor: ["#EC078D", "#1A1A1A"],
           borderRadius: BAR_H / 2,
           borderSkipped: false,
@@ -65,10 +63,6 @@ export function PathGenderChart({ active }: Props) {
     }),
     [active],
   );
-
-  useEffect(() => {
-    if (active) started.current = true;
-  }, [active]);
 
   const options = useMemo<ChartOptions<"bar">>(
     () => ({

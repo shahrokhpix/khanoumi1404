@@ -12,18 +12,20 @@ export function GlanceSection() {
         className="pointer-events-none absolute -end-20 top-10 size-[22rem] rounded-full bg-pink/15 blur-[90px]"
         aria-hidden="true"
       />
-      <div className="mb-5 flex justify-center">
-        <span className="font-fanum rounded-full border border-pink/20 bg-white/70 px-4 py-1 text-[12px] font-bold text-pink shadow-sm backdrop-blur">
-          فصل ۰۲
-        </span>
-      </div>
       <h2 className="font-fanum m-0 text-center text-[clamp(22px,2.8vw,32px)] font-black leading-tight text-pink">
         {GLANCE.title}
       </h2>
-      <p className="font-fanum mx-auto mt-8 flex w-fit max-w-full items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-l from-[#ec078d] via-[#da1984] to-[#a60062] px-[clamp(14px,3vw,36px)] py-[clamp(12px,1.7vw,20px)] font-bold leading-none text-white shadow-[0_16px_40px_rgba(236,7,141,0.35)] lg:min-h-[99px]">
-        <span className="text-[clamp(10px,calc(1.2vw+6px),25px)]">{GLANCE.salesLead}&nbsp;</span>
-        <span className="text-[clamp(11px,calc(1.8vw+6px),36px)]">{GLANCE.salesNote}</span>
-      </p>
+      <div className="font-fanum mx-auto mt-8 flex w-[min(100%,42rem)] flex-col items-center justify-center rounded-[2rem] bg-gradient-to-l from-[#ec078d] via-[#da1984] to-[#a60062] px-[clamp(18px,4vw,44px)] py-[clamp(18px,2.8vw,30px)] text-center font-bold text-white shadow-[0_16px_40px_rgba(236,7,141,0.35)]">
+        <p className="m-0 whitespace-nowrap text-[clamp(18px,2.2vw,28px)] leading-tight">
+          {GLANCE.salesLead}
+        </p>
+        <p className="m-0 mt-2 whitespace-nowrap text-[clamp(38px,6vw,68px)] font-black leading-none tracking-tight">
+          {GLANCE.salesValue}
+        </p>
+        <p className="m-0 mt-3 whitespace-nowrap text-[clamp(11px,1.7vw,18px)] leading-snug text-white/90">
+          {GLANCE.salesComparison}
+        </p>
+      </div>
       <ul className="glass-panel mx-auto mt-12 grid max-w-[1680px] grid-cols-2 gap-y-10 rounded-[2rem] px-3 py-8 sm:grid-cols-3 sm:px-6 lg:mt-14 lg:grid-cols-6 lg:gap-y-0 lg:px-4 lg:py-10">
         {GLANCE.kpis.map((kpi) => (
           <li

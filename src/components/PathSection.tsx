@@ -34,7 +34,10 @@ function CountValue({ to, active, plus }: { to: number; active: boolean; plus?: 
   const [n, setN] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setN(0);
+      return;
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setN(to);
       return;
@@ -136,11 +139,6 @@ export function PathSection() {
         className="pointer-events-none absolute -start-16 top-24 size-[20rem] rounded-full bg-pink/10 blur-[90px]"
         aria-hidden="true"
       />
-      <div className="mb-5 flex justify-center">
-        <span className="font-fanum rounded-full border border-pink/20 bg-pink-mist px-4 py-1 text-[12px] font-bold text-pink">
-          فصل ۰۳
-        </span>
-      </div>
       <h2 className="font-fanum mx-auto m-0 w-fit max-w-full rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,19px)] font-bold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)]">
         {PATH.title}
       </h2>

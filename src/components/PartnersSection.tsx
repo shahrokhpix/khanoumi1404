@@ -145,7 +145,7 @@ export function PartnersSection() {
 
       <div className="mb-5 flex justify-center">
         <span className="font-fanum rounded-full border border-pink/20 bg-pink-mist px-4 py-1 text-[12px] font-bold text-pink">
-          فصل ۰۷
+          فصل ۴
         </span>
       </div>
 

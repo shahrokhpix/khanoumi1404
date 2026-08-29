@@ -75,6 +75,7 @@ function CareTrend({ points }: { points: readonly { year: string; value: number 
       <path
         className="care-trend-line"
         d={d}
+        pathLength="1"
         fill="none"
         stroke="#fff"
         strokeWidth="2.6"
@@ -242,7 +243,7 @@ export function ProductsSection() {
     >
       <div className="mb-5 flex justify-center">
         <span className="font-fanum rounded-full border border-pink/20 bg-white/70 px-4 py-1 text-[12px] font-bold text-pink shadow-sm backdrop-blur">
-          فصل ۰۶
+          فصل ۳
         </span>
       </div>
       <h2 className="font-fanum mx-auto m-0 flex w-fit max-w-full items-center justify-center gap-2 rounded-[28px] bg-gradient-to-l from-[#ec078d] to-[#a60062] px-[clamp(16px,4vw,40px)] py-[clamp(10px,1.5vw,18px)] text-center text-[clamp(13px,2.1vw,25px)] font-extrabold leading-[1.7] text-white shadow-[0_14px_36px_rgba(236,7,141,0.35)] lg:gap-3">
