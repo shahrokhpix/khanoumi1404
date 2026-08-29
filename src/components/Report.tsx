@@ -180,7 +180,7 @@ export function ChannelSection() {
       <p className="prose-report mt-8">{CHANNEL.alt}</p>
       <div className="my-10 flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-pink px-6 py-6 text-white">
         <p className="text-3xl font-extrabold">{CHANNEL.aparatFrom}</p>
-        <FigmaAsset src="/assets/figma-war/imgVector246.svg" alt="" width={120} height={52} />
+        <FigmaAsset src="/assets/figma-war/arrow-w.svg" alt="" width={120} height={52} />
         <p className="text-3xl font-extrabold">{CHANNEL.aparatTo}</p>
         <p className="w-full text-center font-semibold">{CHANNEL.aparatBanner}</p>
       </div>

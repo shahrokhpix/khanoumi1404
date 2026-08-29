@@ -260,7 +260,8 @@ export const USERS = {
     newspaper: "/assets/annual/users/newspaper-mockup.png",
     newspaperAlt: "روزنامه شرق با عنوان سه روزی که خاورمیانه لرزید",
     calendarIcon: "/assets/annual/users/calendar.svg",
-    peakCalendarIcon: "/assets/annual/users/calander.svg",
+    peakCalendarIcon: "/assets/annual/users/calander-frosh.svg",
+    quietCalendarIcon: "/assets/annual/users/calander.svg",
     womanIcon: "/assets/annual/users/woman.svg",
     quietLabel: "کم‌فروش‌ترین روز سال:",
     quietDays: [

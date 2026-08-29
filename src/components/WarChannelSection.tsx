@@ -86,10 +86,10 @@ function AparatBanner() {
           {CHANNEL.aparatFrom}
         </span>
         <img
-          src="/assets/figma-war/imgVector246.svg"
+          src="/assets/figma-war/arrow-w.svg"
           alt=""
           aria-hidden
-          className="h-auto w-[clamp(2.35rem,8vw,5.5rem)] brightness-0 invert"
+          className="h-auto w-[clamp(2.35rem,8vw,5.5rem)]"
         />
         <span className="font-fanum text-[clamp(0.875rem,3vw,1.75rem)] font-black tabular-nums">
           {CHANNEL.aparatTo}

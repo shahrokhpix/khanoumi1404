@@ -238,7 +238,7 @@ function TimeBand() {
 
       <div className="relative z-10 mx-auto -mt-[49px] flex w-full max-w-[42rem] items-center gap-3 rounded-[23px] bg-pink px-4 py-4 text-white sm:gap-4 sm:px-8 sm:py-5">
         <img
-          src={t.peakCalendarIcon}
+          src={t.quietCalendarIcon}
           alt=""
           width={48}
           height={48}

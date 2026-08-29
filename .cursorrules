@@ -19,14 +19,15 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 - Persian year/day comparisons must use an explicit 3-column RTL grid (`date | date`) with each date rendered as one uninterrupted RTL string. Nested flex/bidi isolation produced no reliable visual change.
 - Both reports must render without international internet. Runtime fonts are the tracked files in `public/fonts`; do not restore Google Fonts or other external CSS/script/image requests. Schema.org/XML namespace URLs are identifiers, not network dependencies.
 - War crisis chart annotations must not use connector/elbow bars. Keep the x-axis continuous; use three distinct point colors and carry each color into its matching callout card.
+- Users TimeBand needs separate icons: `calander-frosh.svg` is only for «از دوشنبه‌ها رسید به جمعه‌ها»; the quiet-day card keeps `calander.svg`.
+- The Aparat growth banner uses the supplied white `arrow-w.svg`, not the Figma export `imgVector246.svg`.
 
 ## Scratchpad
 
-Task: Refine WarDailyOrdersChart crisis annotations.
+Task: Replace the Aparat banner arrow asset.
 
-[X] Remove connector bars between crisis points and cards
-[X] Give the three crisis points distinct colors
-[X] Match each card border and copy to its point color
+[X] Add `arrow-w.svg` to public war assets
+[X] Replace the Aparat banner’s `imgVector246.svg`
 [X] Run lint and production build
 
 
