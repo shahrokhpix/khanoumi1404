@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { observeRevealOnce } from "../lib/useRevealOnce";
 import { Artboard } from "./Artboard";
 import { AnnualChrome } from "./AnnualChrome";
 import { AnnualFooter } from "./AnnualFooter";
@@ -17,26 +18,28 @@ import { ANNUAL_FRAMES } from "../data/section-frames";
 function useChapterReveal() {
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>(".annual-spa > section[data-reveal]"));
-    if (!nodes.length) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      nodes.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-          } else {
-            // reset when section leaves viewport so animation replays on next scroll-in
-            entry.target.classList.remove("is-in");
-          }
-        }
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" },
-    );
-    nodes.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const cleanup = observeRevealOnce(nodes, "is-in", { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+
+    const chapterImages = [
+      "/assets/annual/chapters/csr.jpg",
+      "/assets/annual/chapters/users.jpg",
+      "/assets/annual/chapters/products.jpg",
+      "/assets/annual/chapters/partners.jpg",
+      "/assets/annual/chapters/ops.jpg",
+    ];
+    const prefetch = () => {
+      for (const src of chapterImages) {
+        const img = new Image();
+        img.src = src;
+      }
+    };
+    const idle = window.requestIdleCallback ?? ((cb: IdleRequestCallback) => window.setTimeout(cb, 1200));
+    const idleId = idle(prefetch);
+
+    return () => {
+      cleanup();
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idleId as number);
+    };
   }, []);
 }
 

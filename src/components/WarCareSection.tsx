@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { CHAPTER2 } from "../content/war-report";
 import {
   categoryJumpByPeriod,
@@ -7,6 +6,7 @@ import {
   perCustomerSpend,
   type CategoryJumpBar,
 } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 const BRAND = "#EC078D";
 const COLORS = {
@@ -15,30 +15,9 @@ const COLORS = {
   other: "#c4b5b0",
 };
 
-function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+function useInView<T extends HTMLElement>(threshold = 0.2) {
+  const { ref, visible } = useRevealOnce<T>({ threshold });
+  return { ref, on: visible };
 }
 
 function polar(cx: number, cy: number, r: number, deg: number) {
@@ -150,7 +129,7 @@ const JUMP_Y_MAX = 300;
 const JUMP_Y_TICKS = [0, 50, 100, 150, 200, 250, 300] as const;
 
 function JumpBars() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 960;
   const h = 380;
   const padL = 58;
@@ -165,7 +144,7 @@ function JumpBars() {
   const barGap = 18;
 
   return (
-    <div ref={ref} className="war-jump-chart mx-auto mt-6 w-full max-w-[1000px]" dir="ltr">
+    <div ref={inRef} className="war-jump-chart war-chart-wrap mx-auto mt-6 w-full max-w-[1000px]" dir="ltr">
       <div className="mb-4 flex flex-wrap items-center justify-center gap-5 sm:justify-end sm:gap-6" dir="rtl">
         {JUMP_LEGEND.map((item) => (
           <span key={item.key} className="font-fanum inline-flex items-center gap-2.5 text-[13px] font-bold text-black sm:text-[14px]">

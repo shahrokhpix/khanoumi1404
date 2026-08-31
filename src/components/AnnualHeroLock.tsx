@@ -50,6 +50,8 @@ export function AnnualHeroLock() {
           alt=""
           width={1920}
           height={844}
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 -z-30 size-full origin-center object-cover object-[center_30%] will-change-transform"
           style={{ transform: "scale(1.08)" }}
         />

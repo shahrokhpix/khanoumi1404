@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { CHAPTER2 } from "../content/war-report";
 import {
   ukraineTrendEvent,
@@ -6,35 +5,15 @@ import {
   ukraineTrendTicks,
   ukraineTrends,
 } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.2 });
+  return { ref, on: visible };
 }
 
 function UkraineLines() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 960;
   const h = 400;
   const padL = 74;
@@ -63,7 +42,7 @@ function UkraineLines() {
   const eventX = xAt(ukraineTrendEvent.index);
 
   return (
-    <div ref={ref} className="mx-auto mt-8 w-full max-w-[1000px]" dir="ltr">
+    <div ref={inRef} className="war-chart-wrap mx-auto mt-8 w-full max-w-[1000px]" dir="ltr">
       <div className="mb-4 flex flex-wrap items-center justify-center gap-5 sm:justify-end sm:gap-7" dir="rtl">
         {ukraineTrendSeries.map((series) => (
           <span key={series.key} className="font-fanum inline-flex items-center gap-2 text-[12px] font-bold text-black sm:text-[14px]">
@@ -72,12 +51,12 @@ function UkraineLines() {
           </span>
         ))}
       </div>
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full overflow-visible" role="img" aria-label={CHAPTER2.ukraineTitle}>
+      <svg viewBox={`0 0 ${w} ${h}`} className="war-chart-svg-tall h-auto w-full overflow-visible" role="img" aria-label={CHAPTER2.ukraineTitle}>
         <text
           x={19}
           y={padTop + plotH / 2}
           textAnchor="middle"
-          className="font-fanum fill-black text-[12px] font-bold"
+          className="font-fanum war-chart-axis-y"
           transform={`rotate(-90 19 ${padTop + plotH / 2})`}
         >
           شاخص جست‌وجوی Google Trends
@@ -88,7 +67,7 @@ function UkraineLines() {
           return (
             <g key={v}>
               <line x1={padL} x2={w - padR} y1={y} y2={y} stroke="#A9A9A9" strokeWidth={1} opacity={v === 0 ? 1 : 0.55} />
-              <text x={padL - 10} y={y + 4} textAnchor="end" className="font-fanum fill-black/65 text-[12px] font-bold">
+              <text x={padL - 10} y={y + 4} textAnchor="end" className="font-fanum war-chart-axis-y fill-black/65">
                 {v.toLocaleString("fa-IR")}
               </text>
             </g>
@@ -97,7 +76,7 @@ function UkraineLines() {
 
         <line x1={padL} x2={padL} y1={padTop} y2={plotBottom} stroke="#A9A9A9" />
         <line x1={eventX} x2={eventX} y1={padTop} y2={plotBottom} stroke={ukraineTrendEvent.color} strokeWidth={2} strokeDasharray="7 7" />
-        <text x={eventX + 7} y={padTop + 16} textAnchor="start" className="font-fanum fill-[#A50163] text-[13px] font-black">
+        <text x={eventX + 7} y={padTop + 16} textAnchor="start" className="font-fanum war-chart-axis-y fill-[#A50163] font-black">
           {ukraineTrendEvent.label}
         </text>
 
@@ -125,7 +104,7 @@ function UkraineLines() {
         {ukraineTrendTicks.map((tick) => (
           <g key={tick.label}>
             <line x1={xAt(tick.index)} x2={xAt(tick.index)} y1={plotBottom} y2={plotBottom + 6} stroke="#A9A9A9" />
-            <text x={xAt(tick.index)} y={h - 20} textAnchor="middle" className="font-fanum fill-black text-[12px] font-bold">
+            <text x={xAt(tick.index)} y={h - 20} textAnchor="middle" className="font-fanum war-chart-axis-x">
               {tick.label}
             </text>
           </g>

@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { type CSSProperties } from "react";
 import { PRODUCTS } from "../content/annual-report";
 import { donutSlice } from "../charts/geometry/wedge";
 import { toFaDigits } from "../charts/typography/rtl";
+import { useRevealOnce } from "../lib/useRevealOnce";
 import { ChapterHero } from "./ChapterHero";
 
 const BAR = {
@@ -350,29 +351,7 @@ function WeightMarketBand({
   care: string;
   tail: string;
 }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setActive(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setActive(true);
-        } else {
-          setActive(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const { ref: rootRef, visible: active } = useRevealOnce<HTMLDivElement>({ threshold: 0.2 });
 
   return (
     <div id="products-weight" ref={rootRef} className="mx-auto mt-14 w-full max-w-[1400px] lg:mt-16">
@@ -506,29 +485,10 @@ function SkinBand({
     rows: readonly { market: string; share: number; rank: string }[];
   };
 }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setActive(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setActive(true);
-        } else {
-          setActive(false);
-        }
-      },
-      { threshold: 0.2, rootMargin: "40px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const { ref: rootRef, visible: active } = useRevealOnce<HTMLDivElement>({
+    threshold: 0.2,
+    rootMargin: "40px 0px",
+  });
 
   return (
     <div
@@ -674,26 +634,9 @@ function MakeupBand({
   );
 }
 
-function useInView<T extends HTMLElement>(threshold = 0.22) {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => setOn(Boolean(entry?.isIntersecting)),
-      { threshold, rootMargin: "40px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
-
-  return { ref, on };
+function useInView(threshold = 0.22) {
+  const { ref, visible } = useRevealOnce<HTMLDivElement>({ threshold, rootMargin: "40px 0px" });
+  return { ref, on: visible };
 }
 
 function rankBarWidth(index: number, total: number): number {
@@ -704,7 +647,7 @@ function rankBarWidth(index: number, total: number): number {
 }
 
 function MarketRankChart({ title, items }: { title: string; items: readonly string[] }) {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref, on } = useInView();
 
   return (
     <div
@@ -840,9 +783,9 @@ function BasketBar({
       </span>
       <div className="relative h-4 overflow-hidden rounded-full bg-[#efefef] sm:h-[0.92rem]">
         <div
-          className={`basket-bar absolute inset-y-0 end-0 rounded-full ${
+          className={`basket-bar absolute inset-y-0 start-0 rounded-full ${
             isPink
-              ? "bg-gradient-to-l from-[#ff4fb8] to-pink shadow-[0_2px_10px_rgba(236,7,141,0.35)]"
+              ? "bg-gradient-to-r from-[#ff4fb8] to-pink shadow-[0_2px_10px_rgba(236,7,141,0.35)]"
               : "bg-[#BFBFBF]"
           }`}
           style={{ width: `${widthPct}%`, animationDelay: delay }}
@@ -912,7 +855,7 @@ function BasketDepthRow({ row, index }: { row: BasketRow; index: number }) {
             className="pointer-events-none absolute inset-y-3 start-0 hidden w-[3px] rounded-full bg-[#d1d3d4] lg:block"
             aria-hidden="true"
           />
-          <div className="flex flex-col justify-center gap-3 sm:gap-3.5">
+          <div dir="ltr" className="flex flex-col justify-center gap-3 sm:gap-3.5">
             <BasketBar year="۱۴۰۳" widthPct={row.bars.y1403} tone="gray" delay={`calc(${baseDelay} + 0.08s)`} />
             <BasketBar year="۱۴۰۴" widthPct={row.bars.y1404} tone="pink" delay={`calc(${baseDelay} + 0.16s)`} />
           </div>
@@ -937,29 +880,10 @@ function BasketBand({
     rows: readonly BasketRow[];
   };
 }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setActive(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setActive(true);
-        } else {
-          setActive(false);
-        }
-      },
-      { threshold: 0.15, rootMargin: "40px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const { ref: rootRef, visible: active } = useRevealOnce<HTMLDivElement>({
+    threshold: 0.15,
+    rootMargin: "40px 0px",
+  });
 
   return (
     <div id="products-basket" ref={rootRef} className="mx-auto mt-14 w-full max-w-[64rem] lg:mt-20">

@@ -50,18 +50,12 @@ function WarReturnRhythmChart() {
       return;
     }
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setInView(true);
-        } else {
-          setInView(false);
-        }
-      },
+      ([entry]) => setInView(Boolean(entry?.isIntersecting)),
       { threshold: 0.2 },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [wrapRef]);
 
   const w = 920;
   const h = 340;
@@ -96,7 +90,7 @@ function WarReturnRhythmChart() {
   const last = pts[pts.length - 1]!;
 
   return (
-    <div ref={wrapRef} className="war-return-chart mx-auto w-full max-w-[920px] overflow-visible" dir="ltr">
+    <div ref={wrapRef} className="war-return-chart war-chart-wrap mx-auto w-full max-w-[920px] overflow-visible" dir="ltr">
       <div className="mb-4 flex flex-col items-end gap-2.5 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5 sm:gap-y-2" dir="rtl">
         <span className="font-fanum inline-flex items-center gap-2 text-[11px] font-bold text-white/90 sm:text-[12px]">
           <span className="inline-block h-0.5 w-6 shrink-0 rounded-full bg-pink" aria-hidden="true" />

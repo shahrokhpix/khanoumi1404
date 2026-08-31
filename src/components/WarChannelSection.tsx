@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
 import { CHANNEL } from "../content/war-report";
 import { contactTopics, instagramVisits } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 const BRAND = "#EC078D";
 const WAR1_BAR = "#a60062";
@@ -9,29 +9,8 @@ const CONTACT_Y_MAX = 20;
 const CONTACT_Y_TICKS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20] as const;
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.2 });
+  return { ref, on: visible };
 }
 
 function faPct(val: number): string {

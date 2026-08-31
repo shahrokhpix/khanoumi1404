@@ -15,20 +15,24 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 # Lessons
 
 - War section charts must stay centered with `mx-auto w-full max-w-*`; do not use `w-screen left-1/2 -translate-x-1/2` inside the RTL report frame because it can shift beyond the artboard.
+- War charts with 720–960-wide SVG viewBoxes need 20 CSS user units on mobile to render around 12–14 visible px; keep 12 units from `sm` upward. Do not assume SVG `font-size: 11px` equals 11 screen px.
 - Vite build-html treats `href="/"` or `content="/"` in index.html as asset URLs (EISDIR). Keep root canonical/og:url out of source index.html; inject absolute URLs in postbuild (`scripts/generate-seo-static.mjs`).
 - Persian year/day comparisons must use an explicit 3-column RTL grid (`date | date`) with each date rendered as one uninterrupted RTL string. Nested flex/bidi isolation produced no reliable visual change.
 - Both reports must render without international internet. Runtime fonts are the tracked files in `public/fonts`; do not restore Google Fonts or other external CSS/script/image requests. Schema.org/XML namespace URLs are identifiers, not network dependencies.
 - War crisis chart annotations must not use connector/elbow bars. Keep the x-axis continuous; use three distinct point colors and carry each color into its matching callout card.
 - Users TimeBand needs separate icons: `calander-frosh.svg` is only for «از دوشنبه‌ها رسید به جمعه‌ها»; the quiet-day card keeps `calander.svg`.
 - The Aparat growth banner uses the supplied white `arrow-w.svg`, not the Figma export `imgVector246.svg`.
+- Glance sales growth is a three-line vertical highlight: lead, oversized `+۸۳ درصد`, then the smaller inflation comparison.
+- Annual chapter pills are removed before CSR. From CSR onward, every main section is sequentially labeled: CSR «فصل ۱»، Users «فصل ۲»، Products «فصل ۳»، Partners «فصل ۴»، Ops «فصل ۵».
+- Every coded chart must have dedicated enter/replay motion. Reset Chart.js data and counters on exit; animate resilience tracks/markers, product care line, and war growth donuts rather than relying only on whole-section reveal.
+- Users TimeBand trend icons use their own IntersectionObservers so each replays when actually visible; the Users section is too tall for one section-level trigger.
 
 ## Scratchpad
 
-Task: Replace the Aparat banner arrow asset.
+Task: Increase Crisis x-axis label spacing on mobile.
 
-[X] Add `arrow-w.svg` to public war assets
-[X] Replace the Aparat banner’s `imgVector246.svg`
-[X] Run lint and production build
+[X] Move Crisis x-axis labels farther below the chart on mobile
+[X] Run production build
 
 
 ## User Specified Lessons

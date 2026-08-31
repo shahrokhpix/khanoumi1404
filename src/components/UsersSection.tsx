@@ -1,30 +1,13 @@
-import { useEffect, useRef, useState } from "react";
 import { USERS } from "../content/annual-report";
 import { toFaDigits } from "../charts/typography/rtl";
+import { useRevealOnce } from "../lib/useRevealOnce";
 import { AgePeopleIcon } from "./charts/AgePeopleIcon";
 import { ConcentricCircleChartView, DonutChartView, FanChartView } from "./charts/ChartViews";
 import { ChapterHero } from "./ChapterHero";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => setOn(Boolean(entry?.isIntersecting)),
-      { threshold: 0.25 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.25 });
+  return { ref, on: visible };
 }
 
 export function UsersSection() {

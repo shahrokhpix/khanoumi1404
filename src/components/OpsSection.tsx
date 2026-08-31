@@ -1,34 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { OPS } from "../content/annual-report";
 import { toFaDigits } from "../charts/typography/rtl";
+import { useRevealOnce } from "../lib/useRevealOnce";
 import { ChapterHero } from "./ChapterHero";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.18, rootMargin: "40px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.18, rootMargin: "40px 0px" });
+  return { ref, on: visible };
 }
 
 function ReturnsSpark({ active }: { active: boolean }) {

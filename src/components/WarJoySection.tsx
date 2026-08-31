@@ -1,31 +1,10 @@
-import { useEffect, useRef, useState } from "react";
 import { CHAPTER2 } from "../content/war-report";
 import { lipstickVsAcneByPeriod, lipstickVsAcneSeries, makeupShift } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.2 });
+  return { ref, on: visible };
 }
 
 function faPct(val: number): string {
@@ -55,7 +34,7 @@ const LIP_Y_TICKS = [0, 2, 4, 6, 8, 10, 12, 14, 16] as const;
 const LIP_AXIS = "#B5B5B5";
 
 function LipAcneBars() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 960;
   const h = 400;
   const padL = 58;
@@ -70,7 +49,7 @@ function LipAcneBars() {
   const barGap = 18;
 
   return (
-    <div ref={ref} className="war-lip-acne-chart mx-auto mt-6 w-full max-w-[1000px]" dir="ltr">
+    <div ref={inRef} className="war-lip-acne-chart war-chart-wrap mx-auto mt-6 w-full max-w-[1000px]" dir="ltr">
       <div className="mb-4 flex flex-wrap items-center justify-center gap-5 sm:justify-end sm:gap-6" dir="rtl">
         {lipstickVsAcneSeries.map((item) => (
           <span key={item.key} className="font-fanum inline-flex items-center gap-2.5 text-[13px] font-bold text-[#111111] sm:text-[14px]">

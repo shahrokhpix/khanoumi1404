@@ -39,8 +39,9 @@ export function ChapterHero({
           alt={imageAlt}
           width={1920}
           height={640}
-          className="absolute inset-0 size-full object-cover object-center"
+          loading="lazy"
           decoding="async"
+          className="absolute inset-0 size-full object-cover object-center"
         />
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-black/5"

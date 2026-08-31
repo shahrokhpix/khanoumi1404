@@ -1,39 +1,19 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useId } from "react";
 import { CHAPTER2 } from "../content/war-report";
 import { keywordGrowth, pillSearchSeries, warVsAcneSeries } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 const BRAND = "#EC078D";
 const BRAND_SOFT = "#ff9ad4";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.2 });
+  return { ref, on: visible };
 }
 
 function PillChart() {
   const gid = useId().replace(/:/g, "");
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 720;
   const h = 240;
   const padX = 36;
@@ -49,8 +29,8 @@ function PillChart() {
   const line = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
 
   return (
-    <div ref={ref} className="mx-auto mt-6 w-full max-w-[720px]" dir="ltr">
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full" role="img" aria-label={CHAPTER2.pillChart}>
+    <div ref={inRef} className="war-chart-wrap mx-auto mt-6 w-full max-w-[720px]" dir="ltr">
+      <svg viewBox={`0 0 ${w} ${h}`} className="war-chart-svg-tall h-auto w-full" role="img" aria-label={CHAPTER2.pillChart}>
         <defs>
           <linearGradient id={`pill-${gid}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={BRAND} stopOpacity="0.18" />
@@ -62,7 +42,7 @@ function PillChart() {
           return (
             <g key={v}>
               <line x1={padX} x2={w - padX} y1={y} y2={y} stroke="#ece7e3" strokeWidth={1} />
-              <text x={padX - 8} y={y + 3} textAnchor="end" className="font-fanum fill-black/40 text-[10px] font-bold">
+              <text x={padX - 8} y={y + 3} textAnchor="end" className="font-fanum war-chart-axis-y fill-black/40 font-bold">
                 {v}
               </text>
             </g>
@@ -91,7 +71,7 @@ function PillChart() {
               x={p.x}
               y={h - 12}
               textAnchor="middle"
-              className="font-fanum fill-black text-[11px] font-bold"
+              className="font-fanum war-chart-axis-x"
             >
               {p.yearLabel}
             </text>
@@ -102,7 +82,7 @@ function PillChart() {
 }
 
 function WarAcneLines() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 720;
   const h = 240;
   const padX = 36;
@@ -123,7 +103,7 @@ function WarAcneLines() {
   const acneLine = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.yAcne.toFixed(1)}`).join(" ");
 
   return (
-    <div ref={ref} className="mx-auto mt-6 w-full max-w-[720px]" dir="ltr">
+    <div ref={inRef} className="war-chart-wrap mx-auto mt-6 w-full max-w-[720px]" dir="ltr">
       <div className="mb-3 flex flex-wrap items-center justify-end gap-5" dir="rtl">
         <span className="font-fanum inline-flex items-center gap-2 text-[12px] font-bold text-black">
           <span className="inline-block h-0.5 w-6 rounded-full bg-pink" />
@@ -134,7 +114,7 @@ function WarAcneLines() {
           جوش
         </span>
       </div>
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full" role="img" aria-label={CHAPTER2.acneChart}>
+      <svg viewBox={`0 0 ${w} ${h}`} className="war-chart-svg-tall h-auto w-full" role="img" aria-label={CHAPTER2.acneChart}>
         {[0, 20, 40, 60, 80, 100].map((v) => {
           const y = padTop + (1 - v / 100) * plotH;
           return <line key={v} x1={padX} x2={w - padX} y1={y} y2={y} stroke="#ece7e3" strokeWidth={1} />;
@@ -165,7 +145,7 @@ function WarAcneLines() {
               x={p.x}
               y={h - 12}
               textAnchor="middle"
-              className="font-fanum fill-black text-[10px] font-bold"
+              className={`font-fanum war-chart-axis-x ${p.x > w - 100 ? "war-anxiety-last-label" : ""}`}
             >
               {p.xLabel}
             </text>

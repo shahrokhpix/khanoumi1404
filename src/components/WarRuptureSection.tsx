@@ -1,32 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { CHAPTER2 } from "../content/war-report";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 const BRAND = "#EC078D";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.25 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.25 });
+  return { ref, on: visible };
 }
 
 function RuptureSplitBar() {

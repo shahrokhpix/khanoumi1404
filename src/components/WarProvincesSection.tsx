@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
 import { CHAPTER2 } from "../content/war-report";
 import { provinceDrop, provinceShare } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
 const WAR_ONE = "#ED088D";
 const WAR_TWO = "#F49AC2";
@@ -9,29 +9,8 @@ const SHARE_GROWTH = "#ED088D";
 const AXIS = "#A9A9A9";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.2 });
+  return { ref, on: visible };
 }
 
 function topRoundedBarPath(x: number, y: number, width: number, height: number, radius: number) {
@@ -49,7 +28,7 @@ function topRoundedBarPath(x: number, y: number, width: number, height: number, 
 }
 
 function ProvinceDropBars() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const max = 30;
   const w = 800;
   const h = 360;
@@ -67,7 +46,7 @@ function ProvinceDropBars() {
     value.toLocaleString("fa-IR", { maximumFractionDigits: 1 });
 
   return (
-    <div ref={ref} className="mx-auto mt-6 w-full max-w-[820px]" dir="ltr">
+    <div ref={inRef} className="war-chart-wrap mx-auto mt-6 w-full max-w-[820px]" dir="ltr">
       <div className="mb-4 flex flex-wrap items-center justify-end gap-6" dir="rtl">
         <span className="font-fanum inline-flex items-center gap-2 text-[13px] font-bold text-black sm:text-[14px]">
           <span className="inline-block h-3 w-3 rounded-full" style={{ background: WAR_ONE }} />
@@ -78,7 +57,7 @@ function ProvinceDropBars() {
           جنگ دوم
         </span>
       </div>
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full" role="img" aria-label={CHAPTER2.moveChart}>
+      <svg viewBox={`0 0 ${w} ${h}`} className="war-chart-svg-tall h-auto w-full" role="img" aria-label={CHAPTER2.moveChart}>
         <line x1={padL} x2={padL} y1={padTop} y2={plotBottom} stroke={AXIS} />
         <line x1={padL} x2={w - padR} y1={plotBottom} y2={plotBottom} stroke={AXIS} />
         <text
@@ -86,7 +65,7 @@ function ProvinceDropBars() {
           y={padTop + plotH / 2}
           textAnchor="middle"
           transform={`rotate(-90 18 ${padTop + plotH / 2})`}
-          className="font-fanum fill-black text-[12px] font-bold"
+          className="font-fanum war-chart-axis-y fill-black font-bold"
         >
           درصد افت فروش نسبت به سال قبل
         </text>
@@ -95,7 +74,7 @@ function ProvinceDropBars() {
           return (
             <g key={v}>
               <line x1={padL - 5} x2={padL} y1={y} y2={y} stroke={AXIS} />
-              <text x={padL - 10} y={y + 4} textAnchor="end" className="font-fanum fill-black/65 text-[12px] font-bold">
+              <text x={padL - 10} y={y + 4} textAnchor="end" className="font-fanum war-chart-axis-y fill-black/65 font-bold">
                 ٪{v.toLocaleString("fa-IR")}
               </text>
             </g>
@@ -132,21 +111,21 @@ function ProvinceDropBars() {
               />
               {on && (
                 <>
-                  <text x={firstX + barW / 2} y={plotBottom - h1 - 8} textAnchor="middle" className="font-fanum fill-black text-[13px] font-bold">
+                  <text x={firstX + barW / 2} y={plotBottom - h1 - 8} textAnchor="middle" className="font-fanum war-chart-axis-y fill-black font-bold">
                     ٪{faValue(row.war1)}
                   </text>
-                  <text x={firstX + barW + barGap + barW / 2} y={plotBottom - h2 - 8} textAnchor="middle" className="font-fanum fill-black text-[13px] font-bold">
+                  <text x={firstX + barW + barGap + barW / 2} y={plotBottom - h2 - 8} textAnchor="middle" className="font-fanum war-chart-axis-y fill-black font-bold">
                     ٪{faValue(row.war2)}
                   </text>
                 </>
               )}
-              <text x={cx} y={h - 30} textAnchor="middle" className="font-fanum fill-black text-[15px] font-bold">
+              <text x={cx} y={h - 30} textAnchor="middle" className="font-fanum war-chart-axis-x fill-black font-bold">
                 {row.name}
               </text>
             </g>
           );
         })}
-        <text x={padL + plotW / 2} y={h - 7} textAnchor="middle" className="font-fanum fill-black/70 text-[12px] font-bold">
+        <text x={padL + plotW / 2} y={h - 7} textAnchor="middle" className="font-fanum war-chart-axis-caption fill-black/70 font-bold">
           استان
         </text>
       </svg>
@@ -155,7 +134,7 @@ function ProvinceDropBars() {
 }
 
 function ProvinceShareBars() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 960;
   const h = 390;
   const mid = w / 2;
@@ -165,10 +144,10 @@ function ProvinceShareBars() {
   const top = 58;
 
   return (
-    <div ref={ref} className="mx-auto mt-8 w-full max-w-[1000px]" dir="ltr">
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full" role="img" aria-label={CHAPTER2.moveBars}>
-        <text x={mid - 180} y={24} textAnchor="middle" className="font-fanum fill-[#B0016A] text-[15px] font-bold">افت سهم</text>
-        <text x={mid + 180} y={24} textAnchor="middle" className="font-fanum fill-[#ED088D] text-[15px] font-bold">رشد سهم</text>
+    <div ref={inRef} className="war-chart-wrap mx-auto mt-8 w-full max-w-[1000px]" dir="ltr">
+      <svg viewBox={`0 0 ${w} ${h}`} className="war-chart-svg-tall h-auto w-full" role="img" aria-label={CHAPTER2.moveBars}>
+        <text x={mid - 180} y={24} textAnchor="middle" className="font-fanum war-chart-axis-y fill-[#B0016A] font-bold">افت سهم</text>
+        <text x={mid + 180} y={24} textAnchor="middle" className="font-fanum war-chart-axis-y fill-[#ED088D] font-bold">رشد سهم</text>
         <line x1={mid} x2={mid} y1={40} y2={h - 22} stroke={AXIS} strokeWidth={1.5} />
         {provinceShare.map((row, i) => {
           const y = top + i * rowH;
@@ -182,7 +161,7 @@ function ProvinceShareBars() {
                 x={isPos ? mid + len + 14 : mid - len - 14}
                 y={y + barH / 2 + 5}
                 textAnchor={isPos ? "start" : "end"}
-                className="font-fanum fill-black text-[15px] font-bold"
+                className="font-fanum war-chart-axis-y fill-black font-bold"
               >
                 {row.name}
               </text>
@@ -198,7 +177,7 @@ function ProvinceShareBars() {
             </g>
           );
         })}
-        <text x={mid} y={h - 4} textAnchor="middle" className="font-fanum fill-black/70 text-[12px] font-bold">
+        <text x={mid} y={h - 4} textAnchor="middle" className="font-fanum war-chart-axis-caption fill-black/70 font-bold">
           تغییر سهم ارزش در فروش
         </text>
       </svg>

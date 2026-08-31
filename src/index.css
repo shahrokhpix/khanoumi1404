@@ -215,6 +215,8 @@ html {
   opacity: 0;
   transform: translateY(36px) scale(0.985);
   filter: blur(8px);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
   transition:
     opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
@@ -225,6 +227,14 @@ html {
   opacity: 1;
   transform: none;
   filter: none;
+  content-visibility: visible;
+}
+
+@media (max-width: 1023px) {
+  .annual-spa > section[data-reveal] {
+    filter: none;
+    transform: translateY(22px) scale(0.99);
+  }
 }
 
 .glass-panel {
@@ -377,21 +387,24 @@ html {
 }
 
 #products-basket .basket-bar {
-  transform-origin: right center;
+  transform-origin: left center;
   transform: scaleX(0);
 }
 
 #products-basket .basket-in .basket-row {
   animation: weight-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--d, 0s);
+  animation-fill-mode: forwards;
 }
 
 #products-basket .basket-in .basket-bar {
   animation: basket-bar-grow 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-fill-mode: forwards;
 }
 
 #products-basket .basket-in .basket-growth {
   animation: weight-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-fill-mode: forwards;
 }
 
 @keyframes basket-bar-grow {
@@ -606,141 +619,134 @@ path.war-chart-draw[fill^="url"] {
   animation: skin-pie-in 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.war-jump-chart svg text.war-jump-axis-y {
-  font-size: 13px;
+/* Wide SVG viewBoxes shrink text on mobile; 20 user units render at roughly
+   12–14 screen px. Desktop remains at the established 12 user units. */
+.war-chart-wrap svg text,
+.war-jump-chart svg text,
+.war-lip-acne-chart svg text,
+.war-hourly-chart svg text,
+.war-tehran-chart svg text,
+.war-return-chart svg text {
+  font-size: 20px;
   font-weight: 800;
+}
+
+@media (min-width: 640px) {
+  .war-chart-wrap svg text,
+  .war-jump-chart svg text,
+  .war-lip-acne-chart svg text,
+  .war-hourly-chart svg text,
+  .war-tehran-chart svg text,
+  .war-return-chart svg text {
+    font-size: 12px;
+  }
+}
+
+.war-lip-acne-chart svg text.war-lip-acne-axis-caption,
+.war-chart-axis-caption {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .war-lip-acne-chart svg text.war-lip-acne-axis-caption,
+  .war-chart-axis-caption {
+    font-size: 11px;
+  }
+}
+
+.war-chart-wrap svg text {
+  font-weight: 800;
+}
+
+@media (max-width: 639px) {
+  #crisis .war-chart-wrap svg text,
+  .war-tehran-chart svg text {
+    font-size: 18px;
+  }
+
+  #crisis .war-chart-axis-x {
+    transform: translateY(4px);
+  }
+
+  #anxiety .war-chart-wrap svg text {
+    font-size: 16px;
+  }
+
+  #anxiety .war-anxiety-last-label {
+    text-anchor: end;
+  }
+
+  .war-lip-acne-axis-x {
+    transform: translateY(-4px);
+  }
+
+  .war-lip-acne-axis-caption {
+    transform: translateY(4px);
+  }
+}
+
+.war-jump-chart svg text.war-jump-axis-y {
   fill: rgb(0 0 0 / 0.55);
 }
 
 .war-jump-chart svg text.war-jump-axis-x {
-  font-size: 13px;
-  font-weight: 800;
   fill: rgb(0 0 0 / 0.85);
   direction: rtl;
 }
 
-@media (min-width: 640px) {
-  .war-jump-chart svg text.war-jump-axis-y,
-  .war-jump-chart svg text.war-jump-axis-x {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .war-jump-chart svg text.war-jump-axis-y,
-  .war-jump-chart svg text.war-jump-axis-x {
-    font-size: 15px;
-  }
-}
-
 .war-lip-acne-chart svg text.war-lip-acne-axis-y {
-  font-size: 13px;
-  font-weight: 800;
   fill: rgb(17 17 17 / 0.55);
 }
 
 .war-lip-acne-chart svg text.war-lip-acne-axis-x {
-  font-size: 13px;
-  font-weight: 800;
   fill: #111111;
   direction: rtl;
 }
 
 .war-lip-acne-chart svg text.war-lip-acne-axis-caption {
-  font-size: 11px;
   font-weight: 700;
   fill: rgb(17 17 17 / 0.72);
   direction: rtl;
 }
 
+.war-chart-axis-caption {
+  font-weight: 700;
+  fill: rgb(17 17 17 / 0.72);
+}
+
+.war-chart-svg-tall {
+  min-height: 14rem;
+}
+
 @media (min-width: 640px) {
-  .war-lip-acne-chart svg text.war-lip-acne-axis-y,
-  .war-lip-acne-chart svg text.war-lip-acne-axis-x {
-    font-size: 14px;
-  }
-
-  .war-lip-acne-chart svg text.war-lip-acne-axis-caption {
-    font-size: 12px;
+  .war-chart-svg-tall {
+    min-height: 0;
   }
 }
 
-@media (min-width: 1024px) {
-  .war-lip-acne-chart svg text.war-lip-acne-axis-y,
-  .war-lip-acne-chart svg text.war-lip-acne-axis-x {
-    font-size: 15px;
-  }
-
-  .war-lip-acne-chart svg text.war-lip-acne-axis-caption {
-    font-size: 13px;
-  }
-}
-
-/* Hourly zero chart — axis labels stay readable CSS px (not viewBox-scaled) */
 .war-hourly-chart svg text.war-hourly-axis-y {
-  font-size: 15px;
-  font-weight: 800;
   fill: rgb(0 0 0 / 0.82);
 }
 
 .war-hourly-chart svg text.war-hourly-axis-x {
-  font-size: 14px;
-  font-weight: 800;
   fill: rgb(0 0 0 / 0.88);
 }
 
-@media (min-width: 640px) {
-  .war-hourly-chart svg text.war-hourly-axis-y {
-    font-size: 16px;
-  }
-
-  .war-hourly-chart svg text.war-hourly-axis-x {
-    font-size: 15px;
-  }
-}
-
-/* Tehran rhythm chart — same readable axis treatment */
 .war-tehran-chart svg text.war-tehran-axis-y {
-  font-size: 15px;
-  font-weight: 800;
   fill: rgb(0 0 0 / 0.82);
 }
 
 .war-tehran-chart svg text.war-tehran-axis-x {
-  font-size: 13px;
-  font-weight: 800;
   fill: rgb(0 0 0 / 0.88);
 }
 
 .war-tehran-chart svg text.war-tehran-dip-label {
-  font-size: 14px;
-  font-weight: 800;
   fill: #ec078d;
 }
 
-@media (min-width: 640px) {
-  .war-tehran-chart svg text.war-tehran-axis-y {
-    font-size: 16px;
-  }
-
-  .war-tehran-chart svg text.war-tehran-axis-x {
-    font-size: 14px;
-  }
-
-  .war-tehran-chart svg text.war-tehran-dip-label {
-    font-size: 15px;
-  }
-}
-
 .war-return-chart svg text.war-return-axis-x {
-  font-size: 13px;
-  font-weight: 800;
   fill: rgb(255 255 255 / 0.82);
-}
-
-@media (min-width: 640px) {
-  .war-return-chart svg text.war-return-axis-x {
-    font-size: 14px;
-  }
 }
 
 .war-ig-chart svg text.war-ig-axis-y {

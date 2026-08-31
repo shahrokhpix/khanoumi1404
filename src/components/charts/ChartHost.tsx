@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { SvgChart } from "../../charts/types";
+import { observeRevealOnce } from "../../lib/useRevealOnce";
 
 type Props = {
   className?: string;
@@ -52,22 +53,7 @@ export function ChartHost({
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      wrap.classList.add("users-in");
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          wrap.classList.add("users-in");
-        } else {
-          wrap.classList.remove("users-in");
-        }
-      },
-      { threshold: 0.15, rootMargin: "40px 0px" },
-    );
-    io.observe(wrap);
-    return () => io.disconnect();
+    return observeRevealOnce([wrap], "users-in", { threshold: 0.15, rootMargin: "40px 0px" });
   }, []);
 
   return (

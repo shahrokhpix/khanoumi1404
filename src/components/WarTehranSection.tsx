@@ -54,18 +54,12 @@ function WarTehranRhythmChart() {
       return;
     }
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setInView(true);
-        } else {
-          setInView(false);
-        }
-      },
+      ([entry]) => setInView(Boolean(entry?.isIntersecting)),
       { threshold: 0.25 },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [wrapRef]);
 
   const w = 920;
   const h = 410;
@@ -101,7 +95,7 @@ function WarTehranRhythmChart() {
   const area = `${line} L${pts[pts.length - 1]!.x},${plotBottom} L${pts[0]!.x},${plotBottom} Z`;
 
   return (
-    <div ref={wrapRef} className="war-tehran-chart mx-auto w-full max-w-[920px] overflow-visible" dir="ltr">
+    <div ref={wrapRef} className="war-tehran-chart war-chart-wrap mx-auto w-full max-w-[920px] overflow-visible" dir="ltr">
       <svg
         viewBox={`0 0 ${w} ${h}`}
         className="h-auto min-h-[260px] w-full overflow-visible sm:min-h-[320px]"
@@ -170,7 +164,7 @@ function WarTehranRhythmChart() {
                 strokeWidth={1.5}
                 className={inView ? "war-chart-dot" : "opacity-0"}
               />
-              <text x={p.x} y={dipLabelY} textAnchor="middle" className="font-fanum war-tehran-dip-label">
+              <text x={p.x} y={dipLabelY} textAnchor="middle" className="font-fanum war-tehran-dip-label war-chart-axis-caption">
                 {p.dipLabel}
               </text>
             </g>

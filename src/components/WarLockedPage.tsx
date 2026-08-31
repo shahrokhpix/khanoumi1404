@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { observeRevealOnce } from "../lib/useRevealOnce";
 import { Artboard } from "./Artboard";
 import { WarChrome } from "./WarChrome";
 import { WarFooter } from "./WarFooter";
@@ -25,25 +26,7 @@ import { WAR_FRAMES } from "../data/war-section-frames";
 function useChapterReveal() {
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>(".war-spa > section[data-reveal]"));
-    if (!nodes.length) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      nodes.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-          } else {
-            entry.target.classList.remove("is-in");
-          }
-        }
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" },
-    );
-    nodes.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    return observeRevealOnce(nodes, "is-in", { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
   }, []);
 }
 

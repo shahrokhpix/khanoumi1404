@@ -57,18 +57,12 @@ function WarDailyOrdersChart() {
       return;
     }
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setInView(true);
-        } else {
-          setInView(false);
-        }
-      },
+      ([entry]) => setInView(Boolean(entry?.isIntersecting)),
       { threshold: 0.2 },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [wrapRef]);
 
   const w = 920;
   const padX = 24;
@@ -116,7 +110,7 @@ function WarDailyOrdersChart() {
     }));
 
   return (
-    <div ref={wrapRef} className="mx-auto w-full max-w-[920px]" dir="ltr">
+    <div ref={wrapRef} className="war-chart-wrap mx-auto w-full max-w-[920px]" dir="ltr">
       <div className="mb-4 flex flex-wrap items-center justify-end gap-5" dir="rtl">
         <span className="font-fanum inline-flex items-center gap-2 text-[12px] font-bold text-black sm:text-[13px]">
           <span className="inline-block h-0.5 w-7 rounded-full bg-pink" aria-hidden="true" />
@@ -173,7 +167,7 @@ function WarDailyOrdersChart() {
               x={p.x}
               y={plotBottom + 20}
               textAnchor="middle"
-              className="font-fanum fill-black text-[10px] font-bold sm:text-[11px]"
+              className="font-fanum war-chart-axis-x fill-black font-bold"
             >
               {p.month}
             </text>
@@ -196,7 +190,7 @@ function WarDailyOrdersChart() {
         </svg>
 
         <div
-          className="grid grid-cols-3 gap-1.5 sm:gap-2.5"
+          className="mt-3 grid grid-cols-3 gap-1.5 sm:mt-0 sm:gap-2.5"
           style={{ paddingInline: `${(padX / w) * 100}%` }}
           dir="ltr"
         >

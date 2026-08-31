@@ -1,38 +1,17 @@
-import { useEffect, useRef, useState } from "react";
 import { CHAPTER2 } from "../content/war-report";
 import { userMix } from "../data/charts";
+import { useRevealOnce } from "../lib/useRevealOnce";
 
-const NEW_USER = "#ED008C";
-const RETURNING_USER = "#EC80B5";
+const NEW_USER = "#EC80B5";
+const RETURNING_USER = "#ED008C";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0.2 });
+  return { ref, on: visible };
 }
 
 function UserMixBars() {
-  const { ref, on } = useInView<HTMLDivElement>();
+  const { ref: inRef, on } = useInView<HTMLDivElement>();
   const w = 960;
   const h = 220;
   const barX = 110;
@@ -42,8 +21,8 @@ function UserMixBars() {
   const rowY = [12, 88];
 
   return (
-    <div ref={ref} className="mx-auto mt-8 w-full max-w-[1000px]" dir="ltr">
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full" role="img" aria-label={CHAPTER2.holdChart}>
+    <div ref={inRef} className="war-chart-wrap mx-auto mt-8 w-full max-w-[1000px]" dir="ltr">
+      <svg viewBox={`0 0 ${w} ${h}`} className="war-chart-svg-tall h-auto w-full" role="img" aria-label={CHAPTER2.holdChart}>
         <defs>
           {userMix.map((row, index) => {
             const y = rowY[index]!;
@@ -64,7 +43,7 @@ function UserMixBars() {
                 x={96}
                 y={y + barH / 2 + 6}
                 textAnchor="end"
-                className="font-fanum fill-black text-[13px] font-bold"
+                className="font-fanum war-chart-axis-y"
               >
                 {row.war}
               </text>
@@ -85,9 +64,9 @@ function UserMixBars() {
         })}
         <g transform="translate(395 188)">
           <circle cx={0} cy={0} r={13} fill={RETURNING_USER} />
-          <text x={-20} y={6} textAnchor="end" className="font-fanum fill-black text-[16px] font-bold">بازگشتی</text>
+          <text x={-20} y={6} textAnchor="end" className="font-fanum war-chart-axis-y fill-black font-bold">بازگشتی</text>
           <circle cx={118} cy={0} r={13} fill={NEW_USER} />
-          <text x={98} y={6} textAnchor="end" className="font-fanum fill-black text-[16px] font-bold">جدید</text>
+          <text x={98} y={6} textAnchor="end" className="font-fanum war-chart-axis-y fill-black font-bold">جدید</text>
         </g>
       </svg>
     </div>

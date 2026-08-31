@@ -1,33 +1,11 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { PATH } from "../content/annual-report";
+import { useRevealOnce } from "../lib/useRevealOnce";
 import { PathGenderChart } from "./PathGenderChart";
 
 function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [on, setOn] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setOn(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setOn(true);
-        } else {
-          setOn(false);
-        }
-      },
-      { threshold: 0, rootMargin: "80px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return { ref, on };
+  const { ref, visible } = useRevealOnce<T>({ threshold: 0, rootMargin: "80px 0px" });
+  return { ref, on: visible };
 }
 
 function CountValue({ to, active, plus }: { to: number; active: boolean; plus?: boolean }) {
