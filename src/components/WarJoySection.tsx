@@ -66,12 +66,9 @@ function LipAcneBars() {
         {LIP_Y_TICKS.map((val) => {
           const y = padTop + (1 - val / LIP_Y_MAX) * plotH;
           return (
-            <g key={val}>
-              <line x1={padL} x2={w - padR} y1={y} y2={y} stroke={LIP_AXIS} strokeWidth={val === 0 ? 1 : 0.75} opacity={val === 0 ? 1 : 0.45} />
-              <text x={padL - 8} y={y + 4} textAnchor="end" className="font-fanum war-lip-acne-axis-y">
-                {faPct(val)}
-              </text>
-            </g>
+            <text key={val} x={padL - 8} y={y + 4} textAnchor="end" className="font-fanum war-lip-acne-axis-y">
+              {faPct(val)}
+            </text>
           );
         })}
 

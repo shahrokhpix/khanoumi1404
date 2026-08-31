@@ -496,7 +496,7 @@ function SkinBand({
       ref={rootRef}
       className={`mx-auto mt-14 w-full max-w-[58rem] lg:mt-20 ${active ? "skin-in" : ""}`}
     >
-      <BandTitle title={skin.title} lead={skin.insight} accentTitle />
+      <BandTitle title={skin.title} accentTitle />
 
       <ul className="m-0 mt-8 grid list-none grid-cols-3 items-start gap-2 p-0 sm:mt-10 sm:gap-5 lg:gap-8">
         {skin.rows.map((row, index) => (
