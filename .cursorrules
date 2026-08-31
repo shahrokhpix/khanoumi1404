@@ -15,6 +15,7 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 # Lessons
 
 - War section charts must stay centered with `mx-auto w-full max-w-*`; do not use `w-screen left-1/2 -translate-x-1/2` inside the RTL report frame because it can shift beyond the artboard.
+- Hold user mix is: war one 65% returning / 35% new; war two 75% returning / 25% new.
 - War charts with 720–960-wide SVG viewBoxes need 20 CSS user units on mobile to render around 12–14 visible px; keep 12 units from `sm` upward. Do not assume SVG `font-size: 11px` equals 11 screen px.
 - Vite build-html treats `href="/"` or `content="/"` in index.html as asset URLs (EISDIR). Keep root canonical/og:url out of source index.html; inject absolute URLs in postbuild (`scripts/generate-seo-static.mjs`).
 - Persian year/day comparisons must use an explicit 3-column RTL grid (`date | date`) with each date rendered as one uninterrupted RTL string. Nested flex/bidi isolation produced no reliable visual change.
@@ -29,9 +30,10 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 
 ## Scratchpad
 
-Task: Increase Crisis x-axis label spacing on mobile.
+Task: Correct Hold chart user proportions.
 
-[X] Move Crisis x-axis labels farther below the chart on mobile
+[X] Set war one to returning 65% / new 35%
+[X] Set war two to returning 75% / new 25%
 [X] Run production build
 
 

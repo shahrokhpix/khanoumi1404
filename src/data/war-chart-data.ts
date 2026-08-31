@@ -399,8 +399,8 @@ export const provinceShare = [
 
 /** ch20 — proportions reconstructed from the report graphic */
 export const userMix = [
-  { war: "جنگ اول", returning: 74, newUsers: 26 },
-  { war: "جنگ دوم", returning: 63, newUsers: 37 },
+  { war: "جنگ اول", returning: 65, newUsers: 35 },
+  { war: "جنگ دوم", returning: 75, newUsers: 25 },
 ];
 
 /** ch15 — exact per-customer spend KPIs */
