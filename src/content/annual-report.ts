@@ -79,22 +79,6 @@ export const PATH = {
   ],
   metrics: [
     {
-      label: "حجم فروش:",
-      cagr: "۴۰٪",
-      value: 40,
-      cagrLabel: "نرخ رشد مرکب سالانه:",
-      note: "تعداد کالای فروخته‌شده در انتهای این دوره ۲ ساله نزدیک به ۲ برابر شد.",
-      icon: "/assets/annual/path/basket.svg",
-    },
-    {
-      label: "وفاداری مشتری:",
-      cagr: "۵۷٪",
-      value: 57,
-      cagrLabel: "میانگین ۳ ساله نرخ بازگشت مشتری:",
-      note: "بیش از نیمی از مشتریان در‌انتهای این دوره ۲ ساله، خرید خود را تکرار کردند.",
-      icon: "/assets/annual/path/loyal.svg",
-    },
-    {
       label: "رشد سودآوری(برمبنای ارزش ریالی مارجین):",
       cagr: "۱۳۰٪",
       value: 130,
@@ -110,6 +94,22 @@ export const PATH = {
       cagrLabel: "نرخ رشد مرکب سالانه CAGR:",
       note: "فروش در انتهای این دوره ۲ ساله ۳٫۶ برابر شد.",
       icon: "/assets/annual/path/chart.svg",
+    },
+    {
+      label: "حجم فروش:",
+      cagr: "۴۰٪",
+      value: 40,
+      cagrLabel: "نرخ رشد مرکب سالانه:",
+      note: "تعداد کالای فروخته‌شده در انتهای این دوره ۲ ساله نزدیک به ۲ برابر شد.",
+      icon: "/assets/annual/path/basket.svg",
+    },
+    {
+      label: "وفاداری مشتری:",
+      cagr: "۵۷٪",
+      value: 57,
+      cagrLabel: "میانگین ۳ ساله نرخ بازگشت مشتری:",
+      note: "بیش از نیمی از مشتریان در‌انتهای این دوره ۲ ساله، خرید خود را تکرار کردند.",
+      icon: "/assets/annual/path/loyal.svg",
     },
   ],
   gender: {

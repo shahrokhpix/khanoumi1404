@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>خوبی؟ — intro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --pink: #ec078d;
+      --cyan: #55d8ff;
+      --font-sans: "Vazirmatn", Tahoma, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: #000;
+      color: #fff;
+    }
+
+    /* قفل اسکرول وقتی intro باز است */
+    body.intro-lock {
+      overflow: hidden;
+    }
+
+    /* لایه تمام‌صفحه */
+    .war-shock-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: grid;
+      place-items: center;
+      background: #000;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    /* گرادیان + وینیت */
+    .war-shock-intro::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 85% 70% at 50% 42%, rgba(236, 7, 141, 0.07), transparent 58%),
+        radial-gradient(circle at 50% 50%, transparent 35%, rgba(0, 0, 0, 0.72) 100%);
+    }
+
+    /* خطوط اسکن */
+    .war-shock-intro::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+    }
+
+    /* حالت خروج */
+    .war-shock-intro--hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .war-shock-intro__wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      min-height: 100dvh;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+      animation: war-shock-word-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .war-shock-intro__kicker {
+      margin: 0 0 1.5rem;
+      max-width: 22rem;
+      font-size: clamp(14px, 2.4vw, 20px);
+      font-weight: 700;
+      line-height: 1.65;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .war-shock-intro__word {
+      position: relative;
+      margin: 0;
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: clamp(7rem, 26vw, 22rem);
+      font-weight: 900;
+      line-height: 0.78;
+      letter-spacing: -0.08em;
+      color: #ececec;
+      filter:
+        drop-shadow(0 0 42px rgba(236, 7, 141, 0.35))
+        drop-shadow(0 18px 48px rgba(0, 0, 0, 0.65));
+      animation: war-shock-word-breathe 2.4s ease-in-out infinite;
+    }
+
+    /* لایه‌های glitch */
+    .war-shock-intro__word::before,
+    .war-shock-intro__word::after {
+      content: "خوبی؟";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.72;
+    }
+
+    .war-shock-intro__word::before {
+      transform: translateX(6px);
+      color: var(--pink);
+      clip-path: inset(10% 0 62% 0);
+      animation: war-shock-glitch-a 1.2s infinite;
+    }
+
+    .war-shock-intro__word::after {
+      transform: translateX(-5px);
+      color: var(--cyan);
+      clip-path: inset(63% 0 10% 0);
+      animation: war-shock-glitch-b 1.05s infinite;
+    }
+
+    /* خط سیگنال زیر کلمه — فقط در نسخه shock HTML */
+    .war-shock-intro__line {
+      width: 0;
+      height: 4px;
+      margin: 34px auto 0;
+      background: var(--pink);
+      animation: war-shock-signal 2.2s forwards;
+    }
+
+    @keyframes war-shock-word-in {
+      from {
+        opacity: 0;
+        transform: scale(0.88);
+        filter: blur(8px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    @keyframes war-shock-word-breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.025); }
+    }
+
+    @keyframes war-shock-glitch-a {
+      0%, 90%, 100% { transform: translateX(6px); }
+      92% { transform: translateX(-14px); }
+      94% { transform: translateX(10px); }
+    }
+
+    @keyframes war-shock-glitch-b {
+      0%, 88%, 100% { transform: translateX(-5px); }
+      90% { transform: translateX(12px); }
+      93% { transform: translateX(-16px); }
+    }
+
+    @keyframes war-shock-signal {
+      0% { width: 0; }
+      70% { width: 72%; }
+      100% { width: 100%; }
+    }
+  </style>
+</head>
+
+<body class="intro-lock">
+
+  <div class="war-shock-intro" id="intro" aria-hidden="true">
+    <div class="war-shock-intro__wrap">
+      <p class="war-shock-intro__kicker">
+        ۱۴۰۴ / یک کلمه بیشتر از هر وقت دیگری تکرار شد
+      </p>
+      <p class="war-shock-intro__word">خوبی؟</p>
+      <div class="war-shock-intro__line"></div>
+    </div>
+  </div>
+
+  <!-- محتوای اصلی گزارش اینجا -->
+
+  <script>
+  // اختیاری: بعد از ۳.۲ ثانیه intro محو شود
+  setTimeout(() => {
+    document.getElementById("intro").classList.add("war-shock-intro--hide");
+    document.body.classList.remove("intro-lock");
+  }, 3200);
+  </script>
+
+</body>
+</html>

@@ -30,11 +30,11 @@ Note all the tools are in python3. Consult `tools/` for screenshot, search, scra
 
 ## Scratchpad
 
-Task: Correct Hold chart user proportions.
+Task: Push copy fixes to GitHub and refresh Pages demo.
 
-[X] Set war one to returning 65% / new 35%
-[X] Set war two to returning 75% / new 25%
-[X] Run production build
+[ ] Commit copy + intro.html
+[ ] Push to origin/main
+[ ] Confirm GitHub Pages deploy
 
 
 ## User Specified Lessons
@@ -68,8 +68,8 @@ Task: Correct Hold chart user proportions.
 - Glance KPI labels (esp. «نرخ رشد تعداد کالاهای فروخته‌شده:») also stay one line: `whitespace-nowrap` + `11px / sm:14px / lg:16px`. Do not use `leading-7` on those labels.
 - Path (`#path`) year nodes use the user’s `circle.svg` / `arrow.svg` (circle recolored `#FF03FF` → `#EC078D`). Hover/focus fills the inner white with brand and the year turns white.
 - Path section title sits in a brand `#EC078D` box (white type). Metric labels/notes under icons are black; percents stay pink and count up. Timeline is **LTR** (۱۴۰۲ left → ۱۴۰۴ right) with flipped arrows. Gender chart: text left, Chart.js bars right (`chart.js` + `react-chartjs-2`). Year ۱۴۰۴ sits centered **above** the bars; keep bars thin (`barThickness` 8) so they do not overflow the canvas.
-- Path timeline (`#path ol`) stays **horizontal** at every width (`flex-row`, never `flex-col` below `lg`). Metric icons: `basket` حجم فروش · `loyal` وفاداری · `money` سودآوری · `chart` فروش. Gender: `inway` beside «در مسیر ساختن», `female` beside ۴۰٪ زن. Timeline has scroll-in stagger + arrow flow motion.
-- Path metric percents: حجم فروش ۴۰٪ · وفاداری ۵۷٪ · سودآوری ۱۳۰٪ · فروش ۹۰+٪ (IDML frame positions + ۲×/۳٫۶× notes). Do not swap loyalty and sales.
+- Path timeline (`#path ol`) stays **horizontal** at every width (`flex-row`, never `flex-col` below `lg`). Metric icons: `money` سودآوری · `chart` فروش · `basket` حجم فروش · `loyal` وفاداری. Gender: `inway` beside «در مسیر ساختن», `female` beside ۴۰٪ زن. Timeline has scroll-in stagger + arrow flow motion.
+- Path metric percents stay bound to their own cards: سودآوری ۱۳۰٪ · فروش ۹۰+٪ · حجم فروش ۴۰٪ · وفاداری ۵۷٪. Visual order on `#path` is those four in that sequence (profit and sales sit on the first mobile row). Do not mix loyalty ۵۷٪ with sales ۹۰+٪.
 - CSR (`#csr`): title in brand box with white hands-heart icon (`hands.svg` from PDF vector). Subtitle «زنان پیشگام ایران». RTL two-column: first = خانومی‌لایف (54-women book + مراقبت اجتماعی bar + 3 IG posts), second = خانومی بیزینس (می‌خواهم زیبا بمانم + گزارش ۲۰۲۵ خاورمیانه `2024-report.png` + گزارش مکنزی `mckinsey.svg`). Report tabs are **fixed rem** (`w-[5.75rem]` / `lg:w-[7rem]`, `h-[8.5rem]` / `sm:h-[9.5rem]` / `lg:h-[10.5rem]`), not `%` of the image — otherwise they look هم‌عرض on mobile and stick out on desktop. Tab height must clear the long «گزارش ۲۰۲۵ خاورمیانه» label. Cover images overlap the tab bottom (`-mt-[5.25rem]` / `sm:-mt-[6rem]` / `lg:-mt-[6.75rem]`) so the ribbon end sits behind the report art. Hero CTA uses `faBookOpen`, not a text ↓. Care tab stays in document flow. IG posts share `aspect-[9/16]` + `object-cover`. Do not start Users until csr is accepted.
 - Users rings/fans are a local SVG engine in `src/charts/` (not Chart.js). Circles share a **bottom tangent** (`cy = anchorY - r`), plus a 4th inner disc for the people+crown mark **centered in that disc** (IDML Group_u1e60). Fan primitive is IDML `Polygon_u1ecf`: a **60° circular sector**; InDesign hides the vertex with a Paper clip. Fan labels sit on the SVG right edge (`text-anchor=start` + RTL), not on the wedges. No «دانلود SVG» in the report UI. Rings/fans stagger in on scroll (`users-in`). Insight copy stays **beside** the fan at all widths, with the three-tone people icon above it. Year labels must be LTR-isolated (`۱۴۰۴:` not bidi `۱۴:۰۴`). On narrow mobile columns, keep the fan's 220px internal geometry and scale the entire SVG with `max-width: 100%; height: auto`; recalculating it at the tiny column width crushes row spacing and overlaps labels. Use a smaller mobile `clipRatio`, a taller compact aspect, and `vertexGap: 34` so the smallest sector remains attached while label/percentage rows do not collide.
 - Users golden-day (`روز طلایی`): black rounded card; balloon photo is packaged `enhanced_export copy 2.jpg` (not `campaign-555.jpg` planner mockup, not raw `555.psd`). Crop `BlackBeauty_FA_V01` / `black-beauty.png` to ink bounds or the 3D «بیوتی» looks tiny. IDML `5/1 میلیون` → ۱٫۵.
